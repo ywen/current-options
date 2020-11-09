@@ -9,8 +9,7 @@ function createWindow () {
     }
   })
 
-  win.loadFile('index.html')
-  win.webContents.openDevTools()
+  win.loadURL('http://localhost:3000');
 }
 
 app.whenReady().then(createWindow)
