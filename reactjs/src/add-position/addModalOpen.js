@@ -11,4 +11,4 @@ const addModalOpen = (state, action) => {
   return state;
 };
 
-export default addModalOpen
+export default addModalOpen;
