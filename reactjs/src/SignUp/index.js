@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './index.scss'
 
-import Signup from '../SignUp';
+import signUp from './signUp';
 
 const SignUp = ({ dispatch }) => {
   return (
@@ -18,13 +18,8 @@ const SignUp = ({ dispatch }) => {
         <input type='password' className='signup__input' />
       </label>
 
-      <label className='signup__input-container'>
-        <div className='signup__label'>Confirmation:</div>
-        <input type='password' className='signup__input' />
-      </label>
-
       <div className='signup__input-container'>
-        <button>Sign Up</button>
+        <button onClick={signUp({ dispatch, email, password })}>Sign Up</button>
       </div>
       <div className='signup__input-container'>
         <Link to='/signin'>Sign In</Link>

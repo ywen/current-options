@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux';
-import addModalOpen from './addPosition/addModalOpen';
-import addPositionFormData from './addPosition/formData';
+import addModalOpen from './add-position/addModalOpen';
+import addPositionFormData from './add-position/formData';
 
 const reducers = combineReducers({
   addModalOpen,

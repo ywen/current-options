@@ -11,7 +11,7 @@ import {
 
 import store from './store';
 import Menu from './Menu';
-import AddForm from './addPosition/Form';
+import AddForm from './add-position/Form';
 import initFirebase from './firebase';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
