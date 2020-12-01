@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import closeModal from './closeModal';
-import TextField from './TextField';
+import TextField from '../commons/TextField';
 import Row from './Row';
 import './Modal.scss';
+import changeValue from './changeValue';
 
 const Form = ({ addModalOpen, dispatch, addPositionFormData }) => {
   return (
@@ -15,13 +16,13 @@ const Form = ({ addModalOpen, dispatch, addPositionFormData }) => {
       onRequestClose={() => closeModal({ dispatch })}
       overlayClassName='add-position__overlay'
     >
-      <form className='add-position__form'>
-        <TextField name='symbol' key='symbol' />
-        <TextField name='quantity' key='quantity' />
-        <TextField name='strike' key='strike' />
-        <TextField name='purchasePrice' key='purchasePrice' />
-        <TextField name='openDate' key='openDate' />
-      </form>
+      <div className='add-position__form'>
+        <TextField changeValue={changeValue} name='symbol' key='symbol' />
+        <TextField changeValue={changeValue} name='quantity' key='quantity' />
+        <TextField changeValue={changeValue} name='strike' key='strike' />
+        <TextField changeValue={changeValue} name='purchasePrice' key='purchasePrice' />
+        <TextField changeValue={changeValue} name='openDate' key='openDate' />
+      </div>
       <div className='add-position__information'>
         <Row name='symbol' key='symbol' />
         <Row name='stockSymbol' key='stockSymbol' />

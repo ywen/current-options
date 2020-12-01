@@ -1,31 +1,27 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import TextField from '../commons/TextField';
+
 import './index.scss'
 
-import signUp from './signUp';
+import create from './create';
 
-const SignUp = ({ dispatch }) => {
-  return (
+const SignUp = ({ dispatch, email, password }) => {
+  const changeValue = () => ( true );
+  return ([
     <div className='signup__container'>
-      <label className='signup__input-container'>
-        <div className='signup__label'>Email:</div>
-        <input type='email' className='signup__input' />
-      </label>
-
-      <label className='signup__input-container'>
-        <div className='signup__label'>Password:</div>
-        <input type='password' className='signup__input' />
-      </label>
-
-      <div className='signup__input-container'>
-        <button onClick={signUp({ dispatch, email, password })}>Sign Up</button>
-      </div>
-      <div className='signup__input-container'>
-        <Link to='/signin'>Sign In</Link>
-      </div>
+      <TextField changeValue={changeValue} name='email' key='symbol' />
+      <TextField changeValue={changeValue} name='password' key='password' />
+      <TextField changeValue={changeValue} name='confirmation' key='password' />
+    </div>,
+    <div className='signup__input-container'>
+      <button onClick={create({ dispatch, email, password })}>Sign Up</button>
+    </div>,
+    <div className='signup__input-container'>
+      <Link to='/signin'>Sign In</Link>
     </div>
-  )
+  ])
 };
 
 export default connect(state => ({}))(SignUp);

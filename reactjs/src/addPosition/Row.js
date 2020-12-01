@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './Row.scss';
 
-import getLabel from './getLabel';
+import getLabel from '../commons/getLabel';
 
 const Row = ({ data, name, dispatch }) => {
   const value = data.get(name);
