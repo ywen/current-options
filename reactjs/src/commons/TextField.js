@@ -5,14 +5,14 @@ import './TextField.scss';
 
 import getLabel from './getLabel';
 
-const TextField = ({ data, name, dispatch, changeValue }) => {
-  const value = data.get(name);
+const TextField = ({ data, name, dispatch, changeValue, fieldType='text' }) => {
+  const value = data ? data.get(name) : '';
   const inputId = `form-input__${name}`;
   const changed = (e) => {
     changeValue({dispatch, key: name, value: e.target.value})
   };
   return (
-    <div class='text-field__container'>
+    <div className='text-field__container'>
       <label
         className='text-field__label'
         htmlFor={inputId}
@@ -24,7 +24,7 @@ const TextField = ({ data, name, dispatch, changeValue }) => {
         id={inputId}
         key={`${name}-field`}
         className={`text-field__input text-field__input--${name}`}
-        type='text'
+        type={fieldType}
         value={value || ''}
         onChange={changed}
       />
@@ -32,6 +32,4 @@ const TextField = ({ data, name, dispatch, changeValue }) => {
   );
 };
 
-export default connect(state => ({
-  data: state.addPositionFormData,
-}))(TextField);
+export default connect(state => ({}))(TextField);

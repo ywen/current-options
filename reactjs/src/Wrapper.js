@@ -1,24 +1,21 @@
 import React, { useEffect } from 'react';
-import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
 
-import store from './store';
-import AuthenticatedArea from './AuthenticatedArea';
-import initFirebase from './firebase';
 import SignIn from './SignIn';
-import SignUp from './SignUp';
+import Menu from './Menu';
+import AddForm from './addPosition/Form';
+import initFirebase from './firebase';
 
-const App = () => {
+const Wrapper = ({ user }) => {
   useEffect(() => {
     initFirebase();
   }, []);
-
-  return (
-    <Provider store={store}>
+  if (!user) {
       <Router>
         <Switch>
           <Route path='/signin'>
@@ -28,12 +25,18 @@ const App = () => {
             <SignUp />
           </Route>
           <Route path='/'>
-            <AuthenticatedArea />
+            <Menu />,
+            <AddForm />
           </Route>
         </Switch>
       </Router>
-    </Provider>
+  }
+  return (
+    [
+    ]
   );
-};
+}
 
-export default App;
+export default connect(state => ({
+  user: state.user,
+}))(Wrapper);

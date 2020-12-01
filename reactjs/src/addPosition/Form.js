@@ -7,7 +7,7 @@ import Row from './Row';
 import './Modal.scss';
 import changeValue from './changeValue';
 
-const Form = ({ addModalOpen, dispatch, addPositionFormData }) => {
+const Form = ({ addModalOpen, dispatch, data }) => {
   return (
     <Modal
       isOpen={addModalOpen}
@@ -17,11 +17,11 @@ const Form = ({ addModalOpen, dispatch, addPositionFormData }) => {
       overlayClassName='add-position__overlay'
     >
       <div className='add-position__form'>
-        <TextField changeValue={changeValue} name='symbol' key='symbol' />
-        <TextField changeValue={changeValue} name='quantity' key='quantity' />
-        <TextField changeValue={changeValue} name='strike' key='strike' />
-        <TextField changeValue={changeValue} name='purchasePrice' key='purchasePrice' />
-        <TextField changeValue={changeValue} name='openDate' key='openDate' />
+        <TextField changeValue={changeValue} data={data} name='symbol' key='symbol' />
+        <TextField changeValue={changeValue} data={data} name='quantity' key='quantity' />
+        <TextField changeValue={changeValue} data={data} name='strike' key='strike' />
+        <TextField changeValue={changeValue} data={data} name='purchasePrice' key='purchasePrice' />
+        <TextField changeValue={changeValue} data={data} name='openDate' key='openDate' />
       </div>
       <div className='add-position__information'>
         <Row name='symbol' key='symbol' />
@@ -42,5 +42,5 @@ const Form = ({ addModalOpen, dispatch, addPositionFormData }) => {
 
 export default connect(state => ({
   addModalOpen: state.addModalOpen,
-  addPositionFormData: state.addPositionFormData,
+  data: state.addPositionFormData,
 }))(Form);
