@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route,
 } from 'react-router-dom';
@@ -12,6 +12,8 @@ import initFirebase from './firebase';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 
+import history from './commons/history';
+
 const App = () => {
   useEffect(() => {
     initFirebase();
@@ -19,7 +21,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Router>
+      <Router history={history}>
         <Switch>
           <Route path='/signin'>
             <SignIn />

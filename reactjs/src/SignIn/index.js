@@ -3,23 +3,19 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './index.scss'
+import TextField from '../commons/TextField';
 
 import Signup from '../SignUp';
+import changeValue from './changeValue';
+import action from './action';
 
-const SignIn = ({ dispatch }) => {
+const SignIn = ({ dispatch, data }) => {
   return (
     <div className='signin__container'>
-      <label className='signin__input-container'>
-        <div className='signin__label'>Email:</div>
-        <input type='email' className='signin__input' />
-      </label>
-
-      <label className='signin__input-container'>
-        <div className='signin__label'>Password:</div>
-        <input type='password' className='signin__input' />
-      </label>
+      <TextField changeValue={changeValue} data={data} name='email' key='symbol' />
+      <TextField changeValue={changeValue} fieldType='password' data={data} name='password' key='password' />
       <div className='signin__input-container'>
-        <button>Sign In</button>
+        <button onClick={() => action({dispatch, data})}>Sign In</button>
       </div>
       <div className='signin__input-container'>
         <Link to='/signup'>Sign up</Link>
@@ -28,4 +24,8 @@ const SignIn = ({ dispatch }) => {
   )
 };
 
-export default connect(state => ({}))(SignIn);
+export default connect(state => (
+  {
+    data: state.signInData,
+  }
+))(SignIn);

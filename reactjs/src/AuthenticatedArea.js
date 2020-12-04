@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -12,10 +12,12 @@ const AuthenticatedArea = ({ user }) => {
     );
   } else {
     return ([
-      <Menu />,
-      <AddForm />
+      <Menu key='menu' />,
+      <AddForm key='addForm' />
     ]);
   }
 };
 
-export default connect()(AuthenticatedArea)
+export default connect((state) => ({
+  user: state.user,
+}))(AuthenticatedArea);
