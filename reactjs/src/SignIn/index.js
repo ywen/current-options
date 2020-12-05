@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import './index.scss'
 import TextField from '../commons/TextField';
 
-import Signup from '../SignUp';
 import changeValue from './changeValue';
 import action from './action';
 
