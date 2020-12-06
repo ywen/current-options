@@ -1,14 +1,12 @@
 import firebase from 'firebase/app';
+import auth from '../firebase/auth';
 import 'firebase/firestore';
-import 'firebase/auth';
-import initFirebase from '../firebase';
 
 import getKey from './encryption/getKey';
 import getEncrypted from './encryption/getEncrypted';
 
 const setEncryptionKey = ({ dispatch, password }) => {
-  initFirebase();
-  const userId = firebase.auth().currentUser.uid;
+  const userId = auth().currentUser.uid;
   const db = firebase.firestore();
   db.collection(userId).doc('key').get().then((querySnapshot) => {
     if (querySnapshot.exists) {

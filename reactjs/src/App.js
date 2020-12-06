@@ -5,12 +5,11 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+
+import auth from './firebase/auth';
 
 import store from './store';
 import AuthenticatedArea from './AuthenticatedArea';
-import initFirebase from './firebase';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 
@@ -19,7 +18,6 @@ import history from './commons/history';
 const App = () => {
   const [ user, setUser ] = useState(null);
   useEffect(() => {
-    initFirebase();
     const onAuthStateChanged = user => {
       if (user) {
         setUser(user)
@@ -27,7 +25,7 @@ const App = () => {
         setUser(null)
       }
     };
-    const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
   }, []);
 
