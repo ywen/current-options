@@ -1,11 +1,13 @@
 import store from '../server/store';
-import getKey from './encryption/getKey';
-import getEncrypted from './encryption/getEncrypted';
+import getKey from './getKey';
+import getEncrypted from './getEncrypted';
+import getDecrypted from './getDecrypted';
 
 const setEncryptionKey = async ({ dispatch, password }) => {
   const querySnapshot = await store.getKey();
   if (querySnapshot.exists) {
-    console.log(querySnapshot.data());
+    const key = getDecrypted({ key: querySnapshot.data(), password });
+    dispatch({ type: 'KEY_ADDED', key });
   } else {
     const key = getKey();
     const encryptedKey = getEncrypted({password, key})
