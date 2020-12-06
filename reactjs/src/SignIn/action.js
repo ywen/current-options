@@ -1,7 +1,7 @@
 import auth from '../server/auth';
 
 import history from '../commons/history';
-import setEncryptionKey from '../commons/setEncryptionKey';
+import setEncryptionKey from '../encryption/setEncryptionKey';
 
 const action = ({ dispatch, data }) => {
   const email = data.get('email');
