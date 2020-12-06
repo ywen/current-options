@@ -1,4 +1,4 @@
-import auth from '../firebase/auth';
+import auth from '../server/auth';
 
 import history from '../commons/history';
 import setEncryptionKey from '../commons/setEncryptionKey';

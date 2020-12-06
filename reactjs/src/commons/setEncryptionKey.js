@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
-import auth from '../firebase/auth';
 import 'firebase/firestore';
 
+import auth from '../server/auth';
 import getKey from './encryption/getKey';
 import getEncrypted from './encryption/getEncrypted';
 

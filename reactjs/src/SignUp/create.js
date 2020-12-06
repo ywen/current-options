@@ -1,4 +1,4 @@
-import auth from '../firebase/auth';
+import auth from '../server/auth';
 
 const create = ({ data, dispatch }) => {
   const email = data.get('email');

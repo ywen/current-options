@@ -1,6 +1,6 @@
 import React from 'react';
 
-import auth from './firebase/auth';
+import auth from './server/auth';
 import Menu from './Menu';
 import AddForm from './addPosition/Form';
 

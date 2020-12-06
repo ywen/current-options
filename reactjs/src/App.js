@@ -6,7 +6,7 @@ import {
   Route,
 } from 'react-router-dom';
 
-import auth from './firebase/auth';
+import auth from './server/auth';
 
 import store from './store';
 import AuthenticatedArea from './AuthenticatedArea';
