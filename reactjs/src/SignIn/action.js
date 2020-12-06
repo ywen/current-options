@@ -17,4 +17,3 @@ const action = ({ dispatch, data }) => {
 }
 
 export default action;
-

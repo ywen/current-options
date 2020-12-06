@@ -1,5 +1,5 @@
-import crypto from 'crypto-random-string';
+import CryptoJS from 'crypto-js';
 
-const getKey = () => crypto({length: 20, type: 'base64'});
+const getKey = () => CryptoJS.lib.WordArray.random(512 / 8).toString();
 
 export default getKey;
