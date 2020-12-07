@@ -12,6 +12,19 @@
     padding: 1rem;
   };
 
+  &__form {
+    display: grid;
+    grid-row-gap: 1rem;
+  };
+
+  &__save {
+    width: 40%;
+    justify-self: center;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
   &__information {
     margin-top: 2rem;
     display: grid;

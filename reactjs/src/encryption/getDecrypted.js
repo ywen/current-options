@@ -1,7 +1,7 @@
 import CryptoJS from 'crypto-js';
 
-const getDecrypted = ({ password, key }) => {
-  return CryptoJS.AES.decrypt(key, password).toString();
+const getDecrypted = ({ key, value }) => {
+  return CryptoJS.AES.decrypt(value, key).toString();
 };
 
 export default getDecrypted;

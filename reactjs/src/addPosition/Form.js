@@ -6,8 +6,13 @@ import TextField from '../commons/TextField';
 import Row from './Row';
 import './Modal.scss';
 import changeValue from './changeValue';
+import savePosition from './savePosition';
 
-const Form = ({ addModalOpen, dispatch, data }) => {
+const Form = ({ addModalOpen, dispatch, data, secretKey }) => {
+  const save = () => {
+    savePosition({ data, key: secretKey });
+  };
+
   return (
     <Modal
       isOpen={addModalOpen}
@@ -19,9 +24,9 @@ const Form = ({ addModalOpen, dispatch, data }) => {
       <div className='add-position__form'>
         <TextField changeValue={changeValue} data={data} name='symbol' key='symbol' />
         <TextField changeValue={changeValue} data={data} name='quantity' key='quantity' />
-        <TextField changeValue={changeValue} data={data} name='strike' key='strike' />
         <TextField changeValue={changeValue} data={data} name='purchasePrice' key='purchasePrice' />
         <TextField changeValue={changeValue} data={data} name='openDate' key='openDate' />
+        <button onClick={save} className='add-position__save'>Save</button>
       </div>
       <div className='add-position__information'>
         <Row name='symbol' key='symbol' />
@@ -43,4 +48,5 @@ const Form = ({ addModalOpen, dispatch, data }) => {
 export default connect(state => ({
   addModalOpen: state.addModalOpen,
   data: state.addPositionFormData,
+  secretKey: state.key,
 }))(Form);

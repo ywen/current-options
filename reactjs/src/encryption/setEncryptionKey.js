@@ -6,11 +6,11 @@ import getDecrypted from './getDecrypted';
 const setEncryptionKey = async ({ dispatch, password }) => {
   const querySnapshot = await store.getKey();
   if (querySnapshot.exists) {
-    const key = getDecrypted({ key: querySnapshot.data(), password });
+    const key = getDecrypted({ value: querySnapshot.data().key, key: password });
     dispatch({ type: 'KEY_ADDED', key });
   } else {
     const key = getKey();
-    const encryptedKey = getEncrypted({password, key})
+    const encryptedKey = getEncrypted({ key: password, value: key })
     await store.setKey({ key: encryptedKey })
     dispatch({ type: 'KEY_ADDED', key });
   }
