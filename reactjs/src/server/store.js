@@ -11,18 +11,18 @@ const collection = () => {
 
 const toDoc = ({ name }) => collection().doc(name);
 const keyStore = () => toDoc({ name: 'key '});
-const positionsStore = () => toDoc({ name: 'positions' });
+const openPositionsStore = () => toDoc({ name: 'open' });
 
 const getKey = () => keyStore().get();
 
 const setKey = ({ key }) => keyStore().set({ key });
 
 const saveOpenPosition = async ({ position }) => {
-  const snapshot = await positionsStore().get();
+  const snapshot = await openPositionsStore().get();
   if (!snapshot.exists) {
-    positionsStore().set({});
+    openPositionsStore().set({});
   }
-  positionsStore().update({
+  openPositionsStore().update({
     openPositions: firebase.firestore.FieldValue.arrayUnion(position),
   });
 };
@@ -31,6 +31,7 @@ const publicMethods = {
   getKey,
   setKey,
   saveOpenPosition,
+  openPositionsStore,
 };
 
 export default publicMethods;

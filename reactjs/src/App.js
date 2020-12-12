@@ -48,7 +48,7 @@ const App = () => {
             <SignUp />
           </Route>
           <Route path='/'>
-            <AuthenticatedArea />
+            <AuthenticatedArea user={user} />
           </Route>
         </Switch>
       </Router>

@@ -12,4 +12,3 @@ const data = (state, action) => {
 };
 
 export default data;
-
