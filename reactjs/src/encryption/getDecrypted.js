@@ -5,4 +5,3 @@ const getDecrypted = ({ key, value }) => {
 };
 
 export default getDecrypted;
-

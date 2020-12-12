@@ -1,11 +1,15 @@
 import Immutable from 'immutable';
 
+import getDecryptedPositions from '../encryption/getDecryptedPositions';
+
 const initialState = Immutable.List([]);
 
 const processData = (state, action) => {
+  console.log(state)
   if (!state) return initialState;
   if (action.type === 'POSITION_CHANGED') {
-    return Immutable.fromJS(action.data.openPositions);
+    const decrypted = getDecryptedPositions({positions: action.data.openPositions});
+    return Immutable.fromJS(decrypted);
   }
   return state;
 };

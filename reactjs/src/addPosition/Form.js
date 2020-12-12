@@ -8,9 +8,9 @@ import './Modal.scss';
 import changeValue from './changeValue';
 import savePosition from './savePosition';
 
-const Form = ({ addModalOpen, dispatch, data, secretKey }) => {
+const Form = ({ addModalOpen, dispatch, data }) => {
   const save = () => {
-    savePosition({ data, key: secretKey });
+    savePosition({ data });
   };
 
   return (
@@ -48,5 +48,4 @@ const Form = ({ addModalOpen, dispatch, data, secretKey }) => {
 export default connect(state => ({
   addModalOpen: state.addModalOpen,
   data: state.addPositionFormData,
-  secretKey: state.key,
 }))(Form);
