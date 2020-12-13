@@ -5,6 +5,8 @@ import getLabel from '../commons/getLabel';
 
 import modelField from '../position/model';
 
+import { Link } from "react-router-dom";
+
 import './index.scss';
 
 const renderTd = ({position}) => {
