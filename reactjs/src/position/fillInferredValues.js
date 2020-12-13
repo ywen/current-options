@@ -1,6 +1,5 @@
 const fillInferredValues = ({original}) => {
   let result = original;
-  console.log(original.toJS());
   const quantity = original.get('quantity');
   const purchasePrice = original.get('purchasePrice');
   const symbol = original.get('symbol');

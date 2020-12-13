@@ -6,6 +6,7 @@ import Menu from './Menu';
 import AddForm from './addPosition/Form';
 import List from './List';
 import listenToData from './server/listenToData';
+import './AuthenticatedArea.scss'
 
 const signOut = () => auth().signOut();
 
@@ -14,12 +15,12 @@ const AuthenticatedArea = ({ user, dispatch }) => {
     if (user) {
       listenToData({ dispatch });
     }
-  }, [user]);
+  }, [user, dispatch]);
   return ([
     <Menu key='menu' />,
     <AddForm key='addForm' />,
     <List key='list' />,
-    <button onClick={signOut} key='signout'>Sign Out</button>
+    <button onClick={signOut} className='signout' key='signout'>Sign Out</button>
   ]);
 };
 
