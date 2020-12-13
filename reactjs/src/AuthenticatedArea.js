@@ -26,11 +26,11 @@ const AuthenticatedArea = ({ user, dispatch }) => {
       <Link className='views__menu' to="/list">List View</Link>
       <Link className='views__menu' to="/expiration">Expiration View</Link>
     </div>,
-    <Route path="/list">
-      <List />
+    <Route path="/list" key='list-route'>
+      <List key='list-view'/>
     </Route>,
-    <Route path="/expiration">
-      <Expiration />
+    <Route path="/expiration" key='expiration-route'>
+      <Expiration key='expiration-view' />
     </Route>,
     <Redirect exact from="/" to="/list" />,
     <button onClick={signOut} className='signout' key='signout'>Sign Out</button>

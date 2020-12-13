@@ -5,7 +5,6 @@ const inferredFields = [
   'optionType',
   'strike',
   'moneyOccupied',
-  'purchasePrice',
   'potentialGain',
   'potentialLose',
 ];

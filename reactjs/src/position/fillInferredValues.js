@@ -3,7 +3,7 @@ const fillInferredValues = ({original}) => {
   const quantity = original.get('quantity');
   const purchasePrice = original.get('purchasePrice');
   const symbol = original.get('symbol');
-  const matches = symbol.match(/-([A-Z]+)+([0-9^.]+)([P|C])([0-9,\.]+)/)
+  const matches = symbol.match(/-([A-Z]+)+([0-9^.]+)([P|C])([0-9,.]+)/)
   if (matches) {
     result = result.set('stockSymbol', matches[1]);
     result = result.set('expirationDate', matches[2]);
