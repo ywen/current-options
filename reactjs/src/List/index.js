@@ -37,16 +37,18 @@ const renderHeaders = () => {
 
 const List = ({ positions }) => {
   return (
-    <table className='list__container'>
-      <thead className='list__thead'>
-        <tr>
-          {renderHeaders()}
-        </tr>
-      </thead>
-      <tbody>
-        {renderBody({ positions })}
-      </tbody>
-    </table>
+    <div className='list__container'>
+      <table className='list__table'>
+        <thead className='list__thead'>
+          <tr>
+            {renderHeaders()}
+          </tr>
+        </thead>
+        <tbody>
+          {renderBody({ positions })}
+        </tbody>
+      </table>
+    </div>
   )
 };
 
