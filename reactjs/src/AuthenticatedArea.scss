@@ -1,3 +1,20 @@
 .signout {
   margin-top: 3rem;
 }
+.views {
+  &__menu-container {
+    margin-top: 1rem;
+    display: grid;
+    justify-items: start;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 0.25rem;
+  };
+
+  &__menu {
+    display: block;
+    margin-left: 2rem;
+    background-color: #363d34;
+    color: #edf9f1;
+    padding: 0.35rem;
+  }
+};
