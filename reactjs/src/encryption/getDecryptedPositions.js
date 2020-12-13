@@ -1,7 +1,15 @@
 import getDecrypted from './getDecrypted';
+import keyStore from './keyStore';
 
 const getDecryptedPositions = ({ positions }) => {
-  return positions;
+  const key = keyStore.fetch();
+  console.log(key)
+  return positions.map((position) => {
+    Object.keys(position).forEach((name) => {
+      position[name] = getDecrypted({ key, value: position[name] });
+    });
+    return position;
+  });
 };
 
 export default getDecryptedPositions;

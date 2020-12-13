@@ -11,7 +11,7 @@ const collection = () => {
 
 const toDoc = ({ name }) => collection().doc(name);
 const keyStore = () => toDoc({ name: 'key '});
-const openPositionsStore = () => toDoc({ name: 'open' });
+const openPositionsStore = () => toDoc({ name: 'positions' });
 
 const getKey = () => keyStore().get();
 
@@ -23,7 +23,7 @@ const saveOpenPosition = async ({ position }) => {
     openPositionsStore().set({});
   }
   openPositionsStore().update({
-    openPositions: firebase.firestore.FieldValue.arrayUnion(position),
+    open: firebase.firestore.FieldValue.arrayUnion(position),
   });
 };
 
