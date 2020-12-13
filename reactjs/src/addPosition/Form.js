@@ -7,6 +7,20 @@ import Row from './Row';
 import './Modal.scss';
 import changeValue from './changeValue';
 import savePosition from './savePosition';
+import modelField from '../position/model';
+
+const textFields = ({ data }) => {
+  return modelField.metaFields.map(field => {
+    return <TextField changeValue={changeValue} data={data} name={field} key={field} />
+  })
+};
+
+const displayRows = () => {
+  const fields = modelField.metaFields.concat(modelField.inferredFields);
+  return fields.map(field => {
+    return <Row name={field} key={`row-${field}`} />;
+  });
+};
 
 const Form = ({ addModalOpen, dispatch, data }) => {
   const save = () => {
@@ -22,24 +36,11 @@ const Form = ({ addModalOpen, dispatch, data }) => {
       overlayClassName='add-position__overlay'
     >
       <div className='add-position__form'>
-        <TextField changeValue={changeValue} data={data} name='symbol' key='symbol' />
-        <TextField changeValue={changeValue} data={data} name='quantity' key='quantity' />
-        <TextField changeValue={changeValue} data={data} name='purchasePrice' key='purchasePrice' />
-        <TextField changeValue={changeValue} data={data} name='openDate' key='openDate' />
+        {textFields({ data })}
         <button onClick={save} className='add-position__save'>Save</button>
       </div>
       <div className='add-position__information'>
-        <Row name='symbol' key='symbol' />
-        <Row name='stockSymbol' key='stockSymbol' />
-        <Row name='expirationDate' key='expirationDate' />
-        <Row name='optionType' key='optionType' />
-        <Row name='quantity' key='quantity' />
-        <Row name='strike' key='strike' />
-        <Row name='moneyOccupied' key='moneyOccupied' />
-        <Row name='purchasePrice' key='purchasePrice' />
-        <Row name='potentialGain' key='potentialGain' />
-        <Row name='potentialLose' key='potentialLose' />
-        <Row name='openDate' key='openDate' />
+        {displayRows()}
       </div>
     </Modal>
   );

@@ -1,5 +1,14 @@
 .list {
   &__container {
     margin-top: 1rem;
+  };
+
+  &__thead {
+    background-color: #3f393b;
+    color: white;
+  };
+
+  &__th {
+    padding: 0.5rem;
   }
 }

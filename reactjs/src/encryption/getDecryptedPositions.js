@@ -3,7 +3,6 @@ import keyStore from './keyStore';
 
 const getDecryptedPositions = ({ positions }) => {
   const key = keyStore.fetch();
-  console.log(key)
   return positions.map((position) => {
     Object.keys(position).forEach((name) => {
       position[name] = getDecrypted({ key, value: position[name] });
