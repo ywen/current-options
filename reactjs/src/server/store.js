@@ -27,11 +27,20 @@ const saveOpenPosition = async ({ position }) => {
   });
 };
 
+const getOpenOptionsFromData = ({ doc }) => {
+  const positions = doc.data();
+  if (!positions) {
+    return {};
+  }
+  return positions.open;
+};
+
 const publicMethods = {
   getKey,
   setKey,
   saveOpenPosition,
   openPositionsStore,
+  getOpenOptionsFromData,
 };
 
 export default publicMethods;

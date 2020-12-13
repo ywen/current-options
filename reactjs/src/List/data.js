@@ -7,10 +7,7 @@ const initialState = Immutable.List([]);
 const processData = (state, action) => {
   if (!state) return initialState;
   if (action.type === 'POSITION_CHANGED') {
-    if (!action.data) {
-      return initialState;
-    }
-    const decrypted = getDecryptedPositions({ positions: action.data.open });
+    const decrypted = getDecryptedPositions({ positions: action.data });
     return Immutable.fromJS(decrypted);
   }
   return state;
