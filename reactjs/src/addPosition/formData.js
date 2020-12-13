@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 
-import fillInferredValues from './fillInferredValues';
+import fillInferredValues from '../position/fillInferredValues';
 
 const initialState = Immutable.fromJS({
   openDate: new Date().toLocaleString(),

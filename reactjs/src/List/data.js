@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 
 import getDecryptedPositions from '../encryption/getDecryptedPositions';
-import fillInferredValues from '../addPosition/fillInferredValues';
+import fillInferredValues from '../position/fillInferredValues';
 
 const initialState = Immutable.List([]);
 
