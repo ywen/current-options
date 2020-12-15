@@ -13,15 +13,13 @@ const Menu = ({ dispatch }) => {
 
   const importCSV = async () => {
     const data = await getCSVArrayFromFile({ file });
-    const i=0;
-    // for (let i = 0; i < data.length; i++) {
-      console.log(data[i])
+    for (let i = 0; i < data.length; i++) {
       try {
         await savePosition({ data: Immutable.fromJS(data[i]) });
       } catch(e) {
         console.error(e)
       }
-    // }
+    }
   };
 
   return (
@@ -29,7 +27,7 @@ const Menu = ({ dispatch }) => {
       <button className='menu-item menu-item__addPosition' onClick={() => openModal({ dispatch })}>
         Add a Position
       </button>
-      <form className="menu-item">
+      <div className="menu-item">
         <label htmlFor="upload">Import CSV</label>
         <input
           type="file"
@@ -39,7 +37,7 @@ const Menu = ({ dispatch }) => {
           required
         />
         <button disabled={!file} onClick={importCSV}>Import</button>
-      </form>
+      </div>
     </div>
   )
 };
