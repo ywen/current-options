@@ -10,14 +10,16 @@ const getCSVArrayFromFile = ({ file }) => {
       const array = event.target.result.split('\r\n');
       const result = array.map(a => a.split(','));
       const data = [];
-      for (let i=1; i< result.length; i++) {
-        const object = {
-          symbol: result[i][0],
-          quantity: result[i][1],
-          purchasePrice: result[i][6],
-          openDate: result[i][8],
+      for (let i=1; i < result.length; i++) {
+        if (result[i][0].length > 0) {
+          const object = {
+            symbol: result[i][0],
+            quantity: result[i][1],
+            purchasePrice: result[i][6],
+            openDate: result[i][8],
+          }
+          data.push(object);
         }
-        data.push(object);
       }
       resolve(data);
     }

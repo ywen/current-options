@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Immutable from 'immutable';
 
 import './Menu.scss';
+
 import openModal from './addPosition/openModal';
 import savePosition from './addPosition/savePosition';
 import getCSVArrayFromFile from './commons/getCSVArrayFromFile';
