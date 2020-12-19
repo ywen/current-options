@@ -2,7 +2,6 @@ import getLabel from '../commons/getLabel';
 import './Row.scss';
 
 const Row = ({ stat, name }) => {
-  const baseValue = stat.get(name);
   const percent = stat.get(`${name}Percentage`);
   return (
     <div className='expiration-view__row'>
