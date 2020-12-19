@@ -20,17 +20,18 @@ const setKey = ({ key }) => keyStore().set({ key });
 const saveOpenPosition = async ({ position }) => {
   const snapshot = await openPositionsStore().get();
   if (!snapshot.exists) {
-    openPositionsStore().set({});
+    await openPositionsStore().set({});
   }
-  openPositionsStore().update({
+  await openPositionsStore().update({
     open: firebase.firestore.FieldValue.arrayUnion(position),
   });
 };
 
 const getOpenOptionsFromData = ({ doc }) => {
   const positions = doc.data();
-  if (!positions) {
-    return {};
+  if (!positions || !positions.open || positions.open.constructor !== Array ) {
+    console.log('in return empty')
+    return [];
   }
   return positions.open;
 };

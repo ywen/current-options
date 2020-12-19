@@ -5,7 +5,9 @@ const getDecryptedPositions = ({ positions }) => {
   const key = keyStore.fetch();
   return positions.map((position) => {
     Object.keys(position).forEach((name) => {
-      position[name] = getDecrypted({ key, value: position[name] });
+      if (name !== 'id') {
+        position[name] = getDecrypted({ key, value: position[name] });
+      }
     });
     return position;
   });

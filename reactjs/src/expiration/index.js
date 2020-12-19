@@ -13,10 +13,8 @@ const renderStat = ({ stat, expirationDate }) => {
         <div className='expiration-view__expiration-date__label'>Expiration Date</div>
         <div className='expiration-view__expiration-date'>{expirationDate}</div>
       </div>
-      <Row stat={stat} name={'potential'} withDollarSign key='potential' />
-      <Row stat={stat} name={'occupied'} withDollarSign key='occupied' />
-      <Row stat={stat} name={'potentialPercentage'} key = 'potentialPercentage' />
-      <Row stat={stat} name={'occupiedPercentage'} key= 'occupiedPercentage' />
+      <Row stat={stat} name={'potential'} key='potential' />
+      <Row stat={stat} name={'occupied'} key='occupied' />
     </div>
   );
 };

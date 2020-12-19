@@ -6,7 +6,7 @@ import TextField from '../commons/TextField';
 import Row from './Row';
 import './Modal.scss';
 import changeValue from './changeValue';
-import savePosition from './savePosition';
+import savePosition from '../position/save';
 import modelField from '../position/model';
 
 const textFields = ({ data }) => {
