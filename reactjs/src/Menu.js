@@ -29,11 +29,11 @@ const Menu = ({ dispatch }) => {
   };
 
   return (
-    <div className='authenticated__menu-container'>
-      <button className='authenticated__menu authenticated__addPosition' onClick={() => openModal({ dispatch })}>
-        Add a Position
+    <div className='menu-container'>
+      <button className='menu__item menu__addPosition' onClick={() => openModal({ dispatch })}>
+        Add Position
       </button>
-      <div className="authenticated__menu">
+      <div className="menu__item">
         <label htmlFor="upload">Import CSV</label>
         <input
           type="file"
@@ -44,9 +44,7 @@ const Menu = ({ dispatch }) => {
         />
         <button disabled={!file} onClick={importCSV}>Import</button>
       </div>
-      <Link className='authenticated__menu' to="/list">List View</Link>
-      <Link className='authenticated__menu' to="/expiration">Expiration View</Link>
-      <button onClick={signOut} className='authenticated__menu authenticated__signout' key='signout'>Sign Out</button>
+      <button onClick={signOut} className='menu__item menu__signOut' key='signout'>Sign Out</button>
     </div>
   )
 };

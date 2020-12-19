@@ -1,27 +1,27 @@
 input[type="file"] {
   z-index: -1;
 }
-.authenticated {
-  &__menu-container {
-    grid-area: menu;
-    margin-top: 1rem;
-    display: grid;
-    justify-items: start;
-    grid-template-columns: 1fr;
-    grid-row-gap: 0.25rem;
-    background-color: #040405;
-    padding: 2rem;
-  };
 
+.menu-container {
+  grid-area: menu;
+  margin-top: 1rem;
+  display: grid;
+  justify-items: start;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: #040405;
+};
+
+.menu {
   &__addPosition {
     background-color: #040405;
+    color: #edf9f1;
   }
 
   &__menu {
     display: block;
-    margin-left: 2rem;
     color: #edf9f1;
     padding: 0.35rem;
+    border-right: 2px;
   };
 
   &__signout {

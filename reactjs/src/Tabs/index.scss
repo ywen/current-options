@@ -1,0 +1,19 @@
+.tab {
+  &__container {
+    margin-top: 3rem;
+    margin-left: 2rem;
+  }
+
+  &__link {
+    padding: 1rem;
+    border-top: solid 1px;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    border-color: #a8adb5;
+    text-decoration: none;
+    color: #252626;
+    &:visited {
+      color: #252626;
+    }
+  }
+}
