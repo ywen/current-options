@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 
 import { Route, Redirect } from 'react-router-dom';
 
+import Tabs from './Tabs';
 import Menu from './Menu';
 import AddForm from './addPosition/Form';
 import List from './List';
 import Expiration from './expiration';
 import listenToData from './server/listenToData';
+
 import './AuthenticatedArea.scss'
 
 const AuthenticatedArea = ({ user, dispatch }) => {
@@ -19,6 +21,7 @@ const AuthenticatedArea = ({ user, dispatch }) => {
   return (
     <div className='authenticated__main'>
       <Menu key='menu' />
+      <Tabs key='tabs' />
       <AddForm key='addForm' />
       <Route path="/list" key='list-route'>
         <List key='list-view'/>

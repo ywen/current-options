@@ -1,16 +1,2 @@
 .authenticated {
-  &__main {
-    display: grid;
-    grid-template-areas: 'menu info'
-  }
-
-  &__menu-container {
-    grid-area: menu;
-  }
-};
-
-.list {
-  &__container {
-    grid-area: info;
-  };
 }
