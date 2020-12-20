@@ -27,11 +27,11 @@ const AuthenticatedArea = ({ user, dispatch }) => {
       <CloseModal key='closeModal' />
       <Route path="/list" key='list-route'>
         <List key='list-view'/>
-      </Route>,
+      </Route>
       <Route path="/expiration" key='expiration-route'>
         <Expiration key='expiration-view' />
-      </Route>,
-      <Redirect exact from="/" to="/list" />,
+      </Route>
+      <Redirect exact from="/" to="/list" />
     </div>
   );
 };
