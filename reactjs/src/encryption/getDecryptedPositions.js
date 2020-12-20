@@ -4,12 +4,14 @@ import keyStore from './keyStore';
 const getDecryptedPositions = ({ positions }) => {
   const key = keyStore.fetch();
   return positions.map((position) => {
+    const decryped = { id: position.id };
     Object.keys(position).forEach((name) => {
       if (name !== 'id') {
-        position[name] = getDecrypted({ key, value: position[name] });
+        const prop = getDecrypted({ key, value: name });
+        decryped[prop] = getDecrypted({ key, value: position[name] });
       }
     });
-    return position;
+    return decryped;
   });
 };
 
