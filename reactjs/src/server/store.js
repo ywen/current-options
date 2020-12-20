@@ -12,32 +12,38 @@ const collection = () => {
 const toDoc = ({ name }) => collection().doc(name);
 const keyStore = () => toDoc({ name: 'key '});
 const openPositionsStore = () => toDoc({ name: 'openPositions' });
+const closedPositionsStore = () => toDoc({ name: 'closedPositions' });
 
 const getKey = () => keyStore().get();
 
 const setKey = ({ key }) => keyStore().set({ key });
 
-const saveTo = async ({ fieldName, position }) => {
-  const snapshot = await openPositionsStore().get();
+const saveTo = async ({ doc, position }) => {
+  const snapshot = await doc().get();
   if (!snapshot.exists) {
-    await openPositionsStore().set({});
+    await doc().set({});
   }
-  await openPositionsStore().update({
+  await doc().update({
     [position.id]: position,
   });
 };
 
-const saveOpenPosition = async ({ position }) => {
-  await saveTo({ fieldName: 'open', position });
+const removeOpenPosition = ({ position }) => {
+  openPositionsStore().update({
+    [position.id]: firebase.firestore.FieldValue.delete()
+  });
 };
 
-const saveClosePosition = async ({ position }) => {
-  await saveTo({ fieldName: 'closed' });
+const saveOpenPosition = async ({ position }) => {
+  await saveTo({ doc: openPositionsStore, position });
+};
+
+const saveClosedPosition = async ({ position }) => {
+  await saveTo({ doc: closedPositionsStore, position });
 };
 
 const getOpenOptionsFromData = ({ doc }) => {
   const positions = doc.data();
-  console.log(positions);
   if (!positions) {
     return [];
   }
@@ -50,11 +56,12 @@ const getOpenOptionsFromData = ({ doc }) => {
 
 const publicMethods = {
   getKey,
-  setKey,
-  saveOpenPosition,
-  saveClosePosition,
-  openPositionsStore,
   getOpenOptionsFromData,
+  openPositionsStore,
+  removeOpenPosition,
+  saveClosedPosition,
+  saveOpenPosition,
+  setKey,
 };
 
 export default publicMethods;

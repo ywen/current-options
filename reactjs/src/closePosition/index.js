@@ -5,6 +5,8 @@ import Modal from 'react-modal';
 import modelField from '../position/model';
 import TextField from '../commons/TextField';
 
+import closePosition from '../position/close';
+
 const Form = ({ dispatch, closeModal }) => {
   const isOpen = closeModal.get('isOpen');
   const position = closeModal.get('position');
@@ -15,7 +17,7 @@ const Form = ({ dispatch, closeModal }) => {
   );
 
   const textFields = () => {
-    return modelField.closeFields.map(field => {
+    return modelField.closedFields.map(field => {
       return <TextField changeValue={changeValue} data={data} name={field} key={field} />
     })
   };
@@ -25,6 +27,7 @@ const Form = ({ dispatch, closeModal }) => {
 
   const save = () => {
     close();
+    closePosition({ position, closedData: data });
   };
 
   return (

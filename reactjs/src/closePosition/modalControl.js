@@ -3,7 +3,7 @@ import Immutable from 'immutable';
 const initializeState = Immutable.fromJS({
   closeModal: false,
   position: null,
-  data: { closeDate: new Date().toLocaleString() },
+  data: { closedDate: new Date().toLocaleString() },
 });
 
 const modalControl = (state, action) => {
@@ -16,6 +16,15 @@ const modalControl = (state, action) => {
   }
   if (action.type === 'CLOSE_CLOSE_MODAL') {
     return initializeState;
+  }
+  if (action.type === 'CLOSE_POSITION_VALUE_CHANGED') {
+    const data = state.get('data');
+    const newData = data.merge({
+      [action.key]: action.value,
+    })
+    return state.merge({
+      data: newData,
+    });
   }
   return state;
 };
