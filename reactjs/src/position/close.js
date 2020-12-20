@@ -1,25 +1,18 @@
-import { v4 as uuidv4 } from 'uuid';
-
 import store from '../server/store';
-import getEncrypted from '../encryption/getEncrypted';
-import keyStore from '../encryption/keyStore';
+
 import field from './model';
+import getEncryptedObjectFromMap from '../encryption/getEncryptedObjectFromMap';
 
 const close = ({ position, closedData }) => {
   store.removeOpenPosition({ position });
-  const result = {};
-  const key = keyStore.fetch();
-  field.metaFields.forEach((name) => {
-    const value = position.get(name);
-    const encrypted = getEncrypted({ key, value });
-    result[name] = encrypted;
+  const result1 = getEncryptedObjectFromMap({ data: position, fields: field.metaFields });
+  const result2 = getEncryptedObjectFromMap({
+    data: closedData,
+    fields: field.closedFields,
   });
-  field.closedFields.forEach((name) => {
-    const value = closedData.get(name);
-    const encrypted = getEncrypted({ key, value });
-    result[name] = encrypted;
+  store.saveClosedPosition({
+    position: Object.assign(result1, result2, { id: position.get('id')})
   });
-  store.saveClosedPosition({ position: result });
 };
 
 export default close;
