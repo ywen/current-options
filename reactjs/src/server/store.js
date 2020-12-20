@@ -28,18 +28,26 @@ const saveTo = async ({ doc, position }) => {
   });
 };
 
-const removeOpenPosition = async ({ position }) => {
-  await openPositionsStore().update({
-    [position.get('id')]: firebase.firestore.FieldValue.delete()
-  });
-};
-
 const saveOpenPosition = async ({ position }) => {
   await saveTo({ doc: openPositionsStore, position });
 };
 
-const saveClosedPosition = async ({ position }) => {
-  await saveTo({ doc: closedPositionsStore, position });
+const closePosition = async ({ position }) => {
+  const batch = db().batch();
+  const openRef = openPositionsStore();
+  const closeRef = closedPositionsStore();
+  batch.update(openRef, {
+    [position.get('id')]: firebase.firestore.FieldValue.delete(),
+  });
+
+  const snapshot = await closeRef.get();
+  if (!snapshot.exists) {
+    batch.set(closeRef, {});
+  }
+  batch.update(closeRef, {
+    [position.get('id')]: position.toJS(),
+  });
+  return batch.commit();
 };
 
 const getOpenOptionsFromData = ({ doc }) => {
@@ -55,11 +63,10 @@ const getOpenOptionsFromData = ({ doc }) => {
 };
 
 const publicMethods = {
+  closePosition,
   getKey,
   getOpenOptionsFromData,
   openPositionsStore,
-  removeOpenPosition,
-  saveClosedPosition,
   saveOpenPosition,
   setKey,
 };
