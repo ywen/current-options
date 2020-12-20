@@ -11,35 +11,48 @@ const collection = () => {
 
 const toDoc = ({ name }) => collection().doc(name);
 const keyStore = () => toDoc({ name: 'key '});
-const openPositionsStore = () => toDoc({ name: 'positions' });
+const openPositionsStore = () => toDoc({ name: 'openPositions' });
 
 const getKey = () => keyStore().get();
 
 const setKey = ({ key }) => keyStore().set({ key });
 
-const saveOpenPosition = async ({ position }) => {
+const saveTo = async ({ fieldName, position }) => {
   const snapshot = await openPositionsStore().get();
   if (!snapshot.exists) {
     await openPositionsStore().set({});
   }
   await openPositionsStore().update({
-    open: firebase.firestore.FieldValue.arrayUnion(position),
+    [position.id]: position,
   });
+};
+
+const saveOpenPosition = async ({ position }) => {
+  await saveTo({ fieldName: 'open', position });
+};
+
+const saveClosePosition = async ({ position }) => {
+  await saveTo({ fieldName: 'closed' });
 };
 
 const getOpenOptionsFromData = ({ doc }) => {
   const positions = doc.data();
-  if (!positions || !positions.open || positions.open.constructor !== Array ) {
-    console.log('in return empty')
+  console.log(positions);
+  if (!positions) {
     return [];
   }
-  return positions.open;
+  const result = [];
+  Object.keys(positions).forEach((key) => {
+    result.push(positions[key]);
+  });
+  return result;
 };
 
 const publicMethods = {
   getKey,
   setKey,
   saveOpenPosition,
+  saveClosePosition,
   openPositionsStore,
   getOpenOptionsFromData,
 };

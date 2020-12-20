@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import closeModal from './closeModal';
 import TextField from '../commons/TextField';
 import Row from './Row';
-import './Modal.scss';
+import '../commons/Modal.scss';
 import changeValue from './changeValue';
 import savePosition from '../position/save';
 import modelField from '../position/model';
@@ -33,13 +33,13 @@ const Form = ({ addModalOpen, dispatch, data }) => {
       shouldCloseOnOverlayClick={true}
       ariaHideApp={false}
       onRequestClose={() => closeModal({ dispatch })}
-      overlayClassName='add-position__overlay'
+      overlayClassName='modal__overlay'
     >
-      <div className='add-position__form'>
+      <div className='modal__form'>
         {textFields({ data })}
-        <button onClick={save} className='add-position__save'>Save</button>
+        <button onClick={save} className='modal__save'>Save</button>
       </div>
-      <div className='add-position__information'>
+      <div className='modal__information'>
         {displayRows()}
       </div>
     </Modal>

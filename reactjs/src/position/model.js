@@ -9,7 +9,10 @@ const inferredFields = [
   'potentialLose',
 ];
 
+const closeFields = ['closePrice', 'closeDate']
+
 const fields = {
+  closeFields,
   metaFields,
   inferredFields,
 };
