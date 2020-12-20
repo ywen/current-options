@@ -28,9 +28,9 @@ const saveTo = async ({ doc, position }) => {
   });
 };
 
-const removeOpenPosition = ({ position }) => {
-  openPositionsStore().update({
-    [position.id]: firebase.firestore.FieldValue.delete()
+const removeOpenPosition = async ({ position }) => {
+  await openPositionsStore().update({
+    [position.get('id')]: firebase.firestore.FieldValue.delete()
   });
 };
 
