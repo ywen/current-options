@@ -1,0 +1,16 @@
+.signin {
+  &__container {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 1rem;
+    justify-items: center;
+  };
+
+  &__input-container {
+    justify-items: start;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 0.5rem;
+  }
+}
