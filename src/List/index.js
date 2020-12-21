@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import getLabel from '../commons/getLabel';
+import getSortedPositions from '../position/getSortedPositions';
 
 import modelField from '../position/model';
 
@@ -45,10 +46,22 @@ const renderBody = ({ positions, dispatch }) => {
   return r.toJS();
 };
 
-const renderHeaders = () => {
+const sort = ({ field, dispatch }) => {
+  dispatch({ type: 'SORT', field });
+};
+
+const renderHeaders = ({ dispatch }) => {
   const fields = modelField.metaFields.concat(modelField.inferredFields).concat(['Actions']);
   return fields.map((k) => {
-    return <th key={`th-${k}`} className='list__th'>{getLabel({name: k})}</th>;
+    return (
+      <th
+        key={`th-${k}`}
+        className='list__th'
+        onClick={() => sort({field: k, dispatch})}
+      >
+        {getLabel({ name: k })}
+      </th>
+    );
   });
 };
 
@@ -58,7 +71,7 @@ const List = ({ positions, dispatch }) => {
       <table className='list__table'>
         <thead className='list__thead'>
           <tr>
-            {renderHeaders()}
+            {renderHeaders({ dispatch })}
           </tr>
         </thead>
         <tbody>
@@ -70,5 +83,5 @@ const List = ({ positions, dispatch }) => {
 };
 
 export default connect(state => ({
-  positions: state.positions,
+  positions: getSortedPositions(state),
 }))(List);
