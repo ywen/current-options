@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import getLabel from '../commons/getLabel';
+import getSortedPositions from '../position/getSortedPositions';
 
 import modelField from '../position/model';
 
@@ -45,20 +46,40 @@ const renderBody = ({ positions, dispatch }) => {
   return r.toJS();
 };
 
-const renderHeaders = () => {
+const sort = ({ field, dispatch }) => {
+  if (field !== 'Actions') {
+    dispatch({ type: 'SORT', field });
+  }
+};
+
+const renderHeaders = ({ dispatch, sortConditions }) => {
   const fields = modelField.metaFields.concat(modelField.inferredFields).concat(['Actions']);
+  const sortField = sortConditions.get('field');
+  const directionAsc = sortConditions.get('directionAsc');
   return fields.map((k) => {
-    return <th key={`th-${k}`} className='list__th'>{getLabel({name: k})}</th>;
+    let additionClass = '';
+    if (k === sortField) {
+      additionClass = directionAsc ? 'list__chevron--up' : 'list__chevron--down';
+    }
+    return (
+      <th
+        key={`th-${k}`}
+        className={`list__th ${additionClass}`}
+        onClick={() => sort({field: k, dispatch})}
+      >
+        {getLabel({ name: k })}
+      </th>
+    );
   });
 };
 
-const List = ({ positions, dispatch }) => {
+const List = ({ positions, sortConditions, dispatch }) => {
   return (
     <div className='list__container'>
       <table className='list__table'>
         <thead className='list__thead'>
           <tr>
-            {renderHeaders()}
+            {renderHeaders({ dispatch, sortConditions })}
           </tr>
         </thead>
         <tbody>
@@ -70,5 +91,6 @@ const List = ({ positions, dispatch }) => {
 };
 
 export default connect(state => ({
-  positions: state.positions,
+  positions: getSortedPositions(state),
+  sortConditions: state.sortConditions,
 }))(List);

@@ -1,3 +1,5 @@
 node_modules
 yarn-error.log
 .eslintcache
+build
+firebase-debug.log
