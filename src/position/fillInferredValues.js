@@ -13,12 +13,12 @@ const fillInferredValues = ({original}) => {
       result = result.set('moneyOccupied', Math.abs(matches[4] * quantity * 100));
       const isSell = Number(quantity) < 0;
       if (purchasePrice && isSell) {
-        result = result.set('potentialGain', Math.abs(purchasePrice * 100 * quantity));
+        result = result.set('potentialGain', Math.abs(purchasePrice * 100 * quantity).toFixed(0));
         result = result.set('potentialLose', 'unlimited');
       }
       if (purchasePrice && !isSell) {
         result = result.set('potentialGain', 'unlimited');
-        result = result.set('potentialLose', purchasePrice * 100);
+        result = result.set('potentialGain', Math.abs(purchasePrice * 100 * quantity).toFixed(0));
       }
     }
   }

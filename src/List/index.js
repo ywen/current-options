@@ -47,14 +47,15 @@ const renderBody = ({ positions, dispatch }) => {
 };
 
 const sort = ({ field, dispatch }) => {
-  dispatch({ type: 'SORT', field });
+  if (field !== 'Actions') {
+    dispatch({ type: 'SORT', field });
+  }
 };
 
 const renderHeaders = ({ dispatch, sortConditions }) => {
   const fields = modelField.metaFields.concat(modelField.inferredFields).concat(['Actions']);
   const sortField = sortConditions.get('field');
   const directionAsc = sortConditions.get('directionAsc');
-  console.log(sortField);
   return fields.map((k) => {
     let additionClass = '';
     if (k === sortField) {
