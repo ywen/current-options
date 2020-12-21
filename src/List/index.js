@@ -50,13 +50,20 @@ const sort = ({ field, dispatch }) => {
   dispatch({ type: 'SORT', field });
 };
 
-const renderHeaders = ({ dispatch }) => {
+const renderHeaders = ({ dispatch, sortConditions }) => {
   const fields = modelField.metaFields.concat(modelField.inferredFields).concat(['Actions']);
+  const sortField = sortConditions.get('field');
+  const directionAsc = sortConditions.get('directionAsc');
+  console.log(sortField);
   return fields.map((k) => {
+    let additionClass = '';
+    if (k === sortField) {
+      additionClass = directionAsc ? 'list__chevron--up' : 'list__chevron--down';
+    }
     return (
       <th
         key={`th-${k}`}
-        className='list__th'
+        className={`list__th ${additionClass}`}
         onClick={() => sort({field: k, dispatch})}
       >
         {getLabel({ name: k })}
@@ -65,13 +72,13 @@ const renderHeaders = ({ dispatch }) => {
   });
 };
 
-const List = ({ positions, dispatch }) => {
+const List = ({ positions, sortConditions, dispatch }) => {
   return (
     <div className='list__container'>
       <table className='list__table'>
         <thead className='list__thead'>
           <tr>
-            {renderHeaders({ dispatch })}
+            {renderHeaders({ dispatch, sortConditions })}
           </tr>
         </thead>
         <tbody>
@@ -84,4 +91,5 @@ const List = ({ positions, dispatch }) => {
 
 export default connect(state => ({
   positions: getSortedPositions(state),
+  sortConditions: state.sortConditions,
 }))(List);

@@ -1,12 +1,17 @@
 import Immutable from 'immutable';
 
-const initialialState = Immutable.fromJS({});
+import model from './model';
+
+const initialialState = Immutable.fromJS({
+  field: model.metaFields[0],
+  directionAsc: true,
+});
 
 const sortReducer = (state, action) => {
   if (!state) return initialialState;
   if (action.type === 'SORT') {
-    const currentField = state.get('field') || '';
-    const currentDirection = state.get('directionAsc') || true;
+    const currentField = state.get('field');
+    const currentDirection = state.get('directionAsc');
     let newDirection = currentDirection;
     if (action.field === currentField) {
       newDirection = !currentDirection;
