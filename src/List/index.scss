@@ -1,3 +1,5 @@
+@import '../commons/table.scss';
+
 .list {
   &__container {
     margin-top: 1rem;
@@ -7,30 +9,5 @@
     grid-row-gap: 4rem;
   };
 
-  &__table {
-    display: block;
-  };
-
-  &__thead {
-    background-color: #3f393b;
-    color: white;
-  };
-
-  &__th {
-    padding: 0.5rem;
-    width: 8.4%;
-  };
-
-  &__td {
-    text-align: center;
-  }
-
-  &__chevron {
-    &--up {
-      background: url('../images/chevron-up.svg') no-repeat #4f5051 95% center;
-    }
-    &--down {
-      background: url('../images/chevron-down.svg') no-repeat #4f5051 95% center;
-    }
-  }
+  @include table;
 };
