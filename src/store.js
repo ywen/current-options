@@ -7,6 +7,7 @@ import signInData from './SignIn/data';
 import positions from './List/data';
 import currentTab from './Tabs/currentTab';
 import sortConditions from './position/sortReducer';
+import sortByStockConditions from './position/sortByStockReducer';
 
 const reducers = combineReducers({
   addModalOpen,
@@ -17,5 +18,6 @@ const reducers = combineReducers({
   signInData,
   signUpData,
   sortConditions,
+  sortByStockConditions,
 });
 export default createStore(reducers);

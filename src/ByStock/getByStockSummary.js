@@ -3,13 +3,15 @@ import { createSelector } from 'reselect';
 
 import getPercentage from '../commons/getPercentage';
 import getTotalAmount from '../position/getTotalAmount';
+import sortPositions from '../position/sortPositions';
 
 const getByStockSummary = createSelector(
   (state) => state.positions,
-  (positions) => {
+  (state) => state.sortByStockConditions,
+  (positions, sort) => {
     const { totalPotential, totalOccupied } = getTotalAmount({ positions });
     const byStockSymbol = positions.groupBy(p => p.get('stockSymbol'));
-    return byStockSymbol.map((list) => {
+    const unsorted = byStockSymbol.map((list, stock) => {
       const {
         totalPotential: potential,
         totalOccupied: occupied,
@@ -21,9 +23,11 @@ const getByStockSummary = createSelector(
         occupied,
         potentialPercentage,
         occupiedPercentage,
+        stock,
         list,
       });
     });
+    return sortPositions({ positions: unsorted, sortConditions: sort });
   }
 );
 

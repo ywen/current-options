@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import getByStockSummary from './getByStockSummary';
+import getLabel from '../commons/getLabel';
 
 import './index.scss';
 
@@ -17,7 +18,7 @@ const renderIndividual = ({s, symbol}) => {
   )
 };
 
-const ByStock = ({ summary }) => {
+const ByStock = ({ dispatch, summary }) => {
   const renderSummary = () => {
     const result = [];
     summary.forEach((s, symbol) => {
@@ -25,16 +26,31 @@ const ByStock = ({ summary }) => {
     });
     return result;
   };
+
+  const sort = ({ name }) => {
+    dispatch({ type: 'SORT_BY_STOCK_SUMMARY', field: name });
+  };
+
+  const renderTh = ({ name }) => {
+    return (
+      <th
+        className='byStock__th'
+        onClick={() => sort({ name })}
+      >
+        {getLabel({ name })}
+      </th>
+    )
+  };
   return (
     <div className='byStock__container'>
       <table className='byStock__table'>
         <thead className='byStock__thead'>
           <tr className='byStock__tr'>
-            <th className='byStock__th'>Stock</th>
-            <th className='byStock__th'>Occupied</th>
-            <th className='byStock__th'>Occupied Percent</th>
-            <th className='byStock__th'>Potential</th>
-            <th className='byStock__th'>Potential Percent</th>
+            { renderTh({ name: 'stock' })}
+            { renderTh({ name: 'occupied' })}
+            { renderTh({ name: 'occupiedPercentage' })}
+            { renderTh({ name: 'potential' })}
+            { renderTh({ name: 'potentialPercentage' })}
           </tr>
         </thead>
         <tbody className='byStock__tbody'>
