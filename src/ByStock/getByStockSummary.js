@@ -1,4 +1,4 @@
-import Immutable, { List } from 'immutable';
+import Immutable from 'immutable';
 import { createSelector } from 'reselect';
 
 const getByStockSummary = createSelector(
@@ -8,8 +8,8 @@ const getByStockSummary = createSelector(
     return byStockSymbol.map((list) => {
       return list.reduce((result, position) => {
         return result.merge({
-          occupied: position.get('moneyOccupied') + result.get('occupied'),
-          potential: position.get('potentialGain') + result.get('potential'),
+          occupied: Number(position.get('moneyOccupied')) + result.get('occupied'),
+          potential: Number(position.get('potentialGain')) + result.get('potential'),
         });
       }, Immutable.fromJS({
         occupied: 0,

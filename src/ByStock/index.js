@@ -9,8 +9,8 @@ const renderIndividual = ({s, symbol}) => {
   return (
     <tr className='byStock__tr' key={`byStock__tr--${symbol}`}>
       <td className='byStock__td' key='byStock__td--symbol'>{symbol}</td>
-      <td className='byStock__td' key='byStock__td--occupied'>{s.get('occupied')}</td>
-      <td className='byStock__td' key='byStock__td--potential'>{s.get('potential')}</td>
+      <td className='byStock__td' key='byStock__td--occupied'>{`$ ${s.get('occupied')}`}</td>
+      <td className='byStock__td' key='byStock__td--potential'>{`$ ${s.get('potential')}`}</td>
     </tr>
   )
 };
