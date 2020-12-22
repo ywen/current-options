@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 
 import getByStockSummary from './getByStockSummary';
 import getLabel from '../commons/getLabel';
+import getSortableClassNames from '../commons/getSortableClassNames';
 
 import './index.scss';
 
-const renderIndividual = ({s, symbol}) => {
+const renderIndividual = ({s}) => {
   return (
-    <tr className='byStock__tr' key={`byStock__tr--${symbol}`}>
-      <td className='byStock__td' key='byStock__td--symbol'>{symbol}</td>
+    <tr className='byStock__tr' key={`byStock__tr--${s.get('stock')}`}>
+      <td className='byStock__td' key='byStock__td--symbol'>{s.get('stock')}</td>
       <td className='byStock__td' key='byStock__td--occupied'>{`$ ${s.get('occupied')}`}</td>
       <td className='byStock__td' key='byStock__td--occupied-percent'>{s.get('occupiedPercentage')}</td>
       <td className='byStock__td' key='byStock__td--potential'>{`$ ${s.get('potential')}`}</td>
@@ -18,11 +19,11 @@ const renderIndividual = ({s, symbol}) => {
   )
 };
 
-const ByStock = ({ dispatch, summary }) => {
+const ByStock = ({ dispatch, summary, sortConditions }) => {
   const renderSummary = () => {
     const result = [];
-    summary.forEach((s, symbol) => {
-      result.push(renderIndividual({s, symbol}));
+    summary.forEach((s) => {
+      result.push(renderIndividual({ s }));
     });
     return result;
   };
@@ -32,9 +33,14 @@ const ByStock = ({ dispatch, summary }) => {
   };
 
   const renderTh = ({ name }) => {
+    const classNames = getSortableClassNames({
+      prefix: 'byStock',
+      sortConditions,
+      field: name,
+    });
     return (
       <th
-        className='byStock__th'
+        className={classNames}
         onClick={() => sort({ name })}
       >
         {getLabel({ name })}
@@ -63,4 +69,5 @@ const ByStock = ({ dispatch, summary }) => {
 
 export default connect(state => ({
   summary: getByStockSummary(state),
+  sortConditions: state.sortByStockConditions,
 }))(ByStock);
