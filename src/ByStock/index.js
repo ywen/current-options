@@ -10,7 +10,9 @@ const renderIndividual = ({s, symbol}) => {
     <tr className='byStock__tr' key={`byStock__tr--${symbol}`}>
       <td className='byStock__td' key='byStock__td--symbol'>{symbol}</td>
       <td className='byStock__td' key='byStock__td--occupied'>{`$ ${s.get('occupied')}`}</td>
+      <td className='byStock__td' key='byStock__td--occupied-percent'>{s.get('occupiedPercentage')}</td>
       <td className='byStock__td' key='byStock__td--potential'>{`$ ${s.get('potential')}`}</td>
+      <td className='byStock__td' key='byStock__td--potential-percent'>{s.get('potentialPercentage')}</td>
     </tr>
   )
 };
@@ -30,7 +32,9 @@ const ByStock = ({ summary }) => {
           <tr className='byStock__tr'>
             <th className='byStock__th'>Stock</th>
             <th className='byStock__th'>Occupied</th>
+            <th className='byStock__th'>Occupied Percent</th>
             <th className='byStock__th'>Potential</th>
+            <th className='byStock__th'>Potential Percent</th>
           </tr>
         </thead>
         <tbody className='byStock__tbody'>
