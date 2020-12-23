@@ -10,6 +10,7 @@ import CloseModal from './closePosition';
 import List from './List';
 import Expiration from './expiration';
 import ByStock from './ByStock';
+import ClosedPositions from './ClosedPositions';
 import listenToData from './server/listenToData';
 
 import './AuthenticatedArea.scss'
@@ -34,6 +35,9 @@ const AuthenticatedArea = ({ user, dispatch }) => {
       </Route>
       <Route path="/by_stock" key='by-stock-route'>
         <ByStock key='by-stock-view' />
+      </Route>
+      <Route path="/closed_positions" key='closed_positions'>
+        <ClosedPositions key='closed_positions' />
       </Route>
       <Redirect exact from="/" to="/list" />
     </div>
