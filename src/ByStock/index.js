@@ -10,7 +10,7 @@ import './index.scss';
 const renderIndividual = ({s}) => {
   return (
     <tr className='byStock__tr' key={`byStock__tr--${s.get('stock')}`}>
-      <td className='byStock__td' key='byStock__td--symbol'>{s.get('stock')}</td>
+      <td className='byStock__td' key='byStock__td--stock'>{s.get('stock')}</td>
       <td className='byStock__td' key='byStock__td--occupied'>{`$ ${s.get('occupied')}`}</td>
       <td className='byStock__td' key='byStock__td--potential'>{`$ ${s.get('potential')}`}</td>
       <td className='byStock__td' key='byStock__td--occupied-percent'>{`% ${s.get('occupiedPercentage')}`}</td>
