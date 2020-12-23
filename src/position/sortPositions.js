@@ -11,9 +11,6 @@ const func =({ positions, sortConditions }) => {
       ascResult = Number(v1) - Number(v2);
     } else {
       ascResult = String(v1).localeCompare(String(v2));
-      if(v1 === '-SQ210115P215' || v2 === '-SQ210115P215') {
-        console.log(v1, v2, ascResult)
-      }
     }
     if (directionAsc || ascResult === 0) {
       return ascResult;
