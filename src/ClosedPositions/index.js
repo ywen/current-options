@@ -2,8 +2,7 @@ import { connect } from 'react-redux';
 import Immutable from 'immutable';
 
 import getSummary from './getClosedPositionsSummary';
-import getSortableClassNames from '../commons/getSortableClassNames';
-import getLabel from '../commons/getLabel';
+import TableRenderer from '../commons/tableRenderer';
 
 import './index.scss';
 
@@ -12,40 +11,43 @@ const ClosedPositions = ({ summary, dispatch }) => {
     directionAsc: true,
     field: 'stock',
   });
-  const sort = ({ name }) => {
-    dispatch({ type: 'SORT_CLOSED_STOCK_SUMMARY', field: name });
-  };
 
-  const renderTh = ({ name }) => {
-    const classNames = getSortableClassNames({
-      prefix: 'closedStockSummary',
-      sortConditions,
-      field: name,
-    });
+  const renderIndividual = ({s}) => {
     return (
-      <th
-        className={classNames}
-        onClick={() => sort({ name })}
-      >
-        {getLabel({ name })}
-      </th>
+      <tr className='closedStockSummary__tr' key={`closedStockSummary__tr--${s.get('stock')}`}>
+        <td className='closedStockSummary__td' key='closedStockSummary__td--stock'>{s.get('stock')}</td>
+        <td className='closedStockSummary__td' key='closedStockSummary__td--occupied'>{`$ ${s.get('occupied')}`}</td>
+        <td className='closedStockSummary__td' key='closedStockSummary__td--potential'>{`$ ${s.get('potential')}`}</td>
+        <td className='closedStockSummary__td' key='closedStockSummary__td--profit'>{`$ ${s.get('profit')}`}</td>
+      </tr>
     )
   };
+
+  const tableRenderer = TableRenderer({
+    sortConditions,
+    sortConstant: 'SORT_CLOSED_STOCK_SUMMARY',
+    dispatch,
+    list: summary,
+    prefix: 'byStock',
+    renderIndividual,
+    ths: [
+      'stock',
+      'occupied',
+      'potential',
+      'profit',
+    ],
+  });
+
   return (
     <div className='closedStockSummary__container'>
       <table className='closedStockSummary__table'>
-        <thead className='closedStockSummary__thead'>
-          <tr className='closedStockSummary__tr-head'>
-            { renderTh({ name: 'stock' })}
-            { renderTh({ name: 'occupied' })}
-            { renderTh({ name: 'potential' })}
-            { renderTh({ name: 'profit' })}
-          </tr>
-        </thead>
+        { tableRenderer.renderTableHeaders() }
+        <tbody className='closedStockSummary__tbody'>
+          { tableRenderer.renderTbody() }
+        </tbody>
       </table>
     </div>
   );
-  return false;
 };
 
 export default connect(state => ({

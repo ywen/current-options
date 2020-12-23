@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import getByStockSummary from './getByStockSummary';
-import getLabel from '../commons/getLabel';
-import getSortableClassNames from '../commons/getSortableClassNames';
+import TableRenderer from '../commons/tableRenderer';
 
 import './index.scss';
 
@@ -21,48 +20,29 @@ const renderIndividual = ({s}) => {
 };
 
 const ByStock = ({ dispatch, summary, sortConditions }) => {
-  const renderSummary = () => {
-    const result = [];
-    summary.forEach((s) => {
-      result.push(renderIndividual({ s }));
-    });
-    return result;
-  };
+  const tableRenderer = TableRenderer({
+    sortConditions,
+    sortConstant: 'SORT_BY_STOCK_SUMMARY',
+    dispatch,
+    list: summary,
+    prefix: 'byStock',
+    renderIndividual,
+    ths: [
+      'stock',
+      'occupied',
+      'potential',
+      'occupiedPercentage',
+      'potentialPercentage',
+      'potentialToTotal',
+    ],
+  });
 
-  const sort = ({ name }) => {
-    dispatch({ type: 'SORT_BY_STOCK_SUMMARY', field: name });
-  };
-
-  const renderTh = ({ name }) => {
-    const classNames = getSortableClassNames({
-      prefix: 'byStock',
-      sortConditions,
-      field: name,
-    });
-    return (
-      <th
-        className={classNames}
-        onClick={() => sort({ name })}
-      >
-        {getLabel({ name })}
-      </th>
-    )
-  };
   return (
     <div className='byStock__container'>
       <table className='byStock__table'>
-        <thead className='byStock__thead'>
-          <tr className='byStock__tr-head'>
-            { renderTh({ name: 'stock' })}
-            { renderTh({ name: 'occupied' })}
-            { renderTh({ name: 'potential' })}
-            { renderTh({ name: 'occupiedPercentage' })}
-            { renderTh({ name: 'potentialPercentage' })}
-            { renderTh({ name: 'potentialToTotal' })}
-          </tr>
-        </thead>
+        { tableRenderer.renderTableHeaders() }
         <tbody className='byStock__tbody'>
-          { renderSummary() }
+          { tableRenderer.renderTbody() }
         </tbody>
       </table>
     </div>

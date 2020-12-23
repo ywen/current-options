@@ -5,7 +5,6 @@ import getTotalAmount from '../position/getTotalAmount';
 import sortPositions from '../position/sortPositions';
 
 const getSummaryFromPositions = ({ positions, sort }) => {
-  console.log(positions.toJS());
   const { totalPotential, totalOccupied, totalProfit } = getTotalAmount({ positions });
   const byStockSymbol = positions.groupBy(p => p.get('stockSymbol'));
   const unsorted = byStockSymbol.map((list, stock) => {

@@ -22,7 +22,8 @@ const fillInferredValues = ({original}) => {
         result = result.set('potentialGain', Math.abs(purchasePrice * 100 * quantity).toFixed(0));
       }
       if (closingPrice && isSell) {
-        result = result.set('profit', (purchasePrice - Number(closingPrice))*(-quantity)*100);
+        const profit = ((purchasePrice - Number(closingPrice))*(-quantity)*100).toFixed(2);
+        result = result.set('profit', profit);
       }
     }
   }
