@@ -50,6 +50,12 @@ const closePosition = async ({ position }) => {
   return batch.commit();
 };
 
+const deletePosition = ({ positionId }) => {
+  openPositionsStore().update({
+    [positionId]: firebase.firestore.FieldValue.delete(),
+  });
+};
+
 const getOpenOptionsFromData = ({ doc }) => {
   const positions = doc.data();
   if (!positions) {
@@ -64,6 +70,7 @@ const getOpenOptionsFromData = ({ doc }) => {
 
 const publicMethods = {
   closePosition,
+  deletePosition,
   getKey,
   getOpenOptionsFromData,
   openPositionsStore,

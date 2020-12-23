@@ -4,22 +4,29 @@ import { connect } from 'react-redux';
 import getLabel from '../commons/getLabel';
 import getSortedPositions from '../position/getSortedPositions';
 import getSortableClassNames from '../commons/getSortableClassNames';
+import deletePosition from '../position/delete';
 
 import modelField from '../position/model';
 
 import './index.scss';
 
-const close = ({ position, dispatch }) => {
+const actionButtons = ({ position, dispatch }) => {
   return (
     <td
       key= {`close-button-${position.get('id')}`}
       className='list__td'
     >
       <button
-        className='list__close-button'
+        className='list__action-button'
         onClick={ () => dispatch({ type: 'OPEN_CLOSE_MODAL', position }) }
       >
         Close
+      </button>
+      <button
+        className='list__action-button'
+        onClick={ () => deletePosition({ position }) }
+      >
+       Delete
       </button>
     </td>
   );
@@ -34,7 +41,7 @@ const renderTd = ({position, dispatch}) => {
       </td>
     );
   });
-  return fieldTds.concat([close({ position, dispatch })]);
+  return fieldTds.concat([actionButtons({ position, dispatch })]);
 };
 
 const renderBody = ({ positions, dispatch }) => {
