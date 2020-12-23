@@ -18,10 +18,12 @@ const getByStockSummary = createSelector(
       } = getTotalAmount({ positions: list });
       const potentialPercentage = getPercentage({ dividend: potential, divisor: totalPotential });
       const occupiedPercentage = getPercentage({ dividend: occupied, divisor: totalOccupied });
+      const potentialVsTotal =  getPercentage({ dividend: potential, divisor: occupied });
       return Immutable.fromJS({
         potential,
         occupied,
         potentialPercentage,
+        potentialVsTotal,
         occupiedPercentage,
         stock,
         list,

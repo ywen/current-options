@@ -12,9 +12,10 @@ const renderIndividual = ({s}) => {
     <tr className='byStock__tr' key={`byStock__tr--${s.get('stock')}`}>
       <td className='byStock__td' key='byStock__td--symbol'>{s.get('stock')}</td>
       <td className='byStock__td' key='byStock__td--occupied'>{`$ ${s.get('occupied')}`}</td>
-      <td className='byStock__td' key='byStock__td--occupied-percent'>{s.get('occupiedPercentage')}</td>
       <td className='byStock__td' key='byStock__td--potential'>{`$ ${s.get('potential')}`}</td>
-      <td className='byStock__td' key='byStock__td--potential-percent'>{s.get('potentialPercentage')}</td>
+      <td className='byStock__td' key='byStock__td--occupied-percent'>{`% ${s.get('occupiedPercentage')}`}</td>
+      <td className='byStock__td' key='byStock__td--potential-percent'>{`% ${s.get('potentialPercentage')}`}</td>
+      <td className='byStock__td' key='byStock__td--potential-vs-total'>{`% ${s.get('potentialVsTotal')}`}</td>
     </tr>
   )
 };
@@ -54,9 +55,10 @@ const ByStock = ({ dispatch, summary, sortConditions }) => {
           <tr className='byStock__tr'>
             { renderTh({ name: 'stock' })}
             { renderTh({ name: 'occupied' })}
-            { renderTh({ name: 'occupiedPercentage' })}
             { renderTh({ name: 'potential' })}
+            { renderTh({ name: 'occupiedPercentage' })}
             { renderTh({ name: 'potentialPercentage' })}
+            { renderTh({ name: 'potentialToTotal' })}
           </tr>
         </thead>
         <tbody className='byStock__tbody'>
