@@ -8,6 +8,12 @@
     color: white;
   };
 
+  &__tr {
+    &:hover {
+      background-color: #babcb5;
+    }
+  }
+
   &__tbody {
     background-color: white;
     color: #3f393b;
