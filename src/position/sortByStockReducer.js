@@ -2,13 +2,13 @@ import Immutable from 'immutable';
 import logic from './sortLogic';
 import createReducer from '../commons/createReducer';
 
-const initialialState = Immutable.fromJS({
+const initialState = Immutable.fromJS({
   field: 'stock',
   directionAsc: true,
 });
 
 const sortByStockReducer = createReducer({
-  initialialState,
+  initialState,
   handledTypes: [
     {
       type: 'SORT_BY_STOCK_SUMMARY',

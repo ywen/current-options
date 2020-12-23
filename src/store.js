@@ -5,6 +5,7 @@ import addPositionFormData from './addPosition/formData';
 import signUpData from './SignUp/data';
 import signInData from './SignIn/data';
 import positions from './List/data';
+import closedPositions from './ClosedPositions/data';
 import currentTab from './Tabs/currentTab';
 import sortConditions from './position/sortReducer';
 import sortByStockConditions from './position/sortByStockReducer';
@@ -13,11 +14,12 @@ const reducers = combineReducers({
   addModalOpen,
   addPositionFormData,
   closeModal,
+  closedPositions,
   currentTab,
   positions,
   signInData,
   signUpData,
-  sortConditions,
   sortByStockConditions,
+  sortConditions,
 });
 export default createStore(reducers);

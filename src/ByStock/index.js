@@ -52,7 +52,7 @@ const ByStock = ({ dispatch, summary, sortConditions }) => {
     <div className='byStock__container'>
       <table className='byStock__table'>
         <thead className='byStock__thead'>
-          <tr className='byStock__tr'>
+          <tr className='byStock__tr-head'>
             { renderTh({ name: 'stock' })}
             { renderTh({ name: 'occupied' })}
             { renderTh({ name: 'potential' })}

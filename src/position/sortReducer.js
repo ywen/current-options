@@ -3,13 +3,13 @@ import model from './model';
 import logic from './sortLogic';
 import createReducer from '../commons/createReducer';
 
-const initialialState = Immutable.fromJS({
+const initialState = Immutable.fromJS({
   field: model.metaFields[0],
   directionAsc: true,
 });
 
 const sortReducer = createReducer({
-  initialialState,
+  initialState,
   handledTypes: [
     {
       type: 'SORT',
