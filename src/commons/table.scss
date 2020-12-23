@@ -1,0 +1,33 @@
+@mixin table {
+  &__table {
+    display: block;
+  };
+
+  &__thead {
+    background-color: #3f393b;
+    color: white;
+  };
+
+  &__tbody {
+    background-color: white;
+    color: #3f393b;
+  };
+
+  &__th {
+    padding: 0.5rem;
+    width: 8.4%;
+  };
+
+  &__td {
+    text-align: center;
+  }
+
+  &__chevron {
+    &--up {
+      background: url('../images/chevron-up.svg') no-repeat #4f5051 95% center;
+    }
+    &--down {
+      background: url('../images/chevron-down.svg') no-repeat #4f5051 95% center;
+    }
+  }
+};

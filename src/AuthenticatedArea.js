@@ -9,6 +9,7 @@ import AddForm from './addPosition/Form';
 import CloseModal from './closePosition';
 import List from './List';
 import Expiration from './expiration';
+import ByStock from './ByStock';
 import listenToData from './server/listenToData';
 
 import './AuthenticatedArea.scss'
@@ -30,6 +31,9 @@ const AuthenticatedArea = ({ user, dispatch }) => {
       </Route>
       <Route path="/expiration" key='expiration-route'>
         <Expiration key='expiration-view' />
+      </Route>
+      <Route path="/by_stock" key='by-stock-route'>
+        <ByStock key='by-stock-view' />
       </Route>
       <Redirect exact from="/" to="/list" />
     </div>

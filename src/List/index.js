@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import getLabel from '../commons/getLabel';
 import getSortedPositions from '../position/getSortedPositions';
+import getSortableClassNames from '../commons/getSortableClassNames';
 
 import modelField from '../position/model';
 
@@ -54,17 +55,16 @@ const sort = ({ field, dispatch }) => {
 
 const renderHeaders = ({ dispatch, sortConditions }) => {
   const fields = modelField.metaFields.concat(modelField.inferredFields).concat(['Actions']);
-  const sortField = sortConditions.get('field');
-  const directionAsc = sortConditions.get('directionAsc');
   return fields.map((k) => {
-    let additionClass = '';
-    if (k === sortField) {
-      additionClass = directionAsc ? 'list__chevron--up' : 'list__chevron--down';
-    }
+    const classNames = getSortableClassNames({
+      prefix: 'list',
+      sortConditions,
+      field: k,
+    });
     return (
       <th
         key={`th-${k}`}
-        className={`list__th ${additionClass}`}
+        className={classNames}
         onClick={() => sort({field: k, dispatch})}
       >
         {getLabel({ name: k })}

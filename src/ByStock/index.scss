@@ -1,0 +1,4 @@
+@import '../commons/table.scss';
+.byStock {
+  @include table;
+};
