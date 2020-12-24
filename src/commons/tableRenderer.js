@@ -11,7 +11,9 @@ const initialize = ({
   sortConditions,
 }) => {
   const sort = ({ name }) => {
-    dispatch({ type: sortConstant, field: name });
+    if (name !== 'Actions') {
+      dispatch({ type: sortConstant, field: name });
+    }
   };
 
   const renderTh = (name) => {
@@ -44,7 +46,7 @@ const initialize = ({
   const renderTbody = () => {
     const result = [];
     list.forEach((s) => {
-      result.push(renderIndividual({ s }));
+      result.push(renderIndividual({ s, dispatch }));
     });
     return result;
   }
