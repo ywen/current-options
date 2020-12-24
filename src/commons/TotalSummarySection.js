@@ -14,8 +14,8 @@ const TotalSummarySection = ({ use, list, prefix, hasProfit=false }) => {
       return false;
     }
     return ([
-      <dt className={`${prefix}__total-summary--dt`}>Total Profit:</dt>,
-      <dd className={`${prefix}__total-summary--dd`}>{`$ ${totalSummary.get('totalProfit')}`}</dd>
+      <dt key='dt-profit' className={`${prefix}__total-summary--dt`}>Total Profit:</dt>,
+      <dd key='dd-profit' className={`${prefix}__total-summary--dd`}>{`$ ${totalSummary.get('totalProfit')}`}</dd>
     ]);
   };
 
@@ -24,17 +24,17 @@ const TotalSummarySection = ({ use, list, prefix, hasProfit=false }) => {
       return true;
     }
     return ([
-      <dt className={`${prefix}__total-summary--dt`}>Total Occupied:</dt>,
-      <dd className={`${prefix}__total-summary--dd`}>{`$ ${totalSummary.get('totalOccupied')}`}</dd>,
-      <dt className={`${prefix}__total-summary--dt`}>Total Potential:</dt>,
-      <dd className={`${prefix}__total-summary--dd`}>{`$ ${totalSummary.get('totalPotential')}`}</dd>,
+      <dt key='dt-occupied' className={`${prefix}__total-summary--dt`}>Total Occupied:</dt>,
+      <dd key='dd-occupied' className={`${prefix}__total-summary--dd`}>{`$ ${totalSummary.get('totalOccupied')}`}</dd>,
+      <dt key='dt-potential' className={`${prefix}__total-summary--dt`}>Total Potential:</dt>,
+      <dd key='dd-potential' className={`${prefix}__total-summary--dd`}>{`$ ${totalSummary.get('totalPotential')}`}</dd>,
     ]);
   };
 
   return (
     <dl className={`${prefix}__total-summary--dl`}>
-      <dt className={`${prefix}__total-summary--dt`}>Total Stocks:</dt>
-      <dd className={`${prefix}__total-summary--dd`}>{totalSummary.get('totalStocks')}</dd>
+      <dt key='dt-stocks' className={`${prefix}__total-summary--dt`}>Total Stocks:</dt>
+      <dd key='dd-stocks' className={`${prefix}__total-summary--dd`}>{totalSummary.get('totalStocks')}</dd>
       {renderNonProfit()}
       {renderProfit()}
     </dl>
