@@ -56,24 +56,12 @@ const deletePosition = ({ positionId }) => {
   });
 };
 
-const getOpenOptionsFromData = ({ doc }) => {
-  const positions = doc.data();
-  if (!positions) {
-    return [];
-  }
-  const result = [];
-  Object.keys(positions).forEach((key) => {
-    result.push(positions[key]);
-  });
-  return result;
-};
-
 const publicMethods = {
   closePosition,
   deletePosition,
   getKey,
-  getOpenOptionsFromData,
   openPositionsStore,
+  closedPositionsStore,
   saveOpenPosition,
   setKey,
 };

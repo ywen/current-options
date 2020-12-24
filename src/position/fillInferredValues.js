@@ -2,6 +2,7 @@ const fillInferredValues = ({original}) => {
   let result = original;
   const quantity = original.get('quantity');
   const purchasePrice = original.get('purchasePrice');
+  const closingPrice = original.get('closingPrice');
   const symbol = original.get('symbol');
   const matches = symbol.match(/-([A-Z]+)+([0-9^.]+)([P|C])([0-9,.]+)/)
   if (matches) {
@@ -19,6 +20,10 @@ const fillInferredValues = ({original}) => {
       if (purchasePrice && !isSell) {
         result = result.set('potentialGain', 'unlimited');
         result = result.set('potentialGain', Math.abs(purchasePrice * 100 * quantity).toFixed(0));
+      }
+      if (closingPrice && isSell) {
+        const profit = ((purchasePrice - Number(closingPrice))*(-quantity)*100).toFixed(2);
+        result = result.set('profit', profit);
       }
     }
   }

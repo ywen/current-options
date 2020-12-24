@@ -18,12 +18,14 @@ const actionButtons = ({ position, dispatch }) => {
     >
       <button
         className='list__action-button'
+        key='list__close-button'
         onClick={ () => dispatch({ type: 'OPEN_CLOSE_MODAL', position }) }
       >
         Close
       </button>
       <button
         className='list__action-button'
+        key='list__delete-button'
         onClick={ () => deletePosition({ position }) }
       >
        Delete

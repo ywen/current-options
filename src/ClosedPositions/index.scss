@@ -1,0 +1,12 @@
+@import '../commons/table.scss';
+.closedStockSummary {
+  @include table;
+  &__td {
+    &--positive {
+      color: green;
+    };
+    &--negative {
+      color: red;
+    }
+  }
+};

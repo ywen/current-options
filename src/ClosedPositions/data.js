@@ -9,10 +9,11 @@ const processData = createReducer({
   initialState,
   handledTypes: [
     {
-      type: 'POSITION_CHANGED',
+      type: 'CLOSED_POSITION_CHANGED',
       logic,
     }
   ]
 });
 
 export default processData;
+
