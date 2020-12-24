@@ -15,11 +15,15 @@ const getSummaryFromPositions = ({ positions, sort }) => {
     } = getTotalAmount({ positions: list });
     const potentialPercentage = getPercentage({ dividend: potential, divisor: totalPotential });
     const occupiedPercentage = getPercentage({ dividend: occupied, divisor: totalOccupied });
-    const potentialVsTotal =  getPercentage({ dividend: potential, divisor: occupied });
+    const potentialVsTotal = getPercentage({ dividend: potential, divisor: occupied });
+    const profitToPotential = getPercentage({ dividend: profit, divisor: potential });
+    const profitToOccupied = getPercentage({ dividend: profit, divisor: occupied });
     return Immutable.fromJS({
       potential,
       occupied,
       profit,
+      profitToPotential,
+      profitToOccupied,
       potentialPercentage,
       potentialVsTotal,
       occupiedPercentage,
