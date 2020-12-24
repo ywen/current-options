@@ -6,12 +6,7 @@ import TableRenderer from '../commons/tableRenderer';
 
 import './index.scss';
 
-const ClosedPositions = ({ summary, dispatch }) => {
-  const sortConditions = Immutable.fromJS({
-    directionAsc: true,
-    field: 'stock',
-  });
-
+const ClosedPositions = ({ summary, dispatch, sortConditions }) => {
   const renderIndividual = ({s}) => {
     return (
       <tr className='closedStockSummary__tr' key={`closedStockSummary__tr--${s.get('stock')}`}>
@@ -52,4 +47,5 @@ const ClosedPositions = ({ summary, dispatch }) => {
 
 export default connect(state => ({
   summary: getSummary(state),
+  sortConditions: state.sortClosedStockSummary,
 }))(ClosedPositions);

@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
-import model from './model';
-import logic from './sortLogic';
+import model from '../position/model';
+import logic from '../position/sortLogic';
 import createReducer from '../commons/createReducer';
 
 const initialState = Immutable.fromJS({
