@@ -5,7 +5,7 @@ import makeTotalSummaryInfoSelector from '../position/makeTotalSummaryInfoSelect
 const TotalSummarySection = ({ use, list, prefix, hasProfit=false }) => {
   const getTotalSummary = useMemo(
     makeTotalSummaryInfoSelector({ use, hasProfit }),
-    []
+    [use, hasProfit],
   );
 
   const totalSummary = useSelector((state) => getTotalSummary(state, list));
