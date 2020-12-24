@@ -7,7 +7,7 @@ import sortPositions from '../position/sortPositions';
 const getSummaryFromPositions = ({ positions, sort }) => {
   const { totalPotential, totalOccupied } = getTotalAmount({ positions });
   const byStockSymbol = positions.groupBy(p => p.get('stockSymbol'));
-  const unsorted = byStockSymbol.map((list, stock) => {
+  const unsorted = byStockSymbol.map((list, stockSymbol) => {
     const {
       totalPotential: potential,
       totalOccupied: occupied,
@@ -27,7 +27,7 @@ const getSummaryFromPositions = ({ positions, sort }) => {
       potentialPercentage,
       potentialVsTotal,
       occupiedPercentage,
-      stock,
+      stockSymbol,
       list,
     });
   });

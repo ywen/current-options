@@ -1,13 +1,7 @@
 @import '../commons/table.scss';
+@import '../commons/TotalSummarySection.scss';
 
 .list {
-  &__container {
-    margin-top: 1rem;
-    display: grid;
-    justify-items: center;
-    grid-template-columns: 1fr;
-    grid-row-gap: 4rem;
-  };
-
   @include table;
+  @include totalSummaryDefinitionList;
 };

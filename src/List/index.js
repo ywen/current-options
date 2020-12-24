@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import { connect } from 'react-redux';
 
 import getSortedPositions from '../position/getSortedPositions';
@@ -6,6 +6,8 @@ import deletePosition from '../position/delete';
 
 import modelField from '../position/model';
 import TableRenderer from '../commons/tableRenderer';
+
+import TotalSummarySection from '../commons/TotalSummarySection';
 
 import './index.scss';
 
@@ -61,14 +63,18 @@ const List = ({ positions, sortConditions, dispatch }) => {
     renderIndividual,
     ths: fields,
   });
+
   return (
     <div className='list__container'>
       <table className='list__table'>
         { tableRenderer.renderTableHeaders() }
-        <tbody>
-          { tableRenderer.renderTbody() }
-        </tbody>
+        { tableRenderer.renderTbody() }
       </table>
+      <TotalSummarySection
+        list={positions}
+        use='listFormat'
+        prefix='list'
+      />
     </div>
   )
 };

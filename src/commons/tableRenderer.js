@@ -48,7 +48,7 @@ const initialize = ({
     list.forEach((s) => {
       result.push(renderIndividual({ s, dispatch }));
     });
-    return result;
+    return <tbody className={`${prefix}__tbody`}>{result}</tbody>;
   }
 
   return {
