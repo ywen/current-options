@@ -1,6 +1,8 @@
 @import '../commons/table.scss';
+@import '../commons/TotalSummarySection.scss';
 .closedStockSummary {
   @include table;
+  @include totalSummaryDefinitionList;
   &__td {
     &--positive {
       color: green;

@@ -1,4 +1,7 @@
 @import '../commons/table.scss';
+@import '../commons/TotalSummarySection.scss';
+
 .byStock {
   @include table;
+  @include totalSummaryDefinitionList;
 };

@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 
 import getByStockSummary from './getByStockSummary';
 import TableRenderer from '../commons/tableRenderer';
+import TotalSummarySection from '../commons/TotalSummarySection';
 
 import './index.scss';
 
 const renderIndividual = ({s}) => {
   return (
-    <tr className='byStock__tr' key={`byStock__tr--${s.get('stock')}`}>
-      <td className='byStock__td' key='byStock__td--stock'>{s.get('stock')}</td>
+    <tr className='byStock__tr' key={`byStock__tr--${s.get('stockSymbol')}`}>
+      <td className='byStock__td' key='byStock__td--stock'>{s.get('stockSymbol')}</td>
       <td className='byStock__td' key='byStock__td--occupied'>{`$ ${s.get('occupied')}`}</td>
       <td className='byStock__td' key='byStock__td--potential'>{`$ ${s.get('potential')}`}</td>
       <td className='byStock__td' key='byStock__td--occupied-percent'>{`% ${s.get('occupiedPercentage')}`}</td>
@@ -28,7 +29,7 @@ const ByStock = ({ dispatch, summary, sortConditions }) => {
     prefix: 'byStock',
     renderIndividual,
     ths: [
-      'stock',
+      'stockSymbol',
       'occupied',
       'potential',
       'occupiedPercentage',
@@ -41,10 +42,13 @@ const ByStock = ({ dispatch, summary, sortConditions }) => {
     <div className='byStock__container'>
       <table className='byStock__table'>
         { tableRenderer.renderTableHeaders() }
-        <tbody className='byStock__tbody'>
-          { tableRenderer.renderTbody() }
-        </tbody>
+        { tableRenderer.renderTbody() }
       </table>
+      <TotalSummarySection
+        list={summary}
+        use='summaryFormat'
+        prefix='byStock'
+      />
     </div>
   );
 }
