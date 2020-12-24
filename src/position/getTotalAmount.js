@@ -4,7 +4,7 @@ const getTotalAmount = ({ positions }) => {
     const totalPotential = Number(p.get('potentialGain')) + result.totalPotential;
     let totalProfit = result.totalProfit;
     if (p.get('profit')) {
-      totalProfit = Number(p.get('profit')) + result.totalPotential;
+      totalProfit = Number(p.get('profit')) + result.totalProfit;
     }
     return { totalOccupied, totalPotential, totalProfit };
   }, { totalOccupied: 0, totalPotential: 0, totalProfit: 0, });
