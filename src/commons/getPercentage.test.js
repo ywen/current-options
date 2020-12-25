@@ -7,6 +7,6 @@ describe('getPercentage', () => {
   given('result', () => getPercentage({ divisor: given.divisor, dividend: given.dividend }));
 
   it('returns percentage with 100th precision', () => {
-    expect(given.result).toBe(66.67);
+    expect(given.result).toBe(66.6);
   });
 });
