@@ -10,6 +10,7 @@ import currentTab from './Tabs/currentTab';
 import sortConditions from './List/sortReducer';
 import sortByStockConditions from './ByStock/sortReducer';
 import sortClosedStockSummary from './ClosedPositions/sortReducer';
+import sortExpirationView from './expiration/sortReducer';
 
 const reducers = combineReducers({
   addModalOpen,
@@ -23,5 +24,6 @@ const reducers = combineReducers({
   sortByStockConditions,
   sortClosedStockSummary,
   sortConditions,
+  sortExpirationView,
 });
 export default createStore(reducers);
