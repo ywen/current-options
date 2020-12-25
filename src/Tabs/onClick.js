@@ -1,8 +1,6 @@
-import history from '../commons/history';
-
-const onClick = ({ dispatch, link }) => {
+const onClick = ({ dispatch, link, navigate }) => {
   dispatch({ type: 'TAB_CHANGED', link });
-  history.push(link);
+  navigate(link);
 };
 
 export default onClick;

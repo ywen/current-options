@@ -1,11 +1,11 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-import auth from './auth';
+import currentUser from './currentUser';
 
 const db = () => firebase.firestore();
 const collection = () => {
-  const userId = auth().currentUser.uid;
+  const userId = currentUser().uid;
   return db().collection(userId);
 };
 
