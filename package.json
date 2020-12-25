@@ -46,6 +46,6 @@
   },
   "devDependencies": {
     "immutable": "^4.0.0-rc.12",
-    "node-sass": "^4.14.1"
+    "sass": "^1.30.0"
   }
 }
