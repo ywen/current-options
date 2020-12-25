@@ -1,0 +1,8 @@
+name: Run Test
+'on': pull_request
+jobs:
+  run_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run : yarn install && env CI=true yarn test
