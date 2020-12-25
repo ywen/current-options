@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "given2": "^2.1.7",
     "immutable": "^4.0.0-rc.12",
     "sass": "^1.30.0"
   }
