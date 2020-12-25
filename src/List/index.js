@@ -53,6 +53,7 @@ const renderIndividual = ({s, dispatch}) => {
 };
 
 const List = ({ positions, sortConditions, dispatch }) => {
+  console.log(positions);
   const fields = modelField.metaFields.concat(modelField.inferredFields).concat(['Actions']);
   const tableRenderer = TableRenderer({
     sortConditions,

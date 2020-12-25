@@ -1,14 +1,13 @@
 import auth from '../server/auth';
 
-import history from '../commons/history';
 import setEncryptionKey from '../encryption/setEncryptionKey';
 
-const action = ({ dispatch, data }) => {
+const action = ({ navigate, dispatch, data }) => {
   const email = data.get('email');
   const password = data.get('password');
   auth().signInWithEmailAndPassword(email, password).then((user) => {
     setEncryptionKey({ dispatch, password });
-    history.push('/');
+    navigate('/');
   }).catch((error) => {
     console.error(error);
   });
