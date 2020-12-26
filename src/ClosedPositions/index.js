@@ -10,10 +10,12 @@ import './index.scss';
 
 const ClosedPositions = ({ summary, dispatch, sortConditions }) => {
   const renderIndividual = ({s}) => {
+    console.log(s.toJS())
     const profit = s.get('profit');
     return (
       <tr className='closedStockSummary__tr' key={`closedStockSummary__tr--${s.get('stockSymbol')}`}>
         <td className='closedStockSummary__td' key='closedStockSummary__td--stock'>{s.get('stockSymbol')}</td>
+        <td className='closedStockSummary__td' key='closedStockSummary__td--avgTurnOverDays'>{`${s.get('avgTurnOverDays')} days`}</td>
         <td className={getProfitClasses({ profit })} key='closedStockSummary__td--profit'>{`$ ${profit}`}</td>
         <td className='closedStockSummary__td' key='closedStockSummary__td--profitToPotentialpotential'>{`% ${s.get('profitToPotential')}`}</td>
         <td className='closedStockSummary__td' key='closedStockSummary__td--profitToOccupied'>{`% ${s.get('profitToOccupied')}`}</td>
@@ -30,6 +32,7 @@ const ClosedPositions = ({ summary, dispatch, sortConditions }) => {
     renderIndividual,
     ths: [
       'stockSymbol',
+      'avgTurnOverDays',
       'profit',
       'profitToPotential',
       'profitToOccupied',
