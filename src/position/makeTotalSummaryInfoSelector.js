@@ -1,6 +1,8 @@
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 
+import getAvgTurnOverDays from './getAvgTurnOverDays';
+
 const getTotal = ({ list, key }) => (
   list.reduce((result, p) => {
     return Number(p.get(key)) + result;
@@ -18,9 +20,15 @@ const makeSelector = ({useSummary, hasProfit}) => (
       const totalStocks = getTotalStocks({useSummary, list});
       if (hasProfit) {
         const totalProfit= getTotal({list, key: 'profit'});
+        let allList = Immutable.fromJS([]);
+        list.forEach((v, k) => {
+          allList = allList.concat(v.get('list'));
+        });
+        const avgTurnOverDays = getAvgTurnOverDays({ list: allList });
         return Immutable.fromJS({
           totalStocks,
           totalProfit,
+          avgTurnOverDays,
         });
       } else {
         const occupiedName = useSummary ? 'occupied' : 'moneyOccupied';
