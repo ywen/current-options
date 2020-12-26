@@ -16,6 +16,8 @@ const TotalSummarySection = ({ use, list, prefix, hasProfit=false }) => {
     return ([
       <dt key='dt-avgTurnOverDays' className={`${prefix}__total-summary--dt`}>Avg Turnover Days:</dt>,
       <dd key='dd-avgTurnOverDays' className={`${prefix}__total-summary--dd`}>{`${totalSummary.get('avgTurnOverDays')} days`}</dd>,
+      <dt key='dt-avgPerDayEarning' className={`${prefix}__total-summary--dt`}>Avg Earning Per Day:</dt>,
+      <dd key='dd-avgPerDayEarning' className={`${prefix}__total-summary--dd`}>{`$ ${totalSummary.get('avgPerDayEarning')}`}</dd>,
       <dt key='dt-profit' className={`${prefix}__total-summary--dt`}>Total Profit:</dt>,
       <dd key='dd-profit' className={`${prefix}__total-summary--dd`}>{`$ ${totalSummary.get('totalProfit')}`}</dd>
     ]);

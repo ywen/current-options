@@ -29,6 +29,7 @@ const makeSelector = ({useSummary, hasProfit}) => (
           totalStocks,
           totalProfit,
           avgTurnOverDays,
+          avgPerDayEarning: (totalProfit/avgTurnOverDays).toFixed(2),
         });
       } else {
         const occupiedName = useSummary ? 'occupied' : 'moneyOccupied';
