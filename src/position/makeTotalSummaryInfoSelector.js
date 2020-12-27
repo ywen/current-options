@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 
 import getAvgTurnOverDays from './getAvgTurnOverDays';
+import getPercentage from '../commons/getPercentage';
 
 const getTotal = ({ list, key }) => (
   list.reduce((result, p) => {
@@ -17,24 +18,28 @@ const makeSelector = ({useSummary, hasProfit}) => (
   createSelector(
     (_, list) => list,
     list => {
+      const occupiedName = useSummary ? 'occupied' : 'moneyOccupied';
       const totalStocks = getTotalStocks({useSummary, list});
+      const totalOccupied = getTotal({list, key: occupiedName});
       if (hasProfit) {
         const totalProfit= getTotal({list, key: 'profit'});
         let allList = Immutable.fromJS([]);
+        const totalOccupied = getTotal({list, key: occupiedName});
         list.forEach((v, k) => {
           allList = allList.concat(v.get('list'));
         });
         const avgTurnOverDays = getAvgTurnOverDays({ list: allList });
+        const avgPerDayEarning = (totalProfit/avgTurnOverDays).toFixed(2);
+        const profitToOccupied = getPercentage({dividend: avgPerDayEarning, divisor: totalOccupied});
         return Immutable.fromJS({
           totalStocks,
           totalProfit,
           avgTurnOverDays,
-          avgPerDayEarning: (totalProfit/avgTurnOverDays).toFixed(2),
+          avgPerDayEarning,
+          profitToOccupied,
         });
       } else {
-        const occupiedName = useSummary ? 'occupied' : 'moneyOccupied';
         const potentialName = useSummary ? 'potential' : 'potentialGain';
-        const totalOccupied = getTotal({list, key: occupiedName});
         const totalPotential = getTotal({list, key: potentialName});
         return Immutable.fromJS({
           totalStocks,
