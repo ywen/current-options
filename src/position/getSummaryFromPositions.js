@@ -18,9 +18,9 @@ const getSummaryFromPositions = ({ positions, sort }) => {
     const occupiedPercentage = getPercentage({ dividend: occupied, divisor: totalOccupied });
     const potentialVsTotal = getPercentage({ dividend: potential, divisor: occupied });
     const profitToPotential = getPercentage({ dividend: profit, divisor: potential });
-    const profitToOccupied = getPercentage({ dividend: profit, divisor: occupied });
     const avgTurnOverDays = getAvgTurnOverDays({ list });
     const profitPerTurnoverDay = (profit/avgTurnOverDays).toFixed(2);
+    const profitToOccupied = getPercentage({ dividend: profitPerTurnoverDay, divisor: occupied });
     return Immutable.fromJS({
       avgTurnOverDays,
       list,
