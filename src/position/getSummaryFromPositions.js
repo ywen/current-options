@@ -20,18 +20,20 @@ const getSummaryFromPositions = ({ positions, sort }) => {
     const profitToPotential = getPercentage({ dividend: profit, divisor: potential });
     const profitToOccupied = getPercentage({ dividend: profit, divisor: occupied });
     const avgTurnOverDays = getAvgTurnOverDays({ list });
+    const profitPerTurnoverDay = (profit/avgTurnOverDays).toFixed(2);
     return Immutable.fromJS({
       avgTurnOverDays,
-      potential,
+      list,
       occupied,
-      profit,
-      profitToPotential,
-      profitToOccupied,
+      occupiedPercentage,
+      potential,
       potentialPercentage,
       potentialVsTotal,
-      occupiedPercentage,
+      profit,
+      profitPerTurnoverDay,
+      profitToOccupied,
+      profitToPotential,
       stockSymbol,
-      list,
     });
   });
   return sortPositions({ positions: unsorted, sortConditions: sort });
