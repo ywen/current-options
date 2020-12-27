@@ -17,8 +17,8 @@ const ClosedPositions = ({ summary, dispatch, sortConditions }) => {
         <td className='closedStockSummary__td' key='closedStockSummary__td--avgTurnOverDays'>{`${s.get('avgTurnOverDays')} days`}</td>
         <td className={getProfitClasses({ profit })} key='closedStockSummary__td--profit'>{`$ ${profit}`}</td>
         <td className='closedStockSummary__td' key='closedStockSummary__td--profit'>{`$ ${s.get('profitPerTurnoverDay')}`}</td>
-        <td className='closedStockSummary__td' key='closedStockSummary__td--profitToPotentialpotential'>{`% ${s.get('profitToPotential')}`}</td>
         <td className='closedStockSummary__td' key='closedStockSummary__td--profitToOccupied'>{`% ${s.get('profitToOccupied')}`}</td>
+        <td className='closedStockSummary__td' key='closedStockSummary__td--profitToPotentialpotential'>{`% ${s.get('profitToPotential')}`}</td>
       </tr>
     )
   };
@@ -35,8 +35,8 @@ const ClosedPositions = ({ summary, dispatch, sortConditions }) => {
       'avgTurnOverDays',
       'profit',
       'profitPerTurnoverDay',
-      'profitToPotential',
       'profitToOccupied',
+      'profitToPotential',
     ],
   });
 
