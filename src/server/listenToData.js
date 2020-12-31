@@ -1,14 +1,18 @@
 import store from './store';
-import getPositionsFromData from './getPositionsFromData';
+import getDataFromDoc from './getDataFromDoc';
+
+const storesAndTypes = [
+  { storeFunc: store.openPositionsStore, type: 'POSITION_CHANGED' },
+  { storeFunc: store.closedPositionsStore, type: 'CLOSED_POSITION_CHANGED' },
+  { storeFunc: store.accountsStore, type: 'ACCOUNTS_CHANGED' },
+];
 
 const listenToData = ({ dispatch }) => {
-  store.openPositionsStore().onSnapshot((doc) => {
-    const data = getPositionsFromData({ doc });
-    dispatch({ type: 'POSITION_CHANGED', data });
-  });
-  store.closedPositionsStore().onSnapshot((doc) => {
-    const data = getPositionsFromData({ doc });
-    dispatch({ type: 'CLOSED_POSITION_CHANGED', data });
+  storesAndTypes.forEach(({ storeFunc, type }) => {
+    storeFunc().onSnapshot((doc) => {
+      const data = getDataFromDoc({ doc });
+      dispatch({ type, data });
+    });
   });
 };
 

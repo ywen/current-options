@@ -62,12 +62,13 @@ const deletePosition = ({ positionId }) => {
 };
 
 const publicMethods = {
-  saveAccount,
+  accountsStore,
   closePosition,
+  closedPositionsStore,
   deletePosition,
   getKey,
   openPositionsStore,
-  closedPositionsStore,
+  saveAccount,
   saveOpenPosition,
   setKey,
 };
