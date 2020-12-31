@@ -7,6 +7,7 @@ import Menu from './Menu';
 import AddForm from './addPosition/Form';
 import CloseModal from './closePosition';
 import listenToData from './server/listenToData';
+import getOption from './priceFromApi/get';
 
 import './AuthenticatedArea.scss'
 
@@ -20,6 +21,12 @@ const AuthenticatedArea = ({ user, dispatch }) => {
       navigate('/signin');
     }
   }, [user, dispatch, navigate]);
+  const r = getOption({
+    symbol: 'TSLA',
+    strike: 580,
+    fromDate: '2021-02-19',
+    toDate: '2021-02-19',
+  });
   return (
     <div className='authenticated__main'>
       <Menu key='menu' />
