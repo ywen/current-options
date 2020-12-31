@@ -13,23 +13,28 @@ const toDoc = ({ name }) => collection().doc(name);
 const keyStore = () => toDoc({ name: 'key '});
 const openPositionsStore = () => toDoc({ name: 'openPositions' });
 const closedPositionsStore = () => toDoc({ name: 'closedPositions' });
+const accountsStore = () => toDoc({ name: 'accounts' });
 
 const getKey = () => keyStore().get();
 
 const setKey = ({ key }) => keyStore().set({ key });
 
-const saveTo = async ({ doc, position }) => {
+const saveTo = async ({ doc, data }) => {
   const snapshot = await doc().get();
   if (!snapshot.exists) {
     await doc().set({});
   }
   await doc().update({
-    [position.id]: position,
+    [data.id]: data,
   });
 };
 
 const saveOpenPosition = async ({ position }) => {
-  await saveTo({ doc: openPositionsStore, position });
+  await saveTo({ doc: openPositionsStore, data: position });
+};
+
+const saveAccount = async ({ account }) => {
+  await saveTo({ doc: accountsStore, data: account });
 };
 
 const closePosition = async ({ position }) => {
@@ -57,6 +62,7 @@ const deletePosition = ({ positionId }) => {
 };
 
 const publicMethods = {
+  saveAccount,
   closePosition,
   deletePosition,
   getKey,

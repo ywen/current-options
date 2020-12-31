@@ -30,6 +30,6 @@ const Form = ({ addModalOpen, dispatch, data }) => {
 
 export default connect(state => ({
   addModalOpen: state.accountModalOpen,
-  data: state.addPositionFormData,
+  data: state.addAccountData,
 }))(Form);
 
