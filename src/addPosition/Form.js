@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Modal from 'react-modal';
+import Modal from '../commons/Modal';
 import closeModal from './closeModal';
 import TextField from '../commons/TextField';
 import Row from './Row';
-import '../commons/Modal.scss';
 import changeValue from './changeValue';
 import savePosition from '../position/save';
 import modelField from '../position/model';
@@ -29,11 +28,9 @@ const Form = ({ addModalOpen, dispatch, data }) => {
 
   return (
     <Modal
-      isOpen={addModalOpen}
-      shouldCloseOnOverlayClick={true}
-      ariaHideApp={false}
-      onRequestClose={() => closeModal({ dispatch })}
-      overlayClassName='modal__overlay'
+      addModalOpen={addModalOpen}
+      closeModal={closeModal}
+      dispatch={dispatch}
     >
       <div className='modal__form'>
         {textFields({ data })}
@@ -47,6 +44,6 @@ const Form = ({ addModalOpen, dispatch, data }) => {
 };
 
 export default connect(state => ({
-  addModalOpen: state.addModalOpen,
+  addModalOpen: state.addPositionModalOpen,
   data: state.addPositionFormData,
 }))(Form);

@@ -5,6 +5,7 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import Tabs from './Tabs';
 import Menu from './Menu';
 import AddForm from './addPosition/Form';
+import AccountForm from './Account/Form';
 import CloseModal from './closePosition';
 import listenToData from './server/listenToData';
 
@@ -25,6 +26,7 @@ const AuthenticatedArea = ({ user, dispatch }) => {
       <Menu key='menu' />
       <Tabs key='tabs' />
       <AddForm key='addForm' />
+      <AccountForm key='accountForm' />
       <CloseModal key='closeModal' />
       <Outlet />
     </div>

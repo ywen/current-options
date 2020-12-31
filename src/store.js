@@ -1,5 +1,6 @@
 import { createStore, combineReducers } from 'redux';
-import addModalOpen from './addPosition/addModalOpen';
+import addPositionModalOpen from './addPosition/addModalOpen';
+import accountModalOpen from './Account/modalOpenReducer';
 import closeModal from './closePosition/modalControl';
 import addPositionFormData from './addPosition/formData';
 import signUpData from './SignUp/data';
@@ -13,7 +14,8 @@ import sortClosedStockSummary from './ClosedPositions/sortReducer';
 import sortExpirationView from './expiration/sortReducer';
 
 const reducers = combineReducers({
-  addModalOpen,
+  accountModalOpen,
+  addPositionModalOpen,
   addPositionFormData,
   closeModal,
   closedPositions,

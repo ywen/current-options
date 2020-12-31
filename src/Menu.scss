@@ -7,12 +7,12 @@ input[type="file"] {
   margin-top: 1rem;
   display: grid;
   justify-items: start;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   background-color: #040405;
 };
 
 .menu {
-  &__addPosition {
+  &__button {
     background-color: #040405;
     color: #edf9f1;
   }
