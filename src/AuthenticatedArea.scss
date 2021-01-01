@@ -1,2 +1,13 @@
 .authenticated {
+  &__main {
+    display: grid;
+    grid-template-areas:
+      'accounts menu'
+      'accounts tabs'
+      'accounts view-area';
+  };
+
+  &__view-area {
+    grid-area: view-area;
+  }
 }

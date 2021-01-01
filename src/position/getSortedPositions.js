@@ -1,14 +1,13 @@
 import { createSelector } from 'reselect';
 import sortPositions from './sortPositions';
-import mergeAccountsToPositions from './mergeAccountsToPositions';
+import filterByCurrentAccountId from './filterByCurrentAccountId';
 
 const func = createSelector(
-  (state) => state.accounts,
-  (state) => state.positions,
+  filterByCurrentAccountId,
   (state) => state.sortConditions,
-  (accounts, positions, sortConditions) => {
-    const withAccount = mergeAccountsToPositions({ accounts, positions});
-    return sortPositions({positions: withAccount, sortConditions})
+  (state) => state.currentAccountId,
+  (positions, sortConditions, currentAccountId) => {
+    return sortPositions({positions, sortConditions})
   },
 );
 

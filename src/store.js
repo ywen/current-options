@@ -1,13 +1,14 @@
 import { createStore, combineReducers } from 'redux';
 import addPositionModalOpen from './addPosition/addModalOpen';
-import accountModalOpen from './Account/modalOpenReducer';
-import accounts from './Account/fromServer';
+import accountModalOpen from './Accounts/modalOpenReducer';
+import accounts from './Accounts/fromServer';
+import currentAccountId from './Accounts/currentAccount';
 import closeModal from './closePosition/modalControl';
 import addPositionFormData from './addPosition/formData';
-import addAccountData from './Account/dataReducer';
+import addAccountData from './Accounts/dataReducer';
 import signUpData from './SignUp/data';
 import signInData from './SignIn/data';
-import positions from './List/data';
+import positions from './position/allPositionsReducer';
 import closedPositions from './ClosedPositions/data';
 import currentTab from './Tabs/currentTab';
 import sortConditions from './List/sortReducer';
@@ -23,6 +24,7 @@ const reducers = combineReducers({
   addPositionFormData,
   closeModal,
   closedPositions,
+  currentAccountId,
   currentTab,
   positions,
   signInData,

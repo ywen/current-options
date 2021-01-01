@@ -4,9 +4,10 @@ import Immutable from 'immutable';
 import getPercentage from '../commons/getPercentage';
 import getTotalAmount from '../position/getTotalAmount';
 import sortPositions from '../position/sortPositions';
+import filterByCurrentAccountId from '../position/filterByCurrentAccountId';
 
 const func = createSelector(
-  (state) => state.positions,
+  filterByCurrentAccountId,
   (state) => state.sortExpirationView,
   (positions, sort) => {
     const { totalPotential, totalOccupied } = getTotalAmount({ positions });

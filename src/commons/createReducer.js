@@ -1,6 +1,6 @@
 const createReducer = ({ initialState, handledTypes }) => {
   return (state, action) => {
-    if (state === undefined || state === null) return initialState;
+    if (state === undefined) return initialState;
     let result = null;
     handledTypes.forEach(({type, logic}) => {
       if (action.type === type) {

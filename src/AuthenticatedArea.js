@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate, Outlet } from 'react-router-dom';
 
+import AccountsNavigation from './Accounts/Navigation';
 import Tabs from './Tabs';
 import Menu from './Menu';
 import AddForm from './addPosition/Form';
-import AccountForm from './Account/Form';
+import AccountForm from './Accounts/Form';
 import CloseModal from './closePosition';
 import listenToData from './server/listenToData';
 
@@ -28,6 +29,7 @@ const AuthenticatedArea = ({ user, dispatch }) => {
       <AddForm key='addForm' />
       <AccountForm key='accountForm' />
       <CloseModal key='closeModal' />
+      <AccountsNavigation />
       <Outlet />
     </div>
   );

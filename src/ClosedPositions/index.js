@@ -16,7 +16,7 @@ const ClosedPositions = ({ summary, dispatch, sortConditions }) => {
         <td className='closedStockSummary__td' key='closedStockSummary__td--stock'>{s.get('stockSymbol')}</td>
         <td className='closedStockSummary__td' key='closedStockSummary__td--avgTurnOverDays'>{`${s.get('avgTurnOverDays')} days`}</td>
         <td className={getProfitClasses({ profit })} key='closedStockSummary__td--profit'>{`$ ${profit}`}</td>
-        <td className='closedStockSummary__td' key='closedStockSummary__td--profit'>{`$ ${s.get('profitPerTurnoverDay')}`}</td>
+        <td className='closedStockSummary__td' key='closedStockSummary__td--profitPerTurnoverDay'>{`$ ${s.get('profitPerTurnoverDay')}`}</td>
         <td className='closedStockSummary__td' key='closedStockSummary__td--profitToOccupied'>{`% ${s.get('profitToOccupied')}`}</td>
         <td className='closedStockSummary__td' key='closedStockSummary__td--profitToPotentialpotential'>{`% ${s.get('profitToPotential')}`}</td>
       </tr>
@@ -41,7 +41,7 @@ const ClosedPositions = ({ summary, dispatch, sortConditions }) => {
   });
 
   return (
-    <div className='closedStockSummary__container'>
+    <div className='closedStockSummary__container authenticated__view-area'>
       <table className='closedStockSummary__table'>
         { tableRenderer.renderTableHeaders() }
         { tableRenderer.renderTbody() }
