@@ -65,7 +65,7 @@ const List = ({ positions, sortConditions, dispatch }) => {
   });
 
   return (
-    <div className='list__container'>
+    <div className='list__container authenticated__view-area'>
       <table className='list__table'>
         { tableRenderer.renderTableHeaders() }
         { tableRenderer.renderTbody() }

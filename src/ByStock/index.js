@@ -39,7 +39,7 @@ const ByStock = ({ dispatch, summary, sortConditions }) => {
   });
 
   return (
-    <div className='byStock__container'>
+    <div className='byStock__container authenticated__view-area'>
       <table className='byStock__table'>
         { tableRenderer.renderTableHeaders() }
         { tableRenderer.renderTbody() }

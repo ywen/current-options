@@ -37,7 +37,7 @@ const Expiration = ({ stats, dispatch, sortConditions }) => {
   });
 
   return (
-    <div className='expiration-view__container'>
+    <div className='expiration-view__container authenticated__view-area'>
       <table className='expiration-view__table'>
         { tableRenderer.renderTableHeaders() }
         { tableRenderer.renderTbody() }
