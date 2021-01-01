@@ -13,10 +13,14 @@
   };
 
   &__li {
-    margin-top: 1rem;
+    padding-bottom: 1rem;
     padding-top: 1rem;
     padding-left: 1rem;
     border-top: solid 1px;
+    &--current {
+      background-color: #353533;
+      color: #efefe8;
+    }
   }
 
   &__title {

@@ -3,12 +3,25 @@ import { connect } from 'react-redux';
 
 import './Navigation.scss';
 
-const Navigation = ({ accounts, dispatch }) => {
+const Navigation = ({ accounts, currentAccountId, dispatch }) => {
+  const onClick = ({ accountId }) => {
+    dispatch({ type: 'CHANGE_CURRENT_ACCOUNT', accountId });
+  };
+
+  const getLiClasses = ({ accountId }) => {
+    const result = ['accounts-navigation__li'];
+    if (accountId === currentAccountId ) {
+      result.push('accounts-navigation__li--current');
+    }
+    return result.join(' ');
+  };
+
   const renderLi = () => {
     let result = [];
     accounts.forEach((v, k) => {
       const li = (<li
-        className='accounts-navigation__li'
+        className={getLiClasses({ accountId: k })}
+        onClick={() => onClick({ accountId: k })}
         key={`li-${k}`}
       >
         {v.get('name')}
@@ -31,4 +44,5 @@ const Navigation = ({ accounts, dispatch }) => {
 
 export default connect(state => ({
   accounts: state.accounts,
+  currentAccountId: state.currentAccountId,
 }))(Navigation);

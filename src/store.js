@@ -2,6 +2,7 @@ import { createStore, combineReducers } from 'redux';
 import addPositionModalOpen from './addPosition/addModalOpen';
 import accountModalOpen from './Accounts/modalOpenReducer';
 import accounts from './Accounts/fromServer';
+import currentAccountId from './Accounts/currentAccount';
 import closeModal from './closePosition/modalControl';
 import addPositionFormData from './addPosition/formData';
 import addAccountData from './Accounts/dataReducer';
@@ -23,6 +24,7 @@ const reducers = combineReducers({
   addPositionFormData,
   closeModal,
   closedPositions,
+  currentAccountId,
   currentTab,
   positions,
   signInData,
