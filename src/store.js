@@ -8,7 +8,7 @@ import addPositionFormData from './addPosition/formData';
 import addAccountData from './Accounts/dataReducer';
 import signUpData from './SignUp/data';
 import signInData from './SignIn/data';
-import positions from './List/data';
+import positions from './position/allPositionsReducer';
 import closedPositions from './ClosedPositions/data';
 import currentTab from './Tabs/currentTab';
 import sortConditions from './List/sortReducer';

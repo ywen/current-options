@@ -7,7 +7,6 @@ const inferredFields = [
   'moneyOccupied',
   'potentialGain',
   'potentialLose',
-  'account',
 ];
 
 const closedFields = ['closingPrice', 'closedDate']

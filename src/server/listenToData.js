@@ -4,7 +4,6 @@ import getDataFromDoc from './getDataFromDoc';
 const storesAndTypes = [
   { storeFunc: store.openPositionsStore, type: 'POSITION_CHANGED' },
   { storeFunc: store.closedPositionsStore, type: 'CLOSED_POSITION_CHANGED' },
-  { storeFunc: store.accountsStore, type: 'ACCOUNTS_CHANGED' },
 ];
 
 const listenToData = ({ dispatch }) => {
@@ -13,6 +12,11 @@ const listenToData = ({ dispatch }) => {
       const data = getDataFromDoc({ doc });
       dispatch({ type, data });
     });
+  });
+  store.accountsStore().onSnapshot((doc) => {
+    const data = getDataFromDoc({ doc });
+    dispatch({ type: 'ACCOUNTS_CHANGED', data });
+    dispatch({ type: 'SET_CURRENT_ACCOUNT', accountId: data[0].id });
   });
 };
 

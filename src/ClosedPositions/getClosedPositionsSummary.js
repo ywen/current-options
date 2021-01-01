@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 
 import getSummaryFromPositions from '../position/getSummaryFromPositions';
-
 const composeSummary = (positions, sort) => getSummaryFromPositions({ positions, sort });
 
 const func = createSelector(
