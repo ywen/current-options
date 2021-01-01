@@ -1,10 +1,10 @@
 import Immutable from 'immutable';
 
-import getDecryptedPositions from '../encryption/getDecryptedPositions';
+import getDecryptedData from '../encryption/getDecryptedData';
 import fillInferredValues from '../position/fillInferredValues';
 
 const composePositions = (state, action) => {
-  const decrypted = getDecryptedPositions({ positions: action.data });
+  const decrypted = getDecryptedData({ data: action.data });
   const filled = decrypted.map(position => {
     return fillInferredValues({ original: Immutable.fromJS(position) });
   });

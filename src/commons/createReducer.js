@@ -1,13 +1,13 @@
 const createReducer = ({ initialState, handledTypes }) => {
   return (state, action) => {
-    if (!state) return initialState;
+    if (state === undefined || state === null) return initialState;
     let result = null;
     handledTypes.forEach(({type, logic}) => {
       if (action.type === type) {
         result = logic(state, action);
       }
     });
-    return result || state;
+    return result !== null ? result : state;
   };
 };
 

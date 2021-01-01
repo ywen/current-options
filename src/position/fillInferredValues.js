@@ -4,6 +4,7 @@ const fillInferredValues = ({original}) => {
   const purchasePrice = original.get('purchasePrice');
   const closingPrice = original.get('closingPrice');
   const symbol = original.get('symbol');
+  if (!symbol || !purchasePrice || !quantity) return original;
   const matches = symbol.match(/-([A-Z]+)+([0-9^.]+)([P|C])([0-9,.]+)/)
   if (matches) {
     result = result.set('stockSymbol', matches[1]);
