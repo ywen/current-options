@@ -21,9 +21,20 @@ const displayRows = () => {
   });
 };
 
-const Form = ({ addModalOpen, dispatch, data }) => {
-  const save = () => {
-    savePosition({ data });
+const Form = ({ addModalOpen, dispatch, data, accounts }) => {
+  const save = () => savePosition({ data });
+
+  const renderOptions = () => {
+    let result = []
+    accounts.forEach((v, k) => {
+      result.push(<option key={k} value={k}>{v.get('name')}</option>);
+    });
+    return result;
+  };
+
+  const accountIdChanged = (e) => {
+    const value = e.target.selectedOptions[0].value;
+    changeValue({ dispatch, key: 'accountId', value });
   };
 
   return (
@@ -34,6 +45,22 @@ const Form = ({ addModalOpen, dispatch, data }) => {
     >
       <div className='modal__form'>
         {textFields({ data })}
+        <div className='text-field__container'>
+          <label
+            className='text-field__label'
+            htmlFor='accountId'
+            key='accountId-label'
+          >
+            Account:
+          </label>
+          <select
+            id='accountId'
+            className='text-field__input text-field__input--accountId'
+            onChange={accountIdChanged}
+          >
+            {renderOptions()}
+          </select>
+        </div>
         <button onClick={save} className='modal__save'>Save</button>
       </div>
       <div className='modal__information'>
@@ -45,5 +72,6 @@ const Form = ({ addModalOpen, dispatch, data }) => {
 
 export default connect(state => ({
   addModalOpen: state.addPositionModalOpen,
+  accounts: state.accounts,
   data: state.addPositionFormData,
 }))(Form);
