@@ -12,8 +12,11 @@ const collection = () => {
 const toDoc = ({ name }) => collection().doc(name);
 const keyStore = () => toDoc({ name: 'key '});
 const openPositionsStore = () => toDoc({ name: 'openPositions' });
+const openPositionsBackupStore = () => toDoc({ name: 'openPositionsBackup' });
 const closedPositionsStore = () => toDoc({ name: 'closedPositions' });
+const closedPositionsBackupStore = () => toDoc({ name: 'closedPositions' });
 const accountsStore = () => toDoc({ name: 'accounts' });
+const accountsBackupStore = () => toDoc({ name: 'accountsBackup' });
 
 const getKey = () => keyStore().get();
 
@@ -63,11 +66,14 @@ const deletePosition = ({ positionId }) => {
 
 const publicMethods = {
   accountsStore,
+  accountsBackupStore,
   closePosition,
   closedPositionsStore,
+  closedPositionsBackupStore,
   deletePosition,
   getKey,
   openPositionsStore,
+  openPositionsBackupStore,
   saveAccount,
   saveOpenPosition,
   setKey,
