@@ -6,9 +6,9 @@ import Immutable from 'immutable';
 import './Menu.scss';
 
 import openPositionModal from './addPosition/openModal';
-import openAccountModal from './Accounts/openModal';
 import savePosition from './position/save';
 import getCSVArrayFromFile from './commons/getCSVArrayFromFile';
+import backup from './server/backup';
 
 import auth from './server/auth';
 
@@ -33,9 +33,6 @@ const Menu = ({ dispatch }) => {
       <button className='menu__item menu__button' onClick={() => openPositionModal({ dispatch })}>
         Add Position
       </button>
-      <button className='menu__item menu__button' onClick={() => openAccountModal({ dispatch })}>
-        Add Account
-      </button>
       <div className="menu__item">
         <label htmlFor="upload">Import CSV</label>
         <input
@@ -47,6 +44,9 @@ const Menu = ({ dispatch }) => {
         />
         <button disabled={!file} onClick={importCSV}>Import</button>
       </div>
+      <button className='menu__item menu__button' onClick={backup}>
+        Backup
+      </button>
       <button onClick={signOut} className='menu__item menu__button' key='signout'>Sign Out</button>
     </div>
   )

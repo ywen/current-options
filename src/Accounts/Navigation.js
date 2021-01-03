@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import openAccountModal from './openModal';
 import './Navigation.scss';
 
 const Navigation = ({ accounts, currentAccountId, dispatch }) => {
@@ -37,6 +38,11 @@ const Navigation = ({ accounts, currentAccountId, dispatch }) => {
       </div>
       <ul className='accounts-navigation__ul'>
         {renderLi()}
+        <li className='accounts-navigation__li'>
+          <button onClick={() => openAccountModal({ dispatch })}>
+            Add Account
+          </button>
+        </li>
       </ul>
     </div>
   );
