@@ -14,7 +14,7 @@ const keyStore = () => toDoc({ name: 'key '});
 const openPositionsStore = () => toDoc({ name: 'openPositions' });
 const openPositionsBackupStore = () => toDoc({ name: 'openPositionsBackup' });
 const closedPositionsStore = () => toDoc({ name: 'closedPositions' });
-const closedPositionsBackupStore = () => toDoc({ name: 'closedPositions' });
+const closedPositionsBackupStore = () => toDoc({ name: 'closedPositionsBackup' });
 const accountsStore = () => toDoc({ name: 'accounts' });
 const accountsBackupStore = () => toDoc({ name: 'accountsBackup' });
 
