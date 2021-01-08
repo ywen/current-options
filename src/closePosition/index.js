@@ -7,9 +7,16 @@ import TextField from '../commons/TextField';
 
 import closePosition from '../position/close';
 
+import './index.scss';
+
 const Form = ({ dispatch, closeModal }) => {
   const isOpen = closeModal.get('isOpen');
   const position = closeModal.get('position');
+
+  const name = position ? position.get('symbol') : null;
+  if(!position) {
+    return false;
+  }
   const data = closeModal.get('data');
 
   const changeValue = ({ dispatch, value, key}) => (
@@ -39,6 +46,7 @@ const Form = ({ dispatch, closeModal }) => {
       overlayClassName='modal__overlay'
     >
       <div className='modal__form'>
+        <div className='modal__position-title'>{name}</div>
         {textFields()}
         <button onClick={save} className='modal__save'>Save</button>
       </div>
