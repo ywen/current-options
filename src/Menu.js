@@ -8,7 +8,6 @@ import './Menu.scss';
 import openPositionModal from './addPosition/openModal';
 import savePosition from './position/save';
 import getCSVArrayFromFile from './commons/getCSVArrayFromFile';
-import backup from './server/backup';
 
 import auth from './server/auth';
 
@@ -44,9 +43,6 @@ const Menu = ({ dispatch }) => {
         />
         <button disabled={!file} onClick={importCSV}>Import</button>
       </div>
-      <button className='menu__item menu__button' onClick={backup}>
-        Backup
-      </button>
       <button onClick={signOut} className='menu__item menu__button' key='signout'>Sign Out</button>
     </div>
   )
