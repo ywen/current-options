@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import getSummary from './getClosedPositionsSummary';
 import TableRenderer from '../commons/tableRenderer';
 import TotalSummarySection from '../commons/TotalSummarySection';
+import TimeSelect from './TimeSelect';
 
 import getProfitClasses from './getProfitClasses';
 
@@ -42,6 +43,7 @@ const ClosedPositions = ({ summary, dispatch, sortConditions }) => {
 
   return (
     <div className='closedStockSummary__container authenticated__view-area'>
+      <TimeSelect />
       <table className='closedStockSummary__table'>
         { tableRenderer.renderTableHeaders() }
         { tableRenderer.renderTbody() }

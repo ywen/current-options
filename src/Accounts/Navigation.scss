@@ -5,7 +5,7 @@
     border-right: solid 1px;
     border-color: #eae0de;
     background-color: #cccbc7;
-    height: 100%;
+    padding-left: 2rem;
   };
 
   &__ul {
@@ -14,10 +14,11 @@
   };
 
   &__li {
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+    display: inline-block;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     padding-left: 1rem;
-    border-top: solid 1px;
+    padding-right: 1rem;
     &--current {
       background-color: #353533;
       color: #efefe8;
