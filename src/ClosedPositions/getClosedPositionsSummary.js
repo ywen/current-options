@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect';
 
 import getSummaryFromPositions from '../position/getSummaryFromPositions';
-import filterClosedPositionsByAccountId from '../position/filterClosedPositionsByAccountId';
+import filterByTime from './filterByTime';
 const composeSummary = (positions, sort) => getSummaryFromPositions({ positions, sort });
 
 const func = createSelector(
-  filterClosedPositionsByAccountId,
+  filterByTime,
   state => state.sortClosedStockSummary,
   composeSummary,
 );
