@@ -15,6 +15,7 @@ import sortConditions from './List/sortReducer';
 import sortByStockConditions from './ByStock/sortReducer';
 import sortClosedStockSummary from './ClosedPositions/sortReducer';
 import sortExpirationView from './expiration/sortReducer';
+import closedPositionsFilter from './ClosedPositions/timeFilterChangeReducer';
 
 const reducers = combineReducers({
   accounts,
@@ -24,6 +25,7 @@ const reducers = combineReducers({
   addPositionFormData,
   closeModal,
   closedPositions,
+  closedPositionsFilter,
   currentAccountId,
   currentTab,
   positions,
