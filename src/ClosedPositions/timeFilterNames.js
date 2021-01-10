@@ -12,7 +12,7 @@ const today = () => {
 const thisWeek = () => {
   const d = now();
   const weekDay = d.getDay();
-  const diff = d.getDate() - weekDay + (weekDay == 0 ? -6 : 1);
+  const diff = d.getDate() - weekDay + (weekDay === 0 ? -6 : 1);
   const weekStart = (d.setDate(diff));
   const sixDays = 6 * 24 * 60 * 60 * 1000;
   const endDay = new Date(weekStart + sixDays);
