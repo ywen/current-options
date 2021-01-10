@@ -1,5 +1,6 @@
 import React  from 'react';
 import { connect } from 'react-redux';
+import { Popup } from 'reactjs-popup';
 
 import getSortedPositions from '../position/getSortedPositions';
 import deletePosition from '../position/delete';
@@ -13,9 +14,9 @@ import './index.scss';
 
 const actionButtons = ({ position, dispatch }) => {
   return (
-    <td
-      key= {`close-button-${position.get('id')}`}
-      className='list__td'
+    <div
+      key= {`buttons-${position.get('id')}`}
+      className='list__buttons'
     >
       <button
         className='list__action-button'
@@ -31,7 +32,7 @@ const actionButtons = ({ position, dispatch }) => {
       >
        Delete
       </button>
-    </td>
+    </div>
   );
 };
 
@@ -44,16 +45,24 @@ const renderIndividual = ({s, dispatch}) => {
       </td>
     );
   });
-  const allTds = fieldTds.concat([actionButtons({ position: s, dispatch })]);
   return (
-    <tr className='list__tr' key={`list__tr--${s.get('id')}`}>
-      { allTds }
-    </tr>
+    <Popup
+      trigger={open => (
+        <tr className='list__tr' key={`list__tr--${s.get('id')}`}>
+          { fieldTds }
+        </tr>
+      )}
+      position='bottom left'
+      on={['hover', 'focus']}
+      key={`popup-${s.get('id')}`}
+    >
+      {actionButtons({ position: s, dispatch })}
+    </Popup>
   )
 };
 
 const List = ({ positions, sortConditions, dispatch }) => {
-  const fields = modelField.metaFields.concat(modelField.inferredFields).concat(['Actions']);
+  const fields = modelField.metaFields.concat(modelField.inferredFields);
   const tableRenderer = TableRenderer({
     sortConditions,
     sortConstant: 'SORT',

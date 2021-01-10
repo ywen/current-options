@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+
 const filter = createSelector(
   state => state.closedPositions,
   state => state.currentAccountId,

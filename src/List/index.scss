@@ -4,4 +4,9 @@
 .list {
   @include table;
   @include totalSummaryDefinitionList;
+  &__buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 0.2rem;
+  };
 };
