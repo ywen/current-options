@@ -22,7 +22,10 @@ const displayRows = () => {
 };
 
 const Form = ({ addModalOpen, dispatch, data, accounts }) => {
-  const save = () => savePosition({ data });
+  const save = () => {
+    savePosition({ data });
+    dispatch({ type: 'CLOSE_ADD_MODAL' });
+  };
 
   const renderOptions = () => {
     let result = [<option key='empty-option' value=''>Select Account</option>];
@@ -39,8 +42,8 @@ const Form = ({ addModalOpen, dispatch, data, accounts }) => {
 
   return (
     <Modal
-      addModalOpen={addModalOpen}
-      closeModal={closeModal}
+      open={addModalOpen}
+      closePopup={closeModal}
       dispatch={dispatch}
     >
       <div className='modal__form'>

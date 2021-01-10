@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Modal from 'react-modal';
+import Modal from '../commons/Modal';
 
 import modelField from '../position/model';
 import TextField from '../commons/TextField';
@@ -38,13 +38,7 @@ const Form = ({ dispatch, closeModal }) => {
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      shouldCloseOnOverlayClick={true}
-      ariaHideApp={false}
-      onRequestClose={() => close({ dispatch })}
-      overlayClassName='modal__overlay'
-    >
+    <Modal open={isOpen} closePopup={close} >
       <div className='modal__form'>
         <div className='modal__position-title'>{name}</div>
         {textFields()}

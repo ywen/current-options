@@ -1,13 +1,13 @@
 import { Popup } from 'reactjs-popup';
 import './Modal.scss';
 
-const Component = ({ children, addPopupOpen, closePopup, dispatch }) => {
+const Component = ({ children, open, closePopup, dispatch }) => {
   return (
     <Popup
-      open={addPopupOpen}
+      open={open}
       closeOnDocumentClick
       onClose={() => closePopup({ dispatch })}
-      overlayClassName='modal__overlay'
+      modal
     >
       {children}
     </Popup>
