@@ -5,7 +5,7 @@ import Immutable from 'immutable';
 
 import './Menu.scss';
 
-import openPositionModal from './addPosition/openModal';
+import openPositionModal from './position/Edit/openModal';
 import savePosition from './position/save';
 import getCSVArrayFromFile from './commons/getCSVArrayFromFile';
 

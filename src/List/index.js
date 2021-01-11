@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { Popup } from 'reactjs-popup';
 
 import getSortedPositions from '../position/getSortedPositions';
+import PositionForm from 'position/Edit/Form';
 import deletePosition from '../position/delete';
+
 
 import modelField from '../position/model';
 import TableRenderer from '../commons/tableRenderer';
@@ -11,6 +13,9 @@ import TableRenderer from '../commons/tableRenderer';
 import TotalSummarySection from '../commons/TotalSummarySection';
 
 import './index.scss';
+
+const openUpdateModal = ({ position, dispatch }) => {
+};
 
 const actionButtons = ({ position, dispatch }) => {
   return (
@@ -21,6 +26,7 @@ const actionButtons = ({ position, dispatch }) => {
       <button
         className='list__action-button'
         key='list__update-button'
+        onClick={ () => openUpdateModal({ position, dispatch }) }
       >
         Update
       </button>
@@ -62,7 +68,7 @@ const renderIndividual = ({s, dispatch}) => {
           { fieldTds.concat([closeButton]) }
         </tr>
       )}
-      position='bottom left'
+      position='bottom right'
       on={['hover', 'focus']}
       key={`popup-${s.get('id')}`}
     >
