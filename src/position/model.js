@@ -9,11 +9,14 @@ const inferredFields = [
   'potentialLose',
 ];
 
+const displayInferredFields = metaFields.concat(['stockSymbol', 'expirationDate', 'strike', 'moneyOccupied', 'potentialGain']);
+
 const closedFields = ['closingPrice', 'closedDate']
 
 const fields = {
   closedFields,
   metaFields,
+  displayInferredFields,
   inferredFields,
 };
 

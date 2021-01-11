@@ -4,9 +4,10 @@ import TextField from '../commons/TextField';
 import Modal from '../commons/Modal';
 import saveAccount from './save';
 
-const Form = ({ addModalOpen, dispatch, data }) => {
+const Form = ({ open, dispatch, data }) => {
   const save = () => {
     saveAccount({ data });
+    dispatch({ type: 'CLOSE_ADD_ACCOUNT_MODAL' });
   };
 
   const closeModal = ({dispatch}) => dispatch({ type: 'CLOSE_ADD_ACCOUNT_MODAL' });
@@ -16,8 +17,8 @@ const Form = ({ addModalOpen, dispatch, data }) => {
 
   return (
     <Modal
-      addModalOpen={addModalOpen}
-      closeModal={closeModal}
+      open={open}
+      closePopup={closeModal}
       dispatch={dispatch}
     >
       <div className='modal__form'>
@@ -29,7 +30,6 @@ const Form = ({ addModalOpen, dispatch, data }) => {
 };
 
 export default connect(state => ({
-  addModalOpen: state.accountModalOpen,
+  open: state.accountModalOpen,
   data: state.addAccountData,
 }))(Form);
-

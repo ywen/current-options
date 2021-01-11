@@ -1,77 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Modal from '../commons/Modal';
-import closeModal from './closeModal';
-import TextField from '../commons/TextField';
-import Row from './Row';
-import changeValue from './changeValue';
-import savePosition from '../position/save';
-import modelField from '../position/model';
 
-const textFields = ({ data }) => {
-  return modelField.metaFields.map(field => {
-    return <TextField changeValue={changeValue} data={data} name={field} key={field} />
-  })
-};
-
-const displayRows = () => {
-  const fields = modelField.metaFields.concat(modelField.inferredFields);
-  return fields.map(field => {
-    return <Row name={field} key={`row-${field}`} />;
-  });
-};
+import PositionForm from '../position/Form';
 
 const Form = ({ addModalOpen, dispatch, data, accounts }) => {
-  const save = () => savePosition({ data });
-
-  const renderOptions = () => {
-    let result = [<option key='empty-option' value=''>Select Account</option>];
-    accounts.forEach((v, k) => {
-      result.push(<option key={k} value={k}>{v.get('name')}</option>);
-    });
-    return result;
-  };
-
-  const accountIdChanged = (e) => {
-    const value = e.target.selectedOptions[0].value;
-    changeValue({ dispatch, key: 'accountId', value });
-  };
-
   return (
-    <Modal
-      addModalOpen={addModalOpen}
-      closeModal={closeModal}
-      dispatch={dispatch}
-    >
-      <div className='modal__form'>
-        {textFields({ data })}
-        <div className='text-field__container'>
-          <label
-            className='text-field__label'
-            htmlFor='accountId'
-            key='accountId-label'
-          >
-            Account:
-          </label>
-          <select
-            id='accountId'
-            className='text-field__input text-field__input--accountId'
-            onChange={accountIdChanged}
-          >
-            {renderOptions()}
-          </select>
-        </div>
-        <button onClick={save} className='modal__save'>Save</button>
-      </div>
-      <div className='modal__information'>
-        {displayRows()}
-      </div>
-    </Modal>
-  );
+    <PositionForm
+      data={data}
+    />
+  )
 };
 
 export default connect(state => ({
-  addModalOpen: state.addPositionModalOpen,
-  accounts: state.accounts,
   data: state.addPositionFormData,
 }))(Form);
