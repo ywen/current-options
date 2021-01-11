@@ -20,10 +20,9 @@ const actionButtons = ({ position, dispatch }) => {
     >
       <button
         className='list__action-button'
-        key='list__close-button'
-        onClick={ () => dispatch({ type: 'OPEN_CLOSE_MODAL', position }) }
+        key='list__update-button'
       >
-        Close
+        Update
       </button>
       <button
         className='list__action-button'
@@ -37,7 +36,7 @@ const actionButtons = ({ position, dispatch }) => {
 };
 
 const renderIndividual = ({s, dispatch}) => {
-  const fields = modelField.metaFields.concat(modelField.inferredFields);
+  const fields = modelField.displayInferredFields;
   const fieldTds = fields.map((field) => {
     return (
       <td key={`td-${s.get('id')}-${field}`} className='list__td'>
@@ -45,11 +44,22 @@ const renderIndividual = ({s, dispatch}) => {
       </td>
     );
   });
+  const closeButton = (
+    <td key={`td-${s.get('id')}-closeButton`} className='list__td'>
+      <button
+        className='list__action-button'
+        key='list__close-button'
+        onClick={ () => dispatch({ type: 'OPEN_CLOSE_MODAL', position: s }) }
+      >
+        Close
+      </button>
+    </td>
+  )
   return (
     <Popup
       trigger={open => (
         <tr className='list__tr' key={`list__tr--${s.get('id')}`}>
-          { fieldTds }
+          { fieldTds.concat([closeButton]) }
         </tr>
       )}
       position='bottom left'
@@ -62,7 +72,7 @@ const renderIndividual = ({s, dispatch}) => {
 };
 
 const List = ({ positions, sortConditions, dispatch }) => {
-  const fields = modelField.metaFields.concat(modelField.inferredFields);
+  const fields = modelField.displayInferredFields.concat(['Close Button']);
   const tableRenderer = TableRenderer({
     sortConditions,
     sortConstant: 'SORT',
