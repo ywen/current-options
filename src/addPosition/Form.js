@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import PositionForm from '../position/Form';
+import PositionForm from '../position/Edit/Form';
 
-const Form = ({ addModalOpen, dispatch, data, accounts }) => {
+const Form = ({ dispatch, data }) => {
   return (
     <PositionForm
       data={data}

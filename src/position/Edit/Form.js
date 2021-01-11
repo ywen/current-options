@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Modal from '../commons/Modal';
-import TextField from '../commons/TextField';
+import Modal from 'commons/Modal';
+import TextField from 'commons/TextField';
 import Row from './Row';
-import savePosition from './save';
-import modelField from './model';
+import savePosition from '../save';
+import modelField from '../model';
 
 const changeValue = ({ dispatch, value, key}) => (
   dispatch({ type: 'ADD_POSITION_VALUE_CHANGED', value, key })
@@ -24,10 +24,10 @@ const displayRows = () => {
 };
 
 const Form = ({ addModalOpen, dispatch, data, accounts }) => {
-  const closeModal = ({dispatch}) => dispatch({ type: 'CLOSE_ADD_MODAL' });
+  const closeModal = ({dispatch}) => dispatch({ type: 'CLOSE_POSITION_FORM_MODAL' });
   const save = () => {
     savePosition({ data });
-    dispatch({ type: 'CLOSE_ADD_MODAL' });
+    dispatch({ type: 'CLOSE_POSITION_FORM_MODAL' });
   };
 
   const renderOptions = () => {
