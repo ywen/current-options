@@ -8,7 +8,7 @@ describe('getDaysDifference', () => {
   given('day2', () => '12/20/2020');
   describe('when a day is a string', () => {
     it('returns day difference', () => {
-      expect(given.result).toBe(2);
+      expect(given.result).toBe(3);
     });
   });
 
@@ -16,7 +16,15 @@ describe('getDaysDifference', () => {
     given('day1', () => '12/21/2020');
     given('day2', () => '12/23/2020, 8:05:54 AM');
     it('returns day difference', () => {
-      expect(given.result).toBe(2);
+      expect(given.result).toBe(3);
+    });
+  });
+
+  describe('when bith days are the same day', () => {
+    given('day1', () => '12/21/2020');
+    given('day2', () => '12/21/2020, 8:05:54 AM');
+    it('returns 1', () => {
+      expect(given.result).toBe(1);
     });
   });
 });
