@@ -11,6 +11,7 @@ const close = async ({ position, closedData }) => {
     fields: field.closedFields,
   });
   const newPosition = Immutable.fromJS(result1).merge(result2).merge({ id: position.get('id') });
+  console.log(newPosition.toJS());
   store.closePosition({ position: newPosition });
 };
 
