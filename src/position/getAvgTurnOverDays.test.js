@@ -31,7 +31,7 @@ describe('getAvgTurnOverDays', () => {
   describe('when the closedDate exists', () => {
     given('closedDate', () => '11/15/2020');
     it('returns avg turnover rate', () => {
-      expect(given.result).toBe(12);
+      expect(given.result).toBe(13);
     });
   });
 });
