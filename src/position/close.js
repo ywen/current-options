@@ -1,8 +1,8 @@
 import Immutable from 'immutable';
-import store from '../server/store';
+import store from 'server/store';
 
 import field from './model';
-import getEncryptedObjectFromMap from '../encryption/getEncryptedObjectFromMap';
+import getEncryptedObjectFromMap from 'encryption/getEncryptedObjectFromMap';
 
 const close = async ({ position, closedData }) => {
   const result1 = getEncryptedObjectFromMap({ data: position, fields: field.metaFields.concat('accountId') });
