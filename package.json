@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
+    "@testing-library/jest-dom": "^5.11.8",
+    "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
     "crypto-js": "^4.0.0",
-    "firebase": "^8.2.1",
+    "firebase": "^8.2.2",
     "history": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -47,6 +47,6 @@
   "devDependencies": {
     "given2": "^2.1.7",
     "immutable": "^4.0.0-rc.12",
-    "sass": "^1.30.0"
+    "sass": "^1.32.3"
   }
 }
