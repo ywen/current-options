@@ -1,5 +1,3 @@
-import Immutable from 'immutable';
-
 const initialState = Immutable.fromJS({});
 
 const data = (state, action) => {

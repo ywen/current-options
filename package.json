@@ -9,6 +9,7 @@
     "crypto-js": "^4.0.0",
     "firebase": "^8.2.2",
     "history": "^5.0.0",
+    "immer": "^8.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
@@ -46,7 +47,6 @@
   },
   "devDependencies": {
     "given2": "^2.1.7",
-    "immutable": "^4.0.0-rc.12",
     "sass": "^1.32.3"
   }
 }
