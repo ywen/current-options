@@ -1,22 +1,21 @@
-import Immutable from 'immutable';
 import given from 'given2';
 import getAvgTurnOverDays from './getAvgTurnOverDays';
 
 describe('getAvgTurnOverDays', () => {
-  given('l1', () => Immutable.fromJS({
+  given('l1', () => ({
     closedDate: '12/20/2020',
     openDate: '12/18/2020',
   }));
-  given('l2', () => Immutable.fromJS({
+  given('l2', () => ({
     closedDate: '12/11/2020',
     openDate: '11/15/2020',
   }));
-  given('l3', () => Immutable.fromJS({
+  given('l3', () => ({
     closedDate: given.closedDate,
     openDate: '11/15/2020',
   }));
   given('list', () => (
-    Immutable.fromJS([ given.l1, given.l2, given.l3 ])
+    ([ given.l1, given.l2, given.l3 ])
   ));
 
   given('result', () => getAvgTurnOverDays({ list: given.list }))

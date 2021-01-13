@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import Immutable from 'immutable';
-
 import './Menu.scss';
 
 import openPositionModal from './position/Edit/openModal';
@@ -20,7 +18,7 @@ const Menu = ({ dispatch }) => {
     const data = await getCSVArrayFromFile({ file });
     for (let i = 0; i < data.length; i++) {
       try {
-        await savePosition({ data: Immutable.fromJS(data[i]) });
+        await savePosition({ data: data[i] });
       } catch(e) {
         console.error(e)
       }

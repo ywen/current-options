@@ -33,7 +33,7 @@ const Form = ({ addModalOpen, dispatch, data, accounts }) => {
   const renderOptions = () => {
     let result = [<option key='empty-option' value=''>Select Account</option>];
     accounts.forEach((v, k) => {
-      result.push(<option key={k} value={k}>{v.get('name')}</option>);
+      result.push(<option key={k} value={k}>{v['name']}</option>);
     });
     return result;
   };

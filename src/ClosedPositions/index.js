@@ -11,15 +11,15 @@ import './index.scss';
 
 const ClosedPositions = ({ summary, dispatch, sortConditions }) => {
   const renderIndividual = ({s}) => {
-    const profit = s.get('profit');
+    const profit = s.profit;
     return (
-      <tr className='closedStockSummary__tr' key={`closedStockSummary__tr--${s.get('stockSymbol')}`}>
-        <td className='closedStockSummary__td' key='closedStockSummary__td--stock'>{s.get('stockSymbol')}</td>
-        <td className='closedStockSummary__td' key='closedStockSummary__td--avgTurnOverDays'>{`${s.get('avgTurnOverDays')} days`}</td>
+      <tr className='closedStockSummary__tr' key={`closedStockSummary__tr--${s.stockSymbol}`}>
+        <td className='closedStockSummary__td' key='closedStockSummary__td--stock'>{s.stockSymbol}</td>
+        <td className='closedStockSummary__td' key='closedStockSummary__td--avgTurnOverDays'>{`${s.avgTurnOverDays} days`}</td>
         <td className={getProfitClasses({ profit })} key='closedStockSummary__td--profit'>{`$ ${profit}`}</td>
-        <td className='closedStockSummary__td' key='closedStockSummary__td--profitPerTurnoverDay'>{`$ ${s.get('profitPerTurnoverDay')}`}</td>
-        <td className='closedStockSummary__td' key='closedStockSummary__td--profitToOccupied'>{`% ${s.get('profitToOccupied')}`}</td>
-        <td className='closedStockSummary__td' key='closedStockSummary__td--profitToPotentialpotential'>{`% ${s.get('profitToPotential')}`}</td>
+        <td className='closedStockSummary__td' key='closedStockSummary__td--profitPerTurnoverDay'>{`$ ${s.profitPerTurnoverDay}`}</td>
+        <td className='closedStockSummary__td' key='closedStockSummary__td--profitToOccupied'>{`% ${s.profitToOccupied}`}</td>
+        <td className='closedStockSummary__td' key='closedStockSummary__td--profitToPotentialpotential'>{`% ${s.profitToPotential}`}</td>
       </tr>
     )
   };

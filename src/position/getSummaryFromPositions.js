@@ -1,13 +1,13 @@
-import Immutable from 'immutable';
-
 import getPercentage from '../commons/getPercentage';
 import getTotalAmount from '../position/getTotalAmount';
 import sortPositions from '../position/sortPositions';
 import getAvgTurnOverDays from '../position/getAvgTurnOverDays';
 
+import groupBy from 'commons/groupBy';
+
 const getSummaryFromPositions = ({ positions, sort }) => {
   const { totalPotential, totalOccupied } = getTotalAmount({ positions });
-  const byStockSymbol = positions.groupBy(p => p.get('stockSymbol'));
+  const byStockSymbol = groupBy({ data: positions, key: 'stockSymbol' });
   const unsorted = byStockSymbol.map((list, stockSymbol) => {
     const {
       totalPotential: potential,
@@ -21,7 +21,7 @@ const getSummaryFromPositions = ({ positions, sort }) => {
     const avgTurnOverDays = getAvgTurnOverDays({ list });
     const profitPerTurnoverDay = (profit/avgTurnOverDays).toFixed(2);
     const profitToOccupied = getPercentage({ dividend: profitPerTurnoverDay, divisor: occupied });
-    return Immutable.fromJS({
+    return {
       avgTurnOverDays,
       list,
       occupied,
@@ -34,7 +34,7 @@ const getSummaryFromPositions = ({ positions, sort }) => {
       profitToOccupied,
       profitToPotential,
       stockSymbol,
-    });
+    };
   });
   return sortPositions({ positions: unsorted, sortConditions: sort });
 };

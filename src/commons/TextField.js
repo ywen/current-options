@@ -6,7 +6,7 @@ import './TextField.scss';
 import getLabel from './getLabel';
 
 const TextField = ({ data, name, dispatch, changeValue, fieldType='text' }) => {
-  const value = data ? data.get(name) : '';
+  const value = data[name] || '';
   const inputId = `form-input__${name}`;
   const changed = (e) => {
     changeValue({dispatch, key: name, value: e.target.value})

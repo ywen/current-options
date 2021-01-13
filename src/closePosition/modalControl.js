@@ -1,32 +1,32 @@
-import Immutable from 'immutable';
+import produce from 'immer';
+import createReducer from 'commons/createReducer';
 
-const initializeState = Immutable.fromJS({
+const initialState = {
   closeModal: false,
   position: null,
   data: { closedDate: new Date().toLocaleString() },
+};
+
+const openCloseModal = (state, action) => produce(state, draft => {
+  draft.isOpen = true;
+  draft.position = action.position;
 });
 
-const modalControl = (state, action) => {
-  if (state === undefined) return initializeState;
-  if (action.type === 'OPEN_CLOSE_MODAL') {
-    return state.merge({
-      isOpen: true,
-      position: action.position,
-    });
-  }
-  if (action.type === 'CLOSE_CLOSE_MODAL') {
-    return initializeState;
-  }
-  if (action.type === 'CLOSE_POSITION_VALUE_CHANGED') {
-    const data = state.get('data');
-    const newData = data.merge({
-      [action.key]: action.value,
-    })
-    return state.merge({
-      data: newData,
-    });
-  }
-  return state;
-};
+const closeCloseModal = (state, action) => produce(state, draft => {
+  draft = initialState;
+});
+
+const valueChanged = (state, action) => produce(state, draft => {
+  draft.data[action.key] = action.value;
+});
+
+const modalControl = createReducer({
+  initialState,
+  handledTypes: [
+    { type: 'OPEN_CLOSE_MODAL', logic: openCloseModal },
+    { type: 'CLOSE_CLOSE_MODAL', logic: closeCloseModal },
+    { type: 'CLOSE_POSITION_VALUE_CHANGED', logic: valueChanged },
+  ]
+});
 
 export default modalControl;

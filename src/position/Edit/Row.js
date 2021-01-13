@@ -6,7 +6,7 @@ import './Row.scss';
 import getLabel from 'commons/getLabel';
 
 const Row = ({ data, name, dispatch }) => {
-  const value = data.get(name);
+  const value = data[name];
   return (
     <div className='add-position-row__container'>
       <div className='add-position-row__label'>

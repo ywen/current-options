@@ -1,4 +1,3 @@
-import Immutable from 'immutable';
 import store from 'server/store';
 
 import field from './model';
@@ -10,7 +9,11 @@ const close = async ({ position, closedData }) => {
     data: closedData,
     fields: field.closedFields,
   });
-  const newPosition = Immutable.fromJS(result1).merge(result2).merge({ id: position.get('id') });
+  const newPosition = {
+    ...result1,
+    ...result2,
+    id: position.id,
+  };
   store.closePosition({ position: newPosition });
 };
 

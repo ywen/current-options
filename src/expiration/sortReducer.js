@@ -1,11 +1,10 @@
-import Immutable from 'immutable';
 import logic from '../position/sortLogic';
 import createReducer from '../commons/createReducer';
 
-const initialState = Immutable.fromJS({
+const initialState = {
   field: 'expirationDate',
   directionAsc: true,
-});
+};
 
 const sortReducer = createReducer({
   initialState,

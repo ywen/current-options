@@ -1,9 +1,13 @@
+import produce from 'immer';
+
 import getDecryptedData from '../encryption/getDecryptedData';
 import fillInferredValues from '../position/fillInferredValues';
 
-const composePositions = (state, action) => {
-  const decrypted = getDecryptedData({ data: action.data });
-  return decrypted.map(position => fillInferredValues({ original: position }));
-};
+const composePositions = (state, action) => (
+  produce(state, draft => {
+    const decrypted = getDecryptedData({ data: action.data });
+    draft = decrypted.map(position => fillInferredValues({ original: position }));
+  })
+);
 
 export default composePositions;
