@@ -19,11 +19,11 @@ const Navigation = ({ accounts, currentAccountId, dispatch }) => {
 
   const renderLi = () => {
     let result = [];
-    accounts.forEach((v, k) => {
+    accounts.forEach((v) => {
       const li = (<li
-        className={getLiClasses({ accountId: k })}
-        onClick={() => onClick({ accountId: k })}
-        key={`li-${k}`}
+        className={getLiClasses({ accountId: v.id })}
+        onClick={() => onClick({ accountId: v.id })}
+        key={`li-${v.id}`}
       >
         {v.name}
       </li>);

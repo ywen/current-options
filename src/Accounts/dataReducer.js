@@ -8,7 +8,7 @@ const reducer = createReducer({
   handledTypes: [
     {
       type: 'ADD_ACCOUNT_VALUE_CHANGED',
-      logic: (state, action) => produce(state, draft => draft[action.ke] = action.value),
+      logic: (state, action) => produce(state, draft => draft[action.key] = action.value),
     },
   ]
 });
