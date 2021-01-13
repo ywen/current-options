@@ -2,8 +2,8 @@ import React  from 'react';
 import { connect } from 'react-redux';
 import { Popup } from 'reactjs-popup';
 
-import getSortedPositions from '../position/getSortedPositions';
-import deletePosition from '../position/delete';
+import getSortedPositions from 'position/getSortedPositions';
+import deletePosition from 'position/delete';
 
 
 import modelField from '../position/model';

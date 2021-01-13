@@ -9,7 +9,7 @@ const getTotal = ({ list, key }) => (
 );
 
 const getTotalStocks = ({useSummary, list}) => (
-  useSummary ? list.length : groupBy({ data: list, key: 'stockSymbol' }).length
+  useSummary ? list.length : Object.keys(groupBy({ data: list, key: 'stockSymbol' })).length
 );
 
 const makeSelector = ({useSummary, hasProfit}) => (

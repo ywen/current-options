@@ -8,9 +8,7 @@ const initialState = [];
 const logic = (state, action) => (
   produce(state, draft => {
     const list = getDecryptedData({ data: action.data });
-    list.forEach(k => {
-      draft.push(k);
-    });
+    return list;
   })
 );
 

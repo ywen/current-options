@@ -15,12 +15,13 @@ const func = createSelector(
       return p1.expirationDate > p2.expirationDate ? 1 : -1;
     });
     const grouped = groupBy({ data: sorted, key: 'expirationDate' });
-    let group = {};
-    grouped.map((list, key) => {
+    let group = [];
+    Object.keys(grouped).forEach(key => {
+      const list = grouped[key];
       const { totalPotential: potential, totalOccupied: occupied } = getTotalAmount({ positions: list });
       const potentialPercentage = getPercentage({ dividend: potential, divisor: totalPotential });
       const occupiedPercentage = getPercentage({ dividend: occupied, divisor: totalOccupied });
-      return { expirationDate: key, potential, occupied, potentialPercentage, occupiedPercentage };
+      group.push({ expirationDate: key, potential, occupied, potentialPercentage, occupiedPercentage });
     });
     return sortPositions({ positions: group, sortConditions: sort });
   }

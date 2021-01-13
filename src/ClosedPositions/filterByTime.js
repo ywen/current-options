@@ -8,7 +8,7 @@ const filterByTime = createSelector(
   (positions, filterName) => {
     const { startDate, endDate } = getDateByName({name: filterName });
     return positions.filter(position => {
-      const closedDate = new Date(position.get('closedDate'));
+      const closedDate = new Date(position.closedDate);
       return closedDate >= startDate && closedDate <= endDate;
     })
   }

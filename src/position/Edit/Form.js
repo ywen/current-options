@@ -32,14 +32,15 @@ const Form = ({ addModalOpen, dispatch, data, accounts }) => {
 
   const renderOptions = () => {
     let result = [<option key='empty-option' value=''>Select Account</option>];
-    accounts.forEach((v, k) => {
-      result.push(<option key={k} value={k}>{v['name']}</option>);
+    accounts.forEach(v => {
+      result.push(<option key={v.id} value={v.id}>{v['name']}</option>);
     });
     return result;
   };
 
   const accountIdChanged = (e) => {
     const value = e.target.selectedOptions[0].value;
+    console.log(value)
     changeValue({ dispatch, key: 'accountId', value });
   };
 
