@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Popup } from 'reactjs-popup';
 
 import getSortedPositions from '../position/getSortedPositions';
-import PositionForm from 'position/Edit/Form';
 import deletePosition from '../position/delete';
 
 
@@ -20,7 +19,7 @@ const openUpdateModal = ({ position, dispatch }) => {
 const actionButtons = ({ position, dispatch }) => {
   return (
     <div
-      key= {`buttons-${position.get('id')}`}
+      key= {`buttons-${position.id}`}
       className='list__buttons'
     >
       <button
@@ -45,13 +44,13 @@ const renderIndividual = ({s, dispatch}) => {
   const fields = modelField.displayInferredFields;
   const fieldTds = fields.map((field) => {
     return (
-      <td key={`td-${s.get('id')}-${field}`} className='list__td'>
-        {s.get(field)}
+      <td key={`td-${s.id}-${field}`} className='list__td'>
+        {s[field]}
       </td>
     );
   });
   const closeButton = (
-    <td key={`td-${s.get('id')}-closeButton`} className='list__td'>
+    <td key={`td-${s.id}-closeButton`} className='list__td'>
       <button
         className='list__action-button'
         key='list__close-button'
@@ -64,13 +63,13 @@ const renderIndividual = ({s, dispatch}) => {
   return (
     <Popup
       trigger={open => (
-        <tr className='list__tr' key={`list__tr--${s.get('id')}`}>
+        <tr className='list__tr' key={`list__tr--${s.id}`}>
           { fieldTds.concat([closeButton]) }
         </tr>
       )}
       position='bottom right'
       on={['hover', 'focus']}
-      key={`popup-${s.get('id')}`}
+      key={`popup-${s.id}`}
     >
       {actionButtons({ position: s, dispatch })}
     </Popup>

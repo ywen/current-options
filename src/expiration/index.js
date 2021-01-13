@@ -9,12 +9,12 @@ import './index.scss';
 
 const renderIndividual = ({ s }) => {
   return(
-    <tr className='expiration-view__tr' key={`expiration-view__tr--${s.get('expirationDate')}`}>
-      <td className='expiration-view__td' key='expiration-view__td--expirationDate'>{s.get('expirationDate')}</td>
-      <td className='expiration-view__td' key='expiration-view__td--occupied'>{`$ ${s.get('occupied')}`}</td>
-      <td className='expiration-view__td' key='expiration-view__td--potential'>{`$ ${s.get('potential')}`}</td>
-      <td className='expiration-view__td' key='expiration-view__td--occupied-percent'>{`% ${s.get('occupiedPercentage')}`}</td>
-      <td className='expiration-view__td' key='expiration-view__td--potential-percent'>{`% ${s.get('potentialPercentage')}`}</td>
+    <tr className='expiration-view__tr' key={`expiration-view__tr--${s.expirationDate}`}>
+      <td className='expiration-view__td' key='expiration-view__td--expirationDate'>{s.expirationDate}</td>
+      <td className='expiration-view__td' key='expiration-view__td--occupied'>{`$ ${s.occupied}`}</td>
+      <td className='expiration-view__td' key='expiration-view__td--potential'>{`$ ${s.potential}`}</td>
+      <td className='expiration-view__td' key='expiration-view__td--occupied-percent'>{`% ${s.occupiedPercentage}`}</td>
+      <td className='expiration-view__td' key='expiration-view__td--potential-percent'>{`% ${s.potentialPercentage}`}</td>
     </tr>
   );
 };

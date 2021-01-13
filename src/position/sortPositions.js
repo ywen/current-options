@@ -1,11 +1,11 @@
 const func =({ positions, sortConditions }) => {
   if(!sortConditions) return positions;
-  const directionAsc = sortConditions.get('directionAsc');
-  const field = sortConditions.get('field');
+  const directionAsc = sortConditions.directionAsc;
+  const field = sortConditions.field;
   if (!field) return positions;
   return positions.sort((p1, p2) => {
-    const v1 = p1.get(field);
-    const v2 = p2.get(field);
+    const v1 = p1[field];
+    const v2 = p2[field];
     let ascResult;
     if (!isNaN(v1) && Number(v1) !== 0) {
       ascResult = Number(v1) - Number(v2);

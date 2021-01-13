@@ -1,12 +1,11 @@
-import Immutable from 'immutable';
 import model from '../position/model';
 import logic from '../position/sortLogic';
 import createReducer from '../commons/createReducer';
 
-const initialState = Immutable.fromJS({
+const initialState = {
   field: model.metaFields[0],
   directionAsc: true,
-});
+};
 
 const sortReducer = createReducer({
   initialState,

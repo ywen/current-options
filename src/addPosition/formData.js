@@ -1,17 +1,18 @@
-import Immutable from 'immutable';
+import produce from 'immer';
 
 import createReducer from '../commons/createReducer';
 import fillInferredValues from '../position/fillInferredValues';
 
-const initialState = Immutable.fromJS({
+const initialState = {
   openDate: new Date().toLocaleString(),
-});
-
-const addLogic = (state, action) => {
-  let result = state.set(action.key, action.value);
-  result = fillInferredValues({original: result});
-  return result;
 };
+
+const addLogic = (state, action) => (
+  produce(state, draft => {
+    draft[action.key] = action.value;
+    draft = fillInferredValues({ original: draft });
+  })
+);
 
 const reducer = createReducer({
   initialState,

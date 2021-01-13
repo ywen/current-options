@@ -10,14 +10,13 @@ import closePosition from '../position/close';
 import './index.scss';
 
 const Form = ({ dispatch, closeModal }) => {
-  const isOpen = closeModal.get('isOpen');
-  const position = closeModal.get('position');
+  const { isOpen, position } = closeModal;
 
-  const name = position ? position.get('symbol') : null;
+  const name = position ? position.symbol : null;
   if(!position) {
     return false;
   }
-  const data = closeModal.get('data');
+  const data = closeModal.data;
 
   const changeValue = ({ dispatch, value, key}) => (
     dispatch({ type: 'CLOSE_POSITION_VALUE_CHANGED', value, key })

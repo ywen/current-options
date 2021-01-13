@@ -9,13 +9,13 @@ import './index.scss';
 
 const renderIndividual = ({s}) => {
   return (
-    <tr className='byStock__tr' key={`byStock__tr--${s.get('stockSymbol')}`}>
-      <td className='byStock__td' key='byStock__td--stock'>{s.get('stockSymbol')}</td>
-      <td className='byStock__td' key='byStock__td--occupied'>{`$ ${s.get('occupied')}`}</td>
-      <td className='byStock__td' key='byStock__td--potential'>{`$ ${s.get('potential')}`}</td>
-      <td className='byStock__td' key='byStock__td--occupied-percent'>{`% ${s.get('occupiedPercentage')}`}</td>
-      <td className='byStock__td' key='byStock__td--potential-percent'>{`% ${s.get('potentialPercentage')}`}</td>
-      <td className='byStock__td' key='byStock__td--potential-vs-total'>{`% ${s.get('potentialVsTotal')}`}</td>
+    <tr className='byStock__tr' key={`byStock__tr--${s.stockSymbol}`}>
+      <td className='byStock__td' key='byStock__td--stock'>{s.stockSymbol}</td>
+      <td className='byStock__td' key='byStock__td--occupied'>{`$ ${s.occupied}`}</td>
+      <td className='byStock__td' key='byStock__td--potential'>{`$ ${s.potential}`}</td>
+      <td className='byStock__td' key='byStock__td--occupied-percent'>{`% ${s.occupiedPercentage}`}</td>
+      <td className='byStock__td' key='byStock__td--potential-percent'>{`% ${s.potentialPercentage}`}</td>
+      <td className='byStock__td' key='byStock__td--potential-vs-total'>{`% ${s.potentialVsTotal}`}</td>
     </tr>
   )
 };

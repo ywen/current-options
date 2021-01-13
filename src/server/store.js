@@ -45,7 +45,7 @@ const closePosition = async ({ position }) => {
   const openRef = openPositionsStore();
   const closeRef = closedPositionsStore();
   batch.update(openRef, {
-    [position.get('id')]: firebase.firestore.FieldValue.delete(),
+    [position.id]: firebase.firestore.FieldValue.delete(),
   });
 
   const snapshot = await closeRef.get();
@@ -53,7 +53,7 @@ const closePosition = async ({ position }) => {
     batch.set(closeRef, {});
   }
   batch.update(closeRef, {
-    [position.get('id')]: position.toJS(),
+    [position.id]: position,
   });
   return batch.commit();
 };

@@ -1,17 +1,15 @@
 import { createSelector } from 'reselect';
-import Immutable from 'immutable';
 
 import getAvgTurnOverDays from './getAvgTurnOverDays';
 import getPercentage from '../commons/getPercentage';
+import groupBy from 'commons/groupBy';
 
 const getTotal = ({ list, key }) => (
-  list.reduce((result, p) => {
-    return Number(p.get(key)) + result;
-  }, 0)
+  list.reduce((result, p) => Number(p[key]) + result, 0)
 );
 
 const getTotalStocks = ({useSummary, list}) => (
-  useSummary ? list.count() : list.groupBy(p => p.get('stockSymbol')).count()
+  useSummary ? list.length : groupBy({ data: list, key: 'stockSymbol' }).length
 );
 
 const makeSelector = ({useSummary, hasProfit}) => (
@@ -23,29 +21,29 @@ const makeSelector = ({useSummary, hasProfit}) => (
       const totalOccupied = getTotal({list, key: occupiedName});
       if (hasProfit) {
         const totalProfit= getTotal({list, key: 'profit'});
-        let allList = Immutable.fromJS([]);
+        let allList = [];
         const totalOccupied = getTotal({list, key: occupiedName});
-        list.forEach((v, k) => {
-          allList = allList.concat(v.get('list'));
+        list.forEach(v => {
+          allList = allList.concat(v.list);
         });
         const avgTurnOverDays = getAvgTurnOverDays({ list: allList });
         const avgPerDayEarning = (totalProfit/avgTurnOverDays).toFixed(2);
         const profitToOccupied = getPercentage({dividend: avgPerDayEarning, divisor: totalOccupied});
-        return Immutable.fromJS({
+        return {
           totalStocks,
           totalProfit,
           avgTurnOverDays,
           avgPerDayEarning,
           profitToOccupied,
-        });
+        };
       } else {
         const potentialName = useSummary ? 'potential' : 'potentialGain';
         const totalPotential = getTotal({list, key: potentialName});
-        return Immutable.fromJS({
+        return {
           totalStocks,
           totalOccupied,
           totalPotential,
-        });
+        };
       }
     }
   )

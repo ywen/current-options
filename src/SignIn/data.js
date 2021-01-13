@@ -1,14 +1,19 @@
-import Immutable from 'immutable';
+import produce from 'immer';
 
-const initialState = Immutable.fromJS({});
+import createReducer from 'commons/createReducer';
 
-const data = (state, action) => {
-  if (state === undefined) return initialState;
-  if (action.type === 'SIGN_IN_VALUE_CHANGED') {
-    const { key, value} = action;
-    return state.set(key, value);
-  }
-  return state;
-};
+const initialState = {};
+
+const logic = (state, action) => produce(state, draft => {
+  const { key, value} = action;
+  draft[key] = value;
+});
+
+const data = createReducer({
+  initialState,
+  handledTypes: [
+    { type: 'SIGN_IN_VALUE_CHANGED', logic },
+  ],
+});
 
 export default data;

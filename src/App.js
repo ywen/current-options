@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
+import { enableMapSet } from 'immer'
 
 import auth from './server/auth';
 import store from './store';
 
 import Routing from './Routing';
 
+enableMapSet();
 const App = () => {
   const [ user, setUser ] = useState(null);
   useEffect(() => {
@@ -20,14 +22,6 @@ const App = () => {
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     navigate('/');
-  //   } else {
-  //     navigate('/signin');
-  //   }
-  // }, [user]);
-  //
   return (
     <Provider store={store}>
       <Routing user={user} />

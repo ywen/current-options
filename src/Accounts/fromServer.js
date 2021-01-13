@@ -1,18 +1,18 @@
-import Immutable from 'immutable';
+import produce from 'immer';
 
 import createReducer from '../commons/createReducer';
 import getDecryptedData from '../encryption/getDecryptedData';
 
-const initialState = Immutable.List([]);
+const initialState = [];
 
-const logic = (state, action) => {
-  const list = Immutable.fromJS(getDecryptedData({ data: action.data }));
-  let result = Immutable.fromJS({});
-  list.forEach(k => {
-    result = result.set(k.get('id'), k);
-  });
-  return result;
-};
+const logic = (state, action) => (
+  produce(state, draft => {
+    const list = getDecryptedData({ data: action.data });
+    list.forEach(k => {
+      draft[k.id] = k;
+    });
+  })
+);
 
 const processData = createReducer({
   initialState,

@@ -25,7 +25,7 @@ const Navigation = ({ accounts, currentAccountId, dispatch }) => {
         onClick={() => onClick({ accountId: k })}
         key={`li-${k}`}
       >
-        {v.get('name')}
+        {v.name}
       </li>);
       result.push(li);
     });

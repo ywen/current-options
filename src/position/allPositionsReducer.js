@@ -1,9 +1,7 @@
-import Immutable from 'immutable';
+import createReducer from 'commons/createReducer';
+import logic from 'commons/composePositions';
 
-import createReducer from '../commons/createReducer';
-import logic from '../commons/composePositions';
-
-const initialState = Immutable.List([]);
+const initialState = [];
 
 const processData = createReducer({
   initialState,
