@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 import getEncryptedObjectFromMap from '../encryption/getEncryptedObjectFromMap';
-import store from '../server/store';
+import store from 'server/store';
 import field from './model';
 
 const savePosition = ({ data }) => {

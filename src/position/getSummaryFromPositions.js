@@ -8,7 +8,9 @@ import groupBy from 'commons/groupBy';
 const getSummaryFromPositions = ({ positions, sort }) => {
   const { totalPotential, totalOccupied } = getTotalAmount({ positions });
   const byStockSymbol = groupBy({ data: positions, key: 'stockSymbol' });
-  const unsorted = byStockSymbol.map((list, stockSymbol) => {
+  const unsorted = [];
+  Object.keys(byStockSymbol).forEach(stockSymbol => {
+    const list = byStockSymbol[stockSymbol];
     const {
       totalPotential: potential,
       totalOccupied: occupied,
@@ -21,7 +23,7 @@ const getSummaryFromPositions = ({ positions, sort }) => {
     const avgTurnOverDays = getAvgTurnOverDays({ list });
     const profitPerTurnoverDay = (profit/avgTurnOverDays).toFixed(2);
     const profitToOccupied = getPercentage({ dividend: profitPerTurnoverDay, divisor: occupied });
-    return {
+    unsorted.push({
       avgTurnOverDays,
       list,
       occupied,
@@ -34,7 +36,7 @@ const getSummaryFromPositions = ({ positions, sort }) => {
       profitToOccupied,
       profitToPotential,
       stockSymbol,
-    };
+    });
   });
   return sortPositions({ positions: unsorted, sortConditions: sort });
 };
