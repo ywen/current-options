@@ -1,17 +1,22 @@
 import Immutable from 'immutable';
+import formatDate from 'commons/formatDate';
 
+const now = () => new Date(Date.now());
 const initializeState = Immutable.fromJS({
   closeModal: false,
   position: null,
-  data: { closedDate: new Date().toLocaleString() },
+  data: {},
 });
 
 const modalControl = (state, action) => {
   if (state === undefined) return initializeState;
   if (action.type === 'OPEN_CLOSE_MODAL') {
+    const newDate = formatDate({ date: now() });
+    const newData = state.get('data').set('closedDate', newDate);
     return state.merge({
       isOpen: true,
       position: action.position,
+      data: newData,
     });
   }
   if (action.type === 'CLOSE_CLOSE_MODAL') {

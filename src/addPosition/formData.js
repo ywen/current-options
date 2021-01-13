@@ -3,6 +3,8 @@ import Immutable from 'immutable';
 import createReducer from '../commons/createReducer';
 import fillInferredValues from '../position/fillInferredValues';
 
+import formatDate from 'commons/formatDate';
+
 const initialState = Immutable.fromJS({
   openDate: new Date().toLocaleString(),
 });
