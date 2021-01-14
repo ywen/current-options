@@ -1,5 +1,4 @@
 import { createStore, combineReducers } from 'redux';
-import addPositionModalOpen from './addPosition/addModalOpen';
 import accountModalOpen from './Accounts/modalOpenReducer';
 import accounts from './Accounts/fromServer';
 import currentAccountId from './Accounts/currentAccount';
@@ -21,7 +20,6 @@ const reducers = combineReducers({
   accounts,
   accountModalOpen,
   addAccountData,
-  addPositionModalOpen,
   addPositionFormData,
   closeModal,
   closedPositions,

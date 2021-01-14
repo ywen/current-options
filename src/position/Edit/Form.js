@@ -23,7 +23,8 @@ const displayRows = () => {
   });
 };
 
-const Form = ({ addModalOpen, dispatch, data, accounts }) => {
+const Form = ({ dispatch, modalData, accounts }) => {
+  const { open, data } = modalData;
   const closeModal = ({dispatch}) => dispatch({ type: 'CLOSE_POSITION_FORM_MODAL' });
   const save = () => {
     savePosition({ data });
@@ -40,13 +41,12 @@ const Form = ({ addModalOpen, dispatch, data, accounts }) => {
 
   const accountIdChanged = (e) => {
     const value = e.target.selectedOptions[0].value;
-    console.log(value)
     changeValue({ dispatch, key: 'accountId', value });
   };
 
   return (
     <Modal
-      open={addModalOpen}
+      open={open}
       closePopup={closeModal}
       dispatch={dispatch}
     >
@@ -78,6 +78,5 @@ const Form = ({ addModalOpen, dispatch, data, accounts }) => {
 };
 
 export default connect(state => ({
-  addModalOpen: state.addPositionModalOpen,
   accounts: state.accounts,
 }))(Form);
