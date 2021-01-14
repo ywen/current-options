@@ -18,7 +18,11 @@ const open = (state, action) => (
   produce(state, draft => {
     draft.open = true;
     draft.data = {};
-    draft.data.openDate = formatDate(new Date(Date.now()));
+    if (action.position) {
+      draft.data = action.position;
+    } else {
+      draft.data.openDate = formatDate(new Date(Date.now()));
+    }
   })
 );
 

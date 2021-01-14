@@ -14,6 +14,7 @@ import TotalSummarySection from '../commons/TotalSummarySection';
 import './index.scss';
 
 const openUpdateModal = ({ position, dispatch }) => {
+  dispatch({ type: 'OPEN_POSITION_FORM_MODAL', position });
 };
 
 const actionButtons = ({ position, dispatch }) => {
