@@ -8,7 +8,7 @@ const initialState = [];
 const logic = (state, action) => (
   produce(state, draft => {
     const list = getDecryptedData({ data: action.data });
-    return list;
+    return list.sort((a, b) => a.name.localeCompare(b.name));
   })
 );
 
