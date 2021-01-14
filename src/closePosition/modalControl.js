@@ -1,20 +1,23 @@
 import produce from 'immer';
 import createReducer from 'commons/createReducer';
 
+import formatDate from 'commons/formatDate';
+
 const initialState = {
   closeModal: false,
   position: null,
-  data: { closedDate: new Date().toLocaleString() },
+  data: {},
 };
+
+const now = () => new Date(Date.now());
 
 const openCloseModal = (state, action) => produce(state, draft => {
   draft.isOpen = true;
   draft.position = action.position;
+  draft.data = { closedDate: formatDate(now()) };
 });
 
-const closeCloseModal = (state, action) => produce(state, draft => {
-  draft = initialState;
-});
+const closeCloseModal = (state, action) => produce(state, draft => initialState);
 
 const valueChanged = (state, action) => produce(state, draft => {
   draft.data[action.key] = action.value;
