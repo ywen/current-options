@@ -2,17 +2,31 @@ import produce from 'immer';
 
 import createReducer from '../commons/createReducer';
 import fillInferredValues from '../position/fillInferredValues';
+import formatDate from 'commons/formatDate';
 
-const initialState = {
-  openDate: new Date().toLocaleString(),
-};
+const initialState = {};
 
 const addLogic = (state, action) => (
   produce(state, draft => {
-    draft[action.key] = action.value;
-    draft = fillInferredValues({ original: draft });
+    const original = draft.data;
+    original[action.key] = action.value;
+    draft.data = fillInferredValues({ original });
   })
 );
+
+const open = (state, action) => (
+  produce(state, draft => {
+    draft.open = true;
+    draft.data = {};
+    draft.data.openDate = formatDate(new Date(Date.now()));
+  })
+);
+
+const close = (state, action) => (
+  produce(state, draft => {
+    draft.open = false;
+  })
+)
 
 const reducer = createReducer({
   initialState,
@@ -22,8 +36,12 @@ const reducer = createReducer({
       logic: addLogic,
     },
     {
-      type: 'ADD_POSITION_CLEAR_FORM_DATA',
-      logic: () => initialState,
+      type: 'OPEN_POSITION_FORM_MODAL',
+      logic: open,
+    },
+    {
+      type: 'CLOSE_POSITION_FORM_MODAL',
+      logic: close,
     },
   ]
 });
