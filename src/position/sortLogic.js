@@ -8,7 +8,7 @@ const sortLogic = (state, action) => (
     if (action.field === currentField) {
       newDirection = !currentDirection;
     }
-    draft = { field: action.field, directionAsc: newDirection };
+    return { field: action.field, directionAsc: newDirection };
   })
 );
 
