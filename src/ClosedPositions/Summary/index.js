@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 
 import getSummary from './getClosedPositionsSummary';
-import TableRenderer from '../commons/tableRenderer';
-import TotalSummarySection from '../commons/TotalSummarySection';
-import TimeSelect from './TimeSelect';
+import TableRenderer from 'commons/tableRenderer';
+import TotalSummarySection from 'commons/TotalSummarySection';
+import TimeSelect from '../TimeSelect';
 
-import getProfitClasses from './getProfitClasses';
+import getProfitClasses from '../getProfitClasses';
 
 import './index.scss';
 

@@ -12,7 +12,7 @@ import closedPositions from './ClosedPositions/data';
 import currentTab from './Tabs/currentTab';
 import sortConditions from './List/sortReducer';
 import sortByStockConditions from './ByStock/sortReducer';
-import sortClosedStockSummary from './ClosedPositions/sortReducer';
+import sortClosedStockSummary from './ClosedPositions/Summary/sortReducer';
 import sortExpirationView from './expiration/sortReducer';
 import closedPositionsFilter from './ClosedPositions/timeFilterChangeReducer';
 
