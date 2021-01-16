@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.8",
+    "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
     "crypto-js": "^4.0.0",
-    "firebase": "^8.2.2",
+    "firebase": "^8.2.3",
     "history": "^5.0.0",
     "immer": "^8.0.0",
     "react": "^17.0.1",
@@ -19,7 +19,7 @@
     "redux": "^4.0.5",
     "reselect": "^4.0.0",
     "uuid": "^8.3.2",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.1.0"
   },
   "scripts": {
     "start": "PORT=5555 react-scripts start",
@@ -47,6 +47,6 @@
   },
   "devDependencies": {
     "given2": "^2.1.7",
-    "sass": "^1.32.3"
+    "sass": "^1.32.4"
   }
 }
