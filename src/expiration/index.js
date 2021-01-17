@@ -7,18 +7,6 @@ import TotalSummarySection from '../commons/TotalSummarySection';
 
 import './index.scss';
 
-const renderIndividual = ({ s }) => {
-  return(
-    <tr className='expiration-view__tr' key={`expiration-view__tr--${s.expirationDate}`}>
-      <td className='expiration-view__td' key='expiration-view__td--expirationDate'>{s.expirationDate}</td>
-      <td className='expiration-view__td' key='expiration-view__td--occupied'>{`$ ${s.occupied}`}</td>
-      <td className='expiration-view__td' key='expiration-view__td--potential'>{`$ ${s.potential}`}</td>
-      <td className='expiration-view__td' key='expiration-view__td--occupied-percent'>{`% ${s.occupiedPercentage}`}</td>
-      <td className='expiration-view__td' key='expiration-view__td--potential-percent'>{`% ${s.potentialPercentage}`}</td>
-    </tr>
-  );
-};
-
 const Expiration = ({ stats, dispatch, sortConditions }) => {
   const tableRenderer = TableRenderer({
     sortConditions,
@@ -26,7 +14,6 @@ const Expiration = ({ stats, dispatch, sortConditions }) => {
     dispatch,
     list: stats,
     prefix: 'expiration-view',
-    renderIndividual,
     ths: [
       'expirationDate',
       'occupied',

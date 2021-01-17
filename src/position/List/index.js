@@ -1,11 +1,8 @@
 import React  from 'react';
 import { connect } from 'react-redux';
-import { Popup } from 'reactjs-popup';
 
 import deletePosition from 'position/delete';
 
-
-import modelField from 'position/model';
 import TableRenderer from 'commons/tableRenderer';
 
 import TotalSummarySection from 'commons/TotalSummarySection';
@@ -16,23 +13,23 @@ const openUpdateModal = ({ position, dispatch }) => {
   dispatch({ type: 'OPEN_POSITION_FORM_MODAL', position });
 };
 
-const actionButtons = ({ position, dispatch }) => {
+const actionButtons = ({ s, dispatch }) => {
   return (
     <div
-      key= {`buttons-${position.id}`}
+      key= {`buttons-${s.id}`}
       className='list__buttons'
     >
       <button
         className='list__action-button'
         key='list__update-button'
-        onClick={ () => openUpdateModal({ position, dispatch }) }
+        onClick={ () => openUpdateModal({ position: s, dispatch }) }
       >
         Update
       </button>
       <button
         className='list__action-button'
         key='list__delete-button'
-        onClick={ () => deletePosition({ position }) }
+        onClick={ () => deletePosition({ position: s }) }
       >
        Delete
       </button>
@@ -40,52 +37,16 @@ const actionButtons = ({ position, dispatch }) => {
   );
 };
 
-const renderIndividual = ({s, dispatch}) => {
-  const fields = modelField.displayInferredFields;
-  const fieldTds = fields.map((field) => {
-    return (
-      <td key={`td-${s.id}-${field}`} className='list__td'>
-        {s[field]}
-      </td>
-    );
-  });
-  const closeButton = (
-    <td key={`td-${s.id}-closeButton`} className='list__td'>
-      <button
-        className='list__action-button'
-        key='list__close-button'
-        onClick={ () => dispatch({ type: 'OPEN_CLOSE_MODAL', position: s }) }
-      >
-        Close
-      </button>
-    </td>
-  )
-  return (
-    <Popup
-      trigger={open => (
-        <tr className='list__tr' key={`list__tr--${s.id}`}>
-          { fieldTds.concat([closeButton]) }
-        </tr>
-      )}
-      position='bottom right'
-      on={['hover', 'focus']}
-      key={`popup-${s.id}`}
-    >
-      {actionButtons({ position: s, dispatch })}
-    </Popup>
-  )
-};
-
-const List = ({ getSortedPositions, positions, sortConditions, dispatch }) => {
-  const fields = modelField.displayInferredFields.concat(['Close Button']);
+const List = ({ positions, fields, sortConditions, extra, dispatch }) => {
   const tableRenderer = TableRenderer({
     sortConditions,
     sortConstant: 'SORT',
     dispatch,
     list: positions,
     prefix: 'list',
-    renderIndividual,
+    extra,
     ths: fields,
+    actionButtons,
   });
 
   return (

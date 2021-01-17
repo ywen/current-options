@@ -1,18 +1,57 @@
+import { Popup } from 'reactjs-popup';
+
 import getLabel from '../commons/getLabel';
 import getSortableClassNames from '../commons/getSortableClassNames';
 
 const initialize = ({
   prefix,
   sortConstant,
-  renderIndividual,
   dispatch,
   list,
   ths,
   sortConditions,
+  extra={},
+  actionButtons=null,
 }) => {
   const sort = ({ name }) => {
     if (name !== 'Actions') {
       dispatch({ type: sortConstant, field: name });
+    }
+  };
+
+  const renderIndividual = ({s, extra, fields, dispatch}) => {
+    const fieldTds = fields.map((field) => {
+      if(s.hasOwnProperty(field)) {
+        return (
+          <td key={`td-${s.id}-${field}`} className='list__td'>
+            {s[field]}
+          </td>
+        );
+      } else {
+        return extra[field]({ s, dispatch });
+      }
+    });
+    if (actionButtons) {
+      return (
+        <Popup
+          trigger={open => (
+            <tr className='list__tr' key={`list__tr--${s.id}`}>
+              { fieldTds }
+            </tr>
+          )}
+          position='bottom right'
+          on={['hover', 'focus']}
+          key={`popup-${s.id}`}
+        >
+          {actionButtons({ s, dispatch })}
+        </Popup>
+      )
+    } else {
+      return (
+        <tr className='list__tr' key={`list__tr--${s.id}`}>
+          { fieldTds }
+        </tr>
+      );
     }
   };
 
@@ -24,13 +63,13 @@ const initialize = ({
     });
     return (
       <th
-        className={classNames}
+      className={classNames}
         onClick={() => sort({ name })}
         key={`${prefix}-${name}-th`}
       >
         {getLabel({ name })}
       </th>
-    )
+        )
   };
 
   const renderTableHeaders = () => {
@@ -40,13 +79,13 @@ const initialize = ({
           { ths.map(renderTh) }
         </tr>
       </thead>
-    );
+        );
   };
 
   const renderTbody = () => {
     const result = [];
     list.forEach((s) => {
-      result.push(renderIndividual({ s, dispatch }));
+      result.push(renderIndividual({ s, fields: ths, extra, dispatch }));
     });
     return <tbody className={`${prefix}__tbody`}>{result}</tbody>;
   }
