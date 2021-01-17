@@ -15,12 +15,15 @@ const displayInferredFields = metaFields.concat(['stockSymbol', 'expirationDate'
 
 const displayClosedPositionsFields = metaFields.concat(['stockSymbol', 'strike']).concat(closedFields);
 
+const isClosed = ({ data }) => data && data.hasOwnProperty('closedDate');
+
 const fields = {
   closedFields,
   metaFields,
   displayInferredFields,
   displayClosedPositionsFields,
   inferredFields,
+  isClosed,
 };
 
 export default fields;

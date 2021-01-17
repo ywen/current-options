@@ -35,6 +35,9 @@ const saveTo = async ({ doc, data }) => {
 const saveOpenPosition = async ({ position }) => {
   await saveTo({ doc: openPositionsStore, data: position });
 };
+const saveClosedPosition = async ({ position }) => {
+  await saveTo({ doc: closedPositionsStore, data: position });
+};
 
 const saveAccount = async ({ account }) => {
   await saveTo({ doc: accountsStore, data: account });
@@ -75,6 +78,7 @@ const publicMethods = {
   openPositionsStore,
   openPositionsBackupStore,
   saveAccount,
+  saveClosedPosition,
   saveOpenPosition,
   setKey,
 };

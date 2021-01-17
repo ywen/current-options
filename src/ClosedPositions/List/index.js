@@ -7,7 +7,7 @@ const List = () => {
     sortConditionsKind: 'sortConditions',
     positionKind: 'closedPositions',
   });
-  const fields = modelField.displayClosedPositionsFields;
+  const fields = modelField.displayClosedPositionsFields.concat('actions');
   return (
     <PositionList
       getSortedPositions={getSorted}

@@ -1,5 +1,3 @@
-import { Popup } from 'reactjs-popup';
-
 import getLabel from '../commons/getLabel';
 import getSortableClassNames from '../commons/getSortableClassNames';
 
@@ -11,7 +9,6 @@ const initialize = ({
   ths,
   sortConditions,
   extra={},
-  actionButtons=null,
 }) => {
   const sort = ({ name }) => {
     if (name !== 'Actions') {
@@ -21,6 +18,8 @@ const initialize = ({
 
   const renderIndividual = ({s, extra, fields, dispatch}) => {
     const fieldTds = fields.map((field) => {
+      console.log(field)
+      console.log(s)
       if(s.hasOwnProperty(field)) {
         return (
           <td key={`td-${s.id}-${field}`} className='list__td'>
@@ -28,31 +27,18 @@ const initialize = ({
           </td>
         );
       } else {
-        return extra[field]({ s, dispatch });
+        if (extra[field]) {
+          return extra[field]({ s, dispatch });
+        } else {
+          return false;
+        }
       }
     });
-    if (actionButtons) {
-      return (
-        <Popup
-          trigger={open => (
-            <tr className='list__tr' key={`list__tr--${s.id}`}>
-              { fieldTds }
-            </tr>
-          )}
-          position='bottom right'
-          on={['hover', 'focus']}
-          key={`popup-${s.id}`}
-        >
-          {actionButtons({ s, dispatch })}
-        </Popup>
-      )
-    } else {
-      return (
-        <tr className='list__tr' key={`list__tr--${s.id}`}>
-          { fieldTds }
-        </tr>
-      );
-    }
+    return (
+      <tr className='list__tr' key={`list__tr--${s.id}`}>
+        { fieldTds }
+      </tr>
+    );
   };
 
   const renderTh = (name) => {
@@ -63,23 +49,23 @@ const initialize = ({
     });
     return (
       <th
-      className={classNames}
+        className={classNames}
         onClick={() => sort({ name })}
         key={`${prefix}-${name}-th`}
       >
         {getLabel({ name })}
       </th>
-        )
+    )
   };
 
   const renderTableHeaders = () => {
     return (
-      <thead className={`${prefix}__thead`}>
-        <tr className={`${prefix}__tr-head`}>
+        <thead className={`${prefix}__thead`}>
+          <tr className={`${prefix}__tr-head`}>
           { ths.map(renderTh) }
-        </tr>
+          </tr>
       </thead>
-        );
+    );
   };
 
   const renderTbody = () => {

@@ -11,7 +11,11 @@ const changeValue = ({ dispatch, value, key}) => (
 );
 
 const textFields = ({ data }) => {
-  return modelField.metaFields.map(field => {
+  let fields = modelField.metaFields;
+  if (modelField.isClosed({ data })) {
+    fields = fields.concat(modelField.closedFields)
+  }
+  return fields.map(field => {
     return <TextField changeValue={changeValue} data={data} name={field} key={field} />
   })
 };
