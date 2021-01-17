@@ -5,8 +5,7 @@ import filterByCurrentAccountId from './filterByCurrentAccountId';
 const func = createSelector(
   filterByCurrentAccountId,
   (state) => state.sortConditions,
-  (state) => state.currentAccountId,
-  (positions, sortConditions, currentAccountId) => {
+  (positions, sortConditions) => {
     return sortPositions({positions, sortConditions})
   },
 );
