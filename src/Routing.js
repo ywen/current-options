@@ -10,6 +10,7 @@ import List from './List';
 import Expiration from './expiration';
 import ByStock from './ByStock';
 import ClosedPositionsSummary from './ClosedPositions/Summary';
+import ClosedPositionsList from './ClosedPositions/List';
 import AuthenticatedArea from './AuthenticatedArea';
 
 const Routing = ({ user }) => {
@@ -22,7 +23,8 @@ const Routing = ({ user }) => {
           <Route path="/list" element={<List />} />
           <Route path="/expiration" element={<Expiration />} />
           <Route path="/by_stock" element={<ByStock />} />
-          <Route path="/closed_positions" element={< ClosedPositionsSummary />} />
+          <Route path="/closed_positions_summary" element={< ClosedPositionsSummary />} />
+          <Route path="/closed_positions" element={< ClosedPositionsList />} />
         </Route>
       </Routes>
     </BrowserRouter>

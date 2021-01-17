@@ -34,4 +34,5 @@ const reducers = combineReducers({
   sortConditions,
   sortExpirationView,
 });
-export default createStore(reducers);
+
+export default createStore(reducers)
