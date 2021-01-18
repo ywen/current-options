@@ -10,6 +10,7 @@ const inferredFields = [
 ];
 
 const closedFields = ['closingPrice', 'closedDate']
+const closingFormFields = closedFields.concat('quantity');
 
 const displayInferredFields = metaFields.concat(['stockSymbol', 'expirationDate', 'strike', 'moneyOccupied', 'potentialGain']);
 
@@ -20,6 +21,7 @@ const isNewRecord = ({ data }) => data && !data.hasOwnProperty('id');
 
 const fields = {
   closedFields,
+  closingFormFields,
   metaFields,
   displayInferredFields,
   displayClosedPositionsFields,

@@ -60,6 +60,23 @@ const closePosition = async ({ position }) => {
   });
   return batch.commit();
 };
+const partialClosePosition = async ({ closed, opened }) => {
+  const batch = db().batch();
+  const openRef = openPositionsStore();
+  const closeRef = closedPositionsStore();
+  batch.update(openRef, {
+    [opened.id]: opened,
+  });
+
+  const snapshot = await closeRef.get();
+  if (!snapshot.exists) {
+    batch.set(closeRef, {});
+  }
+  batch.update(closeRef, {
+    [closed.id]: closed,
+  });
+  return batch.commit();
+};
 
 const deletePosition = ({ positionId, doc }) => {
   doc().update({
@@ -79,6 +96,7 @@ const publicMethods = {
   accountsBackupStore,
   accountsStore,
   closePosition,
+  partialClosePosition,
   closedPositionsBackupStore,
   closedPositionsStore,
   deleteClosedPosition,
