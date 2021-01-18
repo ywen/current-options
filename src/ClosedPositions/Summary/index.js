@@ -13,6 +13,7 @@ const ClosedPositions = ({ summary, dispatch, sortConditions }) => {
     sortConstant: 'SORT_CLOSED_STOCK_SUMMARY',
     dispatch,
     list: summary,
+    singleKey: 'stockSymbol',
     prefix: 'byStock',
     ths: [
       'stockSymbol',
