@@ -18,7 +18,7 @@ const getSummaryFromPositions = ({ positions, sort }) => {
     } = getTotalAmount({ positions: list });
     const potentialPercentage = getPercentage({ dividend: potential, divisor: totalPotential });
     const occupiedPercentage = getPercentage({ dividend: occupied, divisor: totalOccupied });
-    const potentialVsTotal = getPercentage({ dividend: potential, divisor: occupied });
+    const potentialToTotal = getPercentage({ dividend: potential, divisor: occupied });
     const profitToPotential = getPercentage({ dividend: profit, divisor: potential });
     const avgTurnOverDays = getAvgTurnOverDays({ list });
     const profitPerTurnoverDay = (profit/avgTurnOverDays).toFixed(2);
@@ -30,7 +30,7 @@ const getSummaryFromPositions = ({ positions, sort }) => {
       occupiedPercentage,
       potential,
       potentialPercentage,
-      potentialVsTotal,
+      potentialToTotal,
       profit,
       profitPerTurnoverDay,
       profitToOccupied,

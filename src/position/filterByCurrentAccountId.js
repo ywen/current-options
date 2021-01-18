@@ -1,10 +1,4 @@
-import { createSelector } from 'reselect';
-const filter = createSelector(
-  state => state.positions,
-  state => state.currentAccountId,
-  (positions, currentAccountId) => {
-    return positions.filter(p => p.accountId === currentAccountId)
-  }
-);
+import makeFilterByAccountSelector from 'position/makeFilterByAccountSelector';
+const filterSelector = makeFilterByAccountSelector({ positionKind: 'positions' });
 
-export default filter;
+export default filterSelector;

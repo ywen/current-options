@@ -7,27 +7,14 @@ import TotalSummarySection from '../commons/TotalSummarySection';
 
 import './index.scss';
 
-const renderIndividual = ({s}) => {
-  return (
-    <tr className='byStock__tr' key={`byStock__tr--${s.stockSymbol}`}>
-      <td className='byStock__td' key='byStock__td--stock'>{s.stockSymbol}</td>
-      <td className='byStock__td' key='byStock__td--occupied'>{`$ ${s.occupied}`}</td>
-      <td className='byStock__td' key='byStock__td--potential'>{`$ ${s.potential}`}</td>
-      <td className='byStock__td' key='byStock__td--occupied-percent'>{`% ${s.occupiedPercentage}`}</td>
-      <td className='byStock__td' key='byStock__td--potential-percent'>{`% ${s.potentialPercentage}`}</td>
-      <td className='byStock__td' key='byStock__td--potential-vs-total'>{`% ${s.potentialVsTotal}`}</td>
-    </tr>
-  )
-};
-
 const ByStock = ({ dispatch, summary, sortConditions }) => {
   const tableRenderer = TableRenderer({
     sortConditions,
     sortConstant: 'SORT_BY_STOCK_SUMMARY',
     dispatch,
     list: summary,
+    singleKey: 'stockSymbol',
     prefix: 'byStock',
-    renderIndividual,
     ths: [
       'stockSymbol',
       'occupied',

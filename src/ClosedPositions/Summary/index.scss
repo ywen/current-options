@@ -1,5 +1,5 @@
-@import '../commons/table.scss';
-@import '../commons/TotalSummarySection.scss';
+@import 'commons/table.scss';
+@import 'commons/TotalSummarySection.scss';
 .closedStockSummary {
   @include table;
   @include totalSummaryDefinitionList;

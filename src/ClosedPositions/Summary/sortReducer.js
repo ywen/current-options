@@ -1,5 +1,5 @@
-import logic from '../position/sortLogic';
-import createReducer from '../commons/createReducer';
+import logic from 'position/sortLogic';
+import createReducer from 'commons/createReducer';
 
 const initialState = {
   field: 'stock',

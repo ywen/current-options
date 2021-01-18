@@ -1,5 +1,3 @@
-import React from 'react';
-
 import makeSortedPositionSelector from 'position/makeSortedPositionSelector';
 import PositionList from 'position/List';
 import modelField from 'position/model';
@@ -7,9 +5,9 @@ import modelField from 'position/model';
 const List = () => {
   const getSorted = makeSortedPositionSelector({
     sortConditionsKind: 'sortConditions',
-    positionKind: 'positions',
+    positionKind: 'closedPositions',
   });
-  const fields = modelField.displayInferredFields.concat(['actions']);
+  const fields = modelField.displayClosedPositionsFields.concat('actions');
   return (
     <PositionList
       getSortedPositions={getSorted}

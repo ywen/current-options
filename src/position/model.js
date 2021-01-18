@@ -9,15 +9,23 @@ const inferredFields = [
   'potentialLose',
 ];
 
+const closedFields = ['closingPrice', 'closedDate']
+
 const displayInferredFields = metaFields.concat(['stockSymbol', 'expirationDate', 'strike', 'moneyOccupied', 'potentialGain']);
 
-const closedFields = ['closingPrice', 'closedDate']
+const displayClosedPositionsFields = metaFields.concat(['stockSymbol', 'strike']).concat(closedFields);
+
+const isClosed = ({ data }) => data && data.hasOwnProperty('closedDate');
+const isNewRecord = ({ data }) => data && !data.hasOwnProperty('id');
 
 const fields = {
   closedFields,
   metaFields,
   displayInferredFields,
+  displayClosedPositionsFields,
   inferredFields,
+  isClosed,
+  isNewRecord,
 };
 
 export default fields;

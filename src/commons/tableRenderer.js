@@ -4,16 +4,40 @@ import getSortableClassNames from '../commons/getSortableClassNames';
 const initialize = ({
   prefix,
   sortConstant,
-  renderIndividual,
   dispatch,
   list,
   ths,
   sortConditions,
+  singleKey='id',
+  extra={},
 }) => {
   const sort = ({ name }) => {
     if (name !== 'Actions') {
       dispatch({ type: sortConstant, field: name });
     }
+  };
+
+  const renderIndividual = ({s, extra, fields, dispatch}) => {
+    const fieldTds = fields.map((field) => {
+      if(s.hasOwnProperty(field)) {
+        return (
+          <td key={`td-${s.id}-${field}`} className='list__td'>
+            {s[field]}
+          </td>
+        );
+      } else {
+        if (extra[field]) {
+          return extra[field]({ s, dispatch });
+        } else {
+          return false;
+        }
+      }
+    });
+    return (
+      <tr className='list__tr' key={`list__tr--${s[singleKey]}`}>
+        { fieldTds }
+      </tr>
+    );
   };
 
   const renderTh = (name) => {
@@ -35,10 +59,10 @@ const initialize = ({
 
   const renderTableHeaders = () => {
     return (
-      <thead className={`${prefix}__thead`}>
-        <tr className={`${prefix}__tr-head`}>
+        <thead className={`${prefix}__thead`}>
+          <tr className={`${prefix}__tr-head`}>
           { ths.map(renderTh) }
-        </tr>
+          </tr>
       </thead>
     );
   };
@@ -46,7 +70,7 @@ const initialize = ({
   const renderTbody = () => {
     const result = [];
     list.forEach((s) => {
-      result.push(renderIndividual({ s, dispatch }));
+      result.push(renderIndividual({ s, fields: ths, extra, dispatch }));
     });
     return <tbody className={`${prefix}__tbody`}>{result}</tbody>;
   }

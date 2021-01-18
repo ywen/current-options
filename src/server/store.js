@@ -35,6 +35,9 @@ const saveTo = async ({ doc, data }) => {
 const saveOpenPosition = async ({ position }) => {
   await saveTo({ doc: openPositionsStore, data: position });
 };
+const saveClosedPosition = async ({ position }) => {
+  await saveTo({ doc: closedPositionsStore, data: position });
+};
 
 const saveAccount = async ({ account }) => {
   await saveTo({ doc: accountsStore, data: account });
@@ -58,23 +61,33 @@ const closePosition = async ({ position }) => {
   return batch.commit();
 };
 
-const deletePosition = ({ positionId }) => {
-  openPositionsStore().update({
+const deletePosition = ({ positionId, doc }) => {
+  doc().update({
     [positionId]: firebase.firestore.FieldValue.delete(),
   });
 };
 
+const deleteOpenPosition = ({ positionId }) => {
+  deletePosition({ positionId, doc: openPositionsStore });
+};
+
+const deleteClosedPosition = ({ positionId }) => {
+  deletePosition({ positionId, doc: closedPositionsStore });
+};
+
 const publicMethods = {
-  accountsStore,
   accountsBackupStore,
+  accountsStore,
   closePosition,
-  closedPositionsStore,
   closedPositionsBackupStore,
-  deletePosition,
+  closedPositionsStore,
+  deleteClosedPosition,
+  deleteOpenPosition,
   getKey,
-  openPositionsStore,
   openPositionsBackupStore,
+  openPositionsStore,
   saveAccount,
+  saveClosedPosition,
   saveOpenPosition,
   setKey,
 };
