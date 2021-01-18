@@ -3,17 +3,19 @@ import { connect } from 'react-redux';
 import Modal from 'commons/Modal';
 import TextField from 'commons/TextField';
 import Row from './Row';
-import savePosition from '../save';
-import modelField from '../model';
+import savePosition from 'position/save';
+import deletePosition from 'position/delete';
+
+import model from '../model';
 
 const changeValue = ({ dispatch, value, key}) => (
   dispatch({ type: 'ADD_POSITION_VALUE_CHANGED', value, key })
 );
 
 const textFields = ({ data }) => {
-  let fields = modelField.metaFields;
-  if (modelField.isClosed({ data })) {
-    fields = fields.concat(modelField.closedFields)
+  let fields = model.metaFields;
+  if (model.isClosed({ data })) {
+    fields = fields.concat(model.closedFields)
   }
   return fields.map(field => {
     return <TextField changeValue={changeValue} data={data} name={field} key={field} />
@@ -21,7 +23,7 @@ const textFields = ({ data }) => {
 };
 
 const displayRows = () => {
-  const fields = modelField.metaFields.concat(modelField.inferredFields);
+  const fields = model.metaFields.concat(model.inferredFields);
   return fields.map(field => {
     return <Row name={field} key={`row-${field}`} />;
   });
@@ -29,9 +31,15 @@ const displayRows = () => {
 
 const Form = ({ dispatch, modalData, accounts }) => {
   const { open, data } = modalData;
+
   const closeModal = ({dispatch}) => dispatch({ type: 'CLOSE_POSITION_FORM_MODAL' });
   const save = () => {
     savePosition({ data });
+    dispatch({ type: 'CLOSE_POSITION_FORM_MODAL' });
+  };
+
+  const deleteAction = () => {
+    deletePosition({ position: data });
     dispatch({ type: 'CLOSE_POSITION_FORM_MODAL' });
   };
 
@@ -48,6 +56,11 @@ const Form = ({ dispatch, modalData, accounts }) => {
     changeValue({ dispatch, key: 'accountId', value });
   };
 
+  const deleteButton = () => {
+    if (model.isNewRecord({ data })) return false;
+    return <button onClick={deleteAction} className='modal__delete'>Delete</button>
+  };
+
   return (
     <Modal
       open={open}
@@ -55,6 +68,7 @@ const Form = ({ dispatch, modalData, accounts }) => {
       dispatch={dispatch}
     >
       <div className='modal__form'>
+        {deleteButton()}
         {textFields({ data })}
         <div className='text-field__container'>
           <label

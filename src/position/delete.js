@@ -1,7 +1,12 @@
-import store from '../server/store';
+import store from 'server/store';
+import model from 'position/model';
 
 const deletePosition = ({ position }) => {
-  store.deletePosition({ positionId: position.id });
+  if (model.isClosed({ data: position })) {
+    store.deleteClosedPosition({ positionId: position.id });
+  } else {
+    store.deleteOpenPosition({ positionId: position.id });
+  }
 };
 
 export default deletePosition;

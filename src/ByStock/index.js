@@ -13,6 +13,7 @@ const ByStock = ({ dispatch, summary, sortConditions }) => {
     sortConstant: 'SORT_BY_STOCK_SUMMARY',
     dispatch,
     list: summary,
+    singleKey: 'stockSymbol',
     prefix: 'byStock',
     ths: [
       'stockSymbol',

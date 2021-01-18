@@ -13,6 +13,7 @@ const Expiration = ({ stats, dispatch, sortConditions }) => {
     sortConstant: 'SORT_IN_EXPIRATION_VIEW',
     dispatch,
     list: stats,
+    singleKey: 'expirationDate',
     prefix: 'expiration-view',
     ths: [
       'expirationDate',

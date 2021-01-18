@@ -1,41 +1,14 @@
 import React  from 'react';
 import { connect } from 'react-redux';
 
-import deletePosition from 'position/delete';
 import model from 'position/model';
-
 import TableRenderer from 'commons/tableRenderer';
-
 import TotalSummarySection from 'commons/TotalSummarySection';
 
 import './index.scss';
 
 const openUpdateModal = ({ position, dispatch }) => {
   dispatch({ type: 'OPEN_POSITION_FORM_MODAL', position });
-};
-
-const actionButtons = ({ s, dispatch }) => {
-  return (
-    <div
-      key= {`buttons-${s.id}`}
-      className='list__buttons'
-    >
-      <button
-        className='list__action-button'
-        key='list__update-button'
-        onClick={ () => openUpdateModal({ position: s, dispatch }) }
-      >
-        Update
-      </button>
-      <button
-        className='list__action-button'
-        key='list__delete-button'
-        onClick={ () => deletePosition({ position: s }) }
-      >
-       Delete
-      </button>
-    </div>
-  );
 };
 
 const closeButton = ({ data, dispatch }) => {

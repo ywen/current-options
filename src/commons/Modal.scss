@@ -15,7 +15,15 @@
     padding: 0.5rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-  }
+  };
+
+  &__delete {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: #fc1905;
+    color:#f2f4f4;
+  };
 
   &__information {
     margin-top: 2rem;

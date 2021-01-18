@@ -8,6 +8,7 @@ const initialize = ({
   list,
   ths,
   sortConditions,
+  singleKey='id',
   extra={},
 }) => {
   const sort = ({ name }) => {
@@ -18,8 +19,6 @@ const initialize = ({
 
   const renderIndividual = ({s, extra, fields, dispatch}) => {
     const fieldTds = fields.map((field) => {
-      console.log(field)
-      console.log(s)
       if(s.hasOwnProperty(field)) {
         return (
           <td key={`td-${s.id}-${field}`} className='list__td'>
@@ -35,7 +34,7 @@ const initialize = ({
       }
     });
     return (
-      <tr className='list__tr' key={`list__tr--${s.id}`}>
+      <tr className='list__tr' key={`list__tr--${s[singleKey]}`}>
         { fieldTds }
       </tr>
     );
