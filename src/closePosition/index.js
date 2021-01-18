@@ -10,20 +10,18 @@ import closePosition from '../position/close';
 import './index.scss';
 
 const Form = ({ dispatch, closeModal }) => {
-  const { isOpen, position } = closeModal;
+  const { isOpen, position, data, allFilled } = closeModal;
 
   const name = position ? position.symbol : null;
   if(!position) {
     return false;
   }
-  const data = closeModal.data;
-
   const changeValue = ({ dispatch, value, key}) => (
     dispatch({ type: 'CLOSE_POSITION_VALUE_CHANGED', value, key })
   );
 
   const textFields = () => {
-    return modelField.closedFields.map(field => {
+    return modelField.closingFormFields.map(field => {
       return <TextField changeValue={changeValue} data={data} name={field} key={field} />
     })
   };
@@ -41,7 +39,7 @@ const Form = ({ dispatch, closeModal }) => {
       <div className='modal__form'>
         <div className='modal__position-title'>{name}</div>
         {textFields()}
-        <button onClick={save} className='modal__save'>Save</button>
+        <button onClick={save} disabled={!allFilled} className='modal__save'>Save</button>
       </div>
     </Modal>
   );
