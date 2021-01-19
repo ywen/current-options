@@ -3,11 +3,13 @@ import { createSelector } from 'reselect';
 import getPercentage from '../commons/getPercentage';
 import getTotalAmount from '../position/getTotalAmount';
 import sortPositions from '../position/sortPositions';
-import filterByCurrentAccountId from '../position/filterByCurrentAccountId';
+import makeFilterByAccountSelector from 'position/makeFilterByAccountSelector';
 import groupBy from 'commons/groupBy';
 
+const filterByAccountId = makeFilterByAccountSelector({ positionKind: 'closedPositions' });
+
 const func = createSelector(
-  filterByCurrentAccountId,
+  filterByAccountId,
   (state) => state.sortExpirationView,
   (positions, sort) => {
     const { totalPotential, totalOccupied } = getTotalAmount({ positions });

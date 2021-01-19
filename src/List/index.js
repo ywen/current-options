@@ -8,6 +8,7 @@ const List = () => {
   const getSorted = makeSortedPositionSelector({
     sortConditionsKind: 'sortConditions',
     positionKind: 'positions',
+    withFilterByTime: false,
   });
   const fields = modelField.displayInferredFields.concat(['actions']);
   return (
