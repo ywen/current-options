@@ -5,6 +5,8 @@ import model from 'position/model';
 import TableRenderer from 'commons/tableRenderer';
 import TotalSummarySection from 'commons/TotalSummarySection';
 
+import TimeSelect from 'ClosedPositions/TimeSelect';
+
 import './index.scss';
 
 const openUpdateModal = ({ position, dispatch }) => {
@@ -22,7 +24,8 @@ const closeButton = ({ data, dispatch }) => {
       Close
     </button>
   )
-}
+};
+
 const actions = ({ s, dispatch }) => (
   <td key={`td-${s.id}-actions`} className='list__td'>
     {closeButton({ data: s, dispatch })}
@@ -36,7 +39,7 @@ const actions = ({ s, dispatch }) => (
   </td>
 );
 
-const List = ({ positions, fields, sortConditions, extra, dispatch }) => {
+const List = ({ positions, fields, sortConditions, withFilterByTime, dispatch }) => {
   const tableRenderer = TableRenderer({
     sortConditions,
     sortConstant: 'SORT',
@@ -49,6 +52,7 @@ const List = ({ positions, fields, sortConditions, extra, dispatch }) => {
 
   return (
     <div className='list__container authenticated__view-area'>
+      { withFilterByTime && <TimeSelect /> }
       <table className='list__table'>
         { tableRenderer.renderTableHeaders() }
         { tableRenderer.renderTbody() }

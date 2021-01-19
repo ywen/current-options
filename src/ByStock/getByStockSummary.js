@@ -1,10 +1,12 @@
 import { createSelector } from 'reselect';
 
 import getSummaryFromPositions from '../position/getSummaryFromPositions';
-import filterByCurrentAccountId from '../position/filterByCurrentAccountId';
+import makeFilterByAccountSelector from 'position/makeFilterByAccountSelector';
+
+const filterByAccountId = makeFilterByAccountSelector({ positionKind: 'closedPositions' });
 
 const getByStockSummary = createSelector(
-  filterByCurrentAccountId,
+  filterByAccountId,
   state => state.sortByStockConditions,
   (positions, sort) => getSummaryFromPositions({ positions, sort })
 );

@@ -1,11 +1,12 @@
 import { createSelector } from 'reselect';
 import sortPositions from './sortPositions';
 import makeFilterByAccountSelector from './makeFilterByAccountSelector';
+import filterByTime from 'ClosedPositions/filterByTime';
 
-const makeSortedPositionSelector = ({ positionKind, sortConditionsKind }) => {
-  const filterSelector = makeFilterByAccountSelector({ positionKind });
+const makeSortedPositionSelector = ({ withFilterByTime, positionKind, sortConditionsKind }) => {
+  const filter = withFilterByTime ? filterByTime : makeFilterByAccountSelector({ positionKind });
   return createSelector(
-    filterSelector,
+    filter,
     (state) => state[sortConditionsKind],
     (positions, sortConditions) => {
       return sortPositions({positions, sortConditions})
