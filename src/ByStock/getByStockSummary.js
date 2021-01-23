@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 import getSummaryFromPositions from '../position/getSummaryFromPositions';
 import makeFilterByAccountSelector from 'position/makeFilterByAccountSelector';
 
-const filterByAccountId = makeFilterByAccountSelector({ positionKind: 'closedPositions' });
+const filterByAccountId = makeFilterByAccountSelector({ positionKind: 'positions' });
 
 const getByStockSummary = createSelector(
   filterByAccountId,

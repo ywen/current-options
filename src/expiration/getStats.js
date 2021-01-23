@@ -6,7 +6,7 @@ import sortPositions from '../position/sortPositions';
 import makeFilterByAccountSelector from 'position/makeFilterByAccountSelector';
 import groupBy from 'commons/groupBy';
 
-const filterByAccountId = makeFilterByAccountSelector({ positionKind: 'closedPositions' });
+const filterByAccountId = makeFilterByAccountSelector({ positionKind: 'positions' });
 
 const func = createSelector(
   filterByAccountId,
