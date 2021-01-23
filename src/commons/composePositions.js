@@ -1,7 +1,7 @@
 import produce from 'immer';
 
-import getDecryptedData from '../encryption/getDecryptedData';
-import fillInferredValues from '../position/fillInferredValues';
+import getDecryptedData from 'encryption/getDecryptedData';
+import fillInferredValues from 'position/inferredValues/fillInferredValues';
 
 const composePositions = (state, action) => (
   produce(state, draft => {

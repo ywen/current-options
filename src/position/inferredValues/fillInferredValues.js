@@ -1,3 +1,5 @@
+import isSellFunc from './isSell';
+
 const fillInferredValues = ({original}) => {
   const { quantity, purchasePrice, closingPrice, symbol } = original;
   if (symbol && purchasePrice && quantity) {
@@ -9,7 +11,7 @@ const fillInferredValues = ({original}) => {
       original.strike = matches[4];
       if(quantity) {
         original.moneyOccupied = Math.abs(matches[4] * quantity * 100);
-        const isSell = Number(quantity) < 0;
+        const isSell = isSellFunc({ position: original });
         if (purchasePrice && isSell) {
           original.potentialGain = Math.abs(purchasePrice * 100 * quantity).toFixed(0);
           original.potentialLose = 'unlimited';
