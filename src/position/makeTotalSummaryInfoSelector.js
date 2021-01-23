@@ -23,9 +23,13 @@ const makeSelector = ({useSummary, hasProfit}) => (
         const totalProfit= getTotal({list, key: 'profit'});
         let allList = [];
         const totalOccupied = getTotal({list, key: occupiedName});
-        list.forEach(v => {
-          allList = allList.concat(v.list);
-        });
+        if (useSummary) {
+          list.forEach(v => {
+            allList = allList.concat(v.list);
+          });
+        } else {
+          allList = list;
+        }
         const avgTurnOverDays = getAvgTurnOverDays({ list: allList });
         const avgPerDayEarning = (totalProfit/avgTurnOverDays).toFixed(2);
         const profitToOccupied = getPercentage({dividend: avgPerDayEarning, divisor: totalOccupied});

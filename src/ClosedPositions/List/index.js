@@ -14,6 +14,7 @@ const List = () => {
       getSortedPositions={getSorted}
       fields={fields}
       withFilterByTime={true}
+      hasProfit={true}
     />
   );
 };
