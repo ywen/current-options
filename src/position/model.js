@@ -14,7 +14,7 @@ const closingFormFields = closedFields.concat('quantity');
 
 const displayInferredFields = metaFields.concat(['stockSymbol', 'expirationDate', 'strike', 'moneyOccupied', 'potentialGain']);
 
-const displayClosedPositionsFields = metaFields.concat(['stockSymbol', 'strike']).concat(closedFields);
+const displayClosedPositionsFields = metaFields.concat(['stockSymbol', 'profit']).concat(closedFields);
 
 const isClosed = ({ data }) => data && data.hasOwnProperty('closedDate');
 const isNewRecord = ({ data }) => data && !data.hasOwnProperty('id');
