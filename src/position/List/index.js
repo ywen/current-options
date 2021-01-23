@@ -39,7 +39,7 @@ const actions = ({ s, dispatch }) => (
   </td>
 );
 
-const List = ({ positions, fields, sortConditions, withFilterByTime, dispatch }) => {
+const List = ({ positions, fields, sortConditions, withFilterByTime, hasProfit, dispatch }) => {
   const tableRenderer = TableRenderer({
     sortConditions,
     sortConstant: 'SORT',
@@ -60,6 +60,7 @@ const List = ({ positions, fields, sortConditions, withFilterByTime, dispatch })
       <TotalSummarySection
         list={positions}
         use='listFormat'
+        hasProfit={hasProfit}
         prefix='list'
       />
     </div>

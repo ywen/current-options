@@ -15,6 +15,7 @@ const List = () => {
     <PositionList
       getSortedPositions={getSorted}
       fields={fields}
+      hasProfit={false}
     />
   );
 };
