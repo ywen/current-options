@@ -1,4 +1,4 @@
-import isSellFunc from './isSell';
+import isSellFunc from 'position/isSell';
 
 const fillInferredValues = ({original}) => {
   const { quantity, purchasePrice, closingPrice, symbol } = original;
@@ -18,11 +18,16 @@ const fillInferredValues = ({original}) => {
         }
         if (purchasePrice && !isSell) {
           original.potentialGain = 'unlimited';
-          original.potentialGain = Math.abs(purchasePrice * 100 * quantity).toFixed(0);
+          original.potentialLose = Math.abs(purchasePrice * 100 * quantity).toFixed(0);
         }
-        if (closingPrice && isSell) {
-          const profit = ((purchasePrice - Number(closingPrice))*(-quantity)*100).toFixed(2);
-          original.profit = profit;
+        if (closingPrice) {
+          if (isSell) {
+            const profit = ((purchasePrice - Number(closingPrice))*(-quantity)*100).toFixed(2);
+            original.profit = profit;
+          } else {
+            const profit = ((Number(closingPrice) - purchasePrice)*quantity*100).toFixed(2);
+            original.profit = profit;
+          }
         }
       }
     }
