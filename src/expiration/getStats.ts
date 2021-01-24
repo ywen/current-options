@@ -5,19 +5,28 @@ import getTotalAmount from '../position/getTotalAmount';
 import sortPositions from '../position/sortPositions';
 import makeFilterByAccountSelector from 'position/makeFilterByAccountSelector';
 import groupBy from 'commons/groupBy';
+import Position from 'position/shape';
 
 const filterByAccountId = makeFilterByAccountSelector({ positionKind: 'positions' });
+
+interface ReturnType {
+  expirationDate: string;
+  potential: number;
+  occupied: number;
+  potentialPercentage: number;
+  occupiedPercentage: number;
+};
 
 const func = createSelector(
   filterByAccountId,
   (state) => state.sortExpirationView,
   (positions, sort) => {
     const { totalPotential, totalOccupied } = getTotalAmount({ positions });
-    const sorted = positions.sort((p1, p2) => {
+    const sorted = positions.sort((p1: Position, p2: Position) => {
       return p1.expirationDate > p2.expirationDate ? 1 : -1;
     });
     const grouped = groupBy({ data: sorted, key: 'expirationDate' });
-    let group = [];
+    let group:ReturnType[] = [];
     Object.keys(grouped).forEach(key => {
       const list = grouped[key];
       const { totalPotential: potential, totalOccupied: occupied } = getTotalAmount({ positions: list });
