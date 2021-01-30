@@ -6,18 +6,11 @@ import sortPositions from '../position/sortPositions';
 import makeFilterByAccountSelector from 'position/makeFilterByAccountSelector';
 import groupBy from 'commons/groupBy';
 import Position from 'position/shape';
+import StatsType from './StatsType';
 
 const filterByAccountId = makeFilterByAccountSelector({ positionKind: 'positions' });
 
-interface ReturnType {
-  expirationDate: string;
-  potential: number;
-  occupied: number;
-  potentialPercentage: number;
-  occupiedPercentage: number;
-};
-
-const func = createSelector(
+const getStats = createSelector(
   filterByAccountId,
   (state) => state.sortExpirationView,
   (positions, sort) => {
@@ -26,7 +19,7 @@ const func = createSelector(
       return p1.expirationDate > p2.expirationDate ? 1 : -1;
     });
     const grouped = groupBy({ data: sorted, key: 'expirationDate' });
-    let group:ReturnType[] = [];
+    let group:StatsType[] = [];
     Object.keys(grouped).forEach(key => {
       const list = grouped[key];
       const { totalPotential: potential, totalOccupied: occupied } = getTotalAmount({ positions: list });
@@ -38,4 +31,4 @@ const func = createSelector(
   }
 );
 
-export default func;
+export default getStats;

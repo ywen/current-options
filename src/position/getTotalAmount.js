@@ -8,7 +8,7 @@ const getTotalAmount = ({ positions }) => {
     if (isSell) {
       totalPotential = Number(p.potentialGain) + result.totalPotential;
     } else {
-      totalPotential = p.totalPotential;
+      totalPotential = p.potentialGain;
     }
     const hasProfit = p.hasOwnProperty('profit');
     const totalProfit = hasProfit ? result.totalProfit + Number(p.profit) : result.totalProfit;

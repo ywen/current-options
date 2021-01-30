@@ -35,4 +35,5 @@ const reducers = combineReducers({
   sortExpirationView,
 });
 
-export default createStore(reducers)
+export type RootState = ReturnType<typeof reducers>;
+export const store = createStore(reducers);
