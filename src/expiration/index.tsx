@@ -1,4 +1,4 @@
-import { connect, ConnectedProps } from 'react-redux';
+import { connect } from 'react-redux';
 
 import './index.scss';
 import SortConditions from 'commons/SortConditions';
