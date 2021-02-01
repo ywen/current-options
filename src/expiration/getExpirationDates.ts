@@ -1,11 +1,18 @@
-import Position from 'position/shape';
+import { createSelector } from 'reselect';
+
+import sortPositions from 'position/sortPositions';
 import groupBy from 'commons/groupBy';
+import makeFilterByAccountSelector from 'position/makeFilterByAccountSelector';
 
-interface Params {
-  positions: Position[];
-};
+const filterByAccountId = makeFilterByAccountSelector({ positionKind: 'positions' });
 
-const getExpirationDates = ({ positions }: Params) => {
-}
+const getExpirationDates = createSelector(
+  filterByAccountId,
+  state => state.sortExpirationView,
+  (positions, sort) => {
+    const group = Object.keys(groupBy({ data: positions, key: 'expirationDate' }));
+    return sortPositions({ positions: group, sortConditions: sort });
+  }
+);
 
 export default getExpirationDates;
