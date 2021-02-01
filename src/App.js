@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { enableMapSet } from 'immer'
 
 import auth from './server/auth';
-import store from './store';
+import { store } from './store';
 
 import Routing from './Routing';
 

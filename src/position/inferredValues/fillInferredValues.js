@@ -1,3 +1,5 @@
+import isSellFunc from 'position/isSell';
+
 const fillInferredValues = ({original}) => {
   const { quantity, purchasePrice, closingPrice, symbol } = original;
   if (symbol && purchasePrice && quantity) {
@@ -9,18 +11,23 @@ const fillInferredValues = ({original}) => {
       original.strike = matches[4];
       if(quantity) {
         original.moneyOccupied = Math.abs(matches[4] * quantity * 100);
-        const isSell = Number(quantity) < 0;
+        const isSell = isSellFunc({ position: original });
         if (purchasePrice && isSell) {
           original.potentialGain = Math.abs(purchasePrice * 100 * quantity).toFixed(0);
           original.potentialLose = 'unlimited';
         }
         if (purchasePrice && !isSell) {
           original.potentialGain = 'unlimited';
-          original.potentialGain = Math.abs(purchasePrice * 100 * quantity).toFixed(0);
+          original.potentialLose = Math.abs(purchasePrice * 100 * quantity).toFixed(0);
         }
-        if (closingPrice && isSell) {
-          const profit = ((purchasePrice - Number(closingPrice))*(-quantity)*100).toFixed(2);
-          original.profit = profit;
+        if (closingPrice) {
+          if (isSell) {
+            const profit = ((purchasePrice - Number(closingPrice))*(-quantity)*100).toFixed(2);
+            original.profit = profit;
+          } else {
+            const profit = ((Number(closingPrice) - purchasePrice)*quantity*100).toFixed(2);
+            original.profit = profit;
+          }
         }
       }
     }

@@ -1,7 +1,7 @@
 import produce from 'immer';
 
-import createReducer from '../commons/createReducer';
-import fillInferredValues from '../position/fillInferredValues';
+import createReducer from 'commons/createReducer';
+import fillInferredValues from 'position/inferredValues/fillInferredValues';
 import formatDate from 'commons/formatDate';
 
 const initialState = {};

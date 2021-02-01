@@ -6,9 +6,9 @@ import groupBy from 'commons/groupBy';
 
 const getTotal = ({ list, key }) => (
   list.reduce((result, p) => {
-    const num = Number(p[key]);
-    return num ? num + result : result;
-  }, 0)
+    if (Number(p[key])) return Number(p[key]) + result, 0)
+    return 0
+  }
 );
 
 const getTotalStocks = ({useSummary, list}) => (
