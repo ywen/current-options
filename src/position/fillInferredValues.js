@@ -8,15 +8,15 @@ const fillInferredValues = ({original}) => {
       original.optionType = matches[3];
       original.strike = matches[4];
       if(quantity) {
-        original.moneyOccupied = Math.abs(matches[4] * quantity * 100);
+        original.moneyOccupied = -(matches[4] * quantity * 100);
         const isSell = Number(quantity) < 0;
         if (purchasePrice && isSell) {
           original.potentialGain = Math.abs(purchasePrice * 100 * quantity).toFixed(0);
           original.potentialLose = 'unlimited';
         }
         if (purchasePrice && !isSell) {
-          original.potentialGain = 'unlimited';
-          original.potentialGain = Math.abs(purchasePrice * 100 * quantity).toFixed(0);
+          original.potentialGain = 0;
+          original.potentialLoss = Math.abs(purchasePrice * 100 * quantity).toFixed(0);
         }
         if (closingPrice && isSell) {
           const profit = ((purchasePrice - Number(closingPrice))*(-quantity)*100).toFixed(2);
