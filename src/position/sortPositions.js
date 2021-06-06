@@ -3,7 +3,8 @@ const func =({ positions, sortConditions }) => {
   const directionAsc = sortConditions.directionAsc;
   const field = sortConditions.field;
   if (!field) return positions;
-  return positions.sort((p1, p2) => {
+  const array = [...positions]
+  return array.sort((p1, p2) => {
     const v1 = p1[field];
     const v2 = p2[field];
     let ascResult;
@@ -12,7 +13,8 @@ const func =({ positions, sortConditions }) => {
     } else {
       ascResult = String(v1).localeCompare(String(v2));
     }
-    if (directionAsc || ascResult === 0) {
+    if (ascResult === 0) return 1;
+    if (directionAsc) {
       return ascResult;
     }
     return ascResult > 0 ? -1 : 1;
