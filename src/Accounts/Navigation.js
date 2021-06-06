@@ -19,7 +19,8 @@ const Navigation = ({ accounts, currentAccountId, dispatch }) => {
 
   const renderLi = () => {
     let result = [];
-    accounts.forEach((v) => {
+    const allAccount = { id: 'all', name: 'All' };
+    (accounts.concat(allAccount)).forEach((v) => {
       const li = (<li
         className={getLiClasses({ accountId: v.id })}
         onClick={() => onClick({ accountId: v.id })}
