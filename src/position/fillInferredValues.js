@@ -18,7 +18,7 @@ const fillInferredValues = ({original}) => {
           original.potentialLoss = Math.abs(purchasePrice * 100 * quantity).toFixed(0);
           original.potentialGain = -original.potentialLoss;
         }
-        if (closingPrice && isSell) {
+        if (closingPrice) {
           const profit = ((purchasePrice - Number(closingPrice))*(-quantity)*100).toFixed(2);
           original.profit = profit;
         }
