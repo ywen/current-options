@@ -13,7 +13,8 @@ const func = createSelector(
   (state) => state.sortExpirationView,
   (positions, sort) => {
     const { totalPotential, totalOccupied } = getTotalAmount({ positions });
-    const sorted = positions.sort((p1, p2) => {
+    const array = [...positions];
+    const sorted = array.sort((p1, p2) => {
       return p1.expirationDate > p2.expirationDate ? 1 : -1;
     });
     const grouped = groupBy({ data: sorted, key: 'expirationDate' });
